@@ -1,0 +1,8 @@
+{
+  "name": "ak27-registration",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18"
+  }
+}
