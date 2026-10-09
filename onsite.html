@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Americas Kickoff 2027 · On-site</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#05070D;-webkit-font-smoothing:antialiased;}
+html{color-scheme:light dark;}
+a{color:light-dark(#0058AB,#3DB5F0);text-decoration:none;}
+a:hover{color:light-dark(#00427F,#7FD3F2);}
+button{font-family:inherit;}
+input{font-family:inherit;}
+*:focus-visible{outline:2px solid #05A3E6;outline-offset:2px;}
+@keyframes os-scan{0%{top:8%}50%{top:88%}100%{top:8%}}
+@keyframes os-pulse{0%{box-shadow:0 0 0 0 rgba(5,163,230,.55)}100%{box-shadow:0 0 0 14px rgba(5,163,230,0)}}
+@keyframes os-dash{to{stroke-dashoffset:-20}}
+@keyframes os-blink{0%,100%{opacity:1}50%{opacity:.35}}
+</style>
+</helmet>
+
+<div style="font-family:'Ubuntu','Helvetica Neue',Helvetica,Arial,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;gap:56px;padding:{{ pagePad }};box-sizing:border-box;background:radial-gradient(120% 90% at 70% 10%,#16224A 0%,#0B0E15 55%,#05070D 100%);">
+
+  <sc-if value="{{ showPanel }}" hint-placeholder-val="{{ true }}">
+    <aside aria-label="Demo controls" style="width:300px;flex:none;display:flex;flex-direction:column;gap:24px;color:#FFFFFF;">
+      <sc-if value="{{ embedded }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ closeEmbed }}" style="align-self:flex-start;display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.04);color:#D6E2EB;border-radius:40px;padding:12px 18px;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;cursor:pointer;" style-hover="color:#FFFFFF;border-color:rgba(255,255,255,0.4);">← Back to registration site</button>
+      </sc-if>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <p style="margin:0;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#7FD3F2;">Americas Kickoff 2027 · Demo</p>
+        <h1 style="margin:0;font-weight:300;font-size:36px;line-height:1.05;letter-spacing:-0.02em;">On-site companion</h1>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#A8B7C5;text-wrap:pretty;">Attendees scan their badge at check-in. The app already knows their language, Tuesday sessions, transfer and table from registration.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px;padding:20px;background:rgba(11,14,21,0.7);border:1px solid #232C40;border-radius:18px;">
+        <sc-for list="{{ demoGroups }}" as="g" hint-placeholder-count="4">
+          <div role="radiogroup" aria-label="{{ g.label }}" style="display:flex;flex-direction:column;gap:9px;">
+            <span style="font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:#8FA0B4;">{{ g.label }}</span>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <sc-for list="{{ g.opts }}" as="o" hint-placeholder-count="3">
+                <button type="button" role="radio" aria-checked="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;border-radius:40px;padding:8px 13px;font-size:12px;background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.bd }};transition:all .2s ease;">{{ o.l }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:6px;border-top:1px solid #232C40;">
+          <button type="button" onClick="{{ demoPush }}" style="cursor:pointer;border-radius:40px;padding:10px 15px;font-size:12px;background:#FFFFFF;color:#111A38;border:0;">Send announcement</button>
+          <button type="button" onClick="{{ replayCheckin }}" style="cursor:pointer;border-radius:40px;padding:10px 15px;font-size:12px;background:transparent;color:#D6E2EB;border:1px solid #3A4660;">Replay check-in</button>
+        </div>
+      </div>
+    </aside>
+  </sc-if>
+
+  <div style="flex:none;zoom:{{ phoneZoom }};">
+    <div style="position:relative;width:{{ phoneW }};height:{{ phoneH }};padding:{{ bezel }};background:#0B0E15;border-radius:{{ outerR }};box-shadow:{{ phoneShadow }};box-sizing:content-box;">
+      <div data-screen-label="On-site app" style="position:relative;width:100%;height:100%;overflow:hidden;border-radius:{{ innerR }};color-scheme:{{ scheme }};background:light-dark(#F4F6F8,#0A0E1A);color:light-dark(#111A38,#EEF2F7);">
+
+        <sc-if value="{{ framed }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;top:11px;left:50%;margin-left:-62px;width:124px;height:36px;border-radius:20px;background:#000000;z-index:30;"></div>
+          <div style="position:absolute;top:0;left:0;right:0;height:54px;z-index:25;display:flex;align-items:center;justify-content:space-between;padding:4px 30px 0 36px;box-sizing:border-box;color:{{ sbFg }};pointer-events:none;">
+            <span style="font-size:16px;font-weight:500;letter-spacing:-0.01em;">{{ clock }}</span>
+            <span style="display:flex;align-items:center;gap:6px;">
+              <span style="display:flex;align-items:flex-end;gap:2px;height:11px;"><span style="width:3px;height:4px;border-radius:1px;background:{{ sbFg }};"></span><span style="width:3px;height:6px;border-radius:1px;background:{{ sbFg }};"></span><span style="width:3px;height:8px;border-radius:1px;background:{{ sbFg }};"></span><span style="width:3px;height:11px;border-radius:1px;background:{{ sbFg }};"></span></span>
+              <span style="font-size:12px;font-weight:500;">5G</span>
+              <span style="display:flex;align-items:center;gap:1px;"><span style="width:22px;height:11px;border:1.5px solid {{ sbFg }};border-radius:3px;padding:1px;box-sizing:border-box;opacity:.9;"><span style="display:block;width:80%;height:100%;border-radius:1px;background:{{ sbFg }};"></span></span></span>
+            </span>
+          </div>
+        </sc-if>
+
+        <div role="status" aria-live="polite" style="position:absolute;left:10px;right:10px;top:{{ pushTop }};z-index:28;transform:translateY({{ pushY }});opacity:{{ pushOp }};transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s ease;">
+          <button type="button" onClick="{{ openPush }}" style="width:100%;text-align:left;display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:0;border-radius:22px;background:light-dark(rgba(255,255,255,0.92),rgba(30,36,52,0.92));backdrop-filter:blur(20px);box-shadow:0 18px 40px -16px rgba(0,0,0,0.45);cursor:pointer;color:light-dark(#111A38,#FFFFFF);">
+            <span style="flex:0 0 38px;width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#0058AB,#05A3E6 55%,#00BFB3);display:grid;place-items:center;font-size:13px;font-weight:500;color:#FFFFFF;">AK</span>
+            <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;">
+              <span style="display:flex;justify-content:space-between;gap:8px;font-size:12px;color:light-dark(#55646F,#A8B7C5);"><span>Americas Kickoff</span><span>{{ t.justNow }}</span></span>
+              <span style="font-size:15px;font-weight:500;">{{ push.title }}</span>
+              <span style="font-size:14px;line-height:1.4;color:light-dark(#3A4A5C,#C9D4DF);">{{ push.body }}</span>
+            </span>
+          </button>
+        </div>
+
+        <sc-if value="{{ showCheckin }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:20;background:#0B0E15 url('capgemini-save-the-date/assets/hero-v4.jpg') 30% center/cover;color:#FFFFFF;display:flex;flex-direction:column;">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,21,0.35) 0%,rgba(11,14,21,0.55) 40%,rgba(11,14,21,0.94) 100%);"></div>
+            <div style="position:relative;flex:1;display:flex;flex-direction:column;padding:{{ ciPad }};gap:28px;">
+              <img src="capgemini-save-the-date/assets/logo-white.png" alt="Capgemini" style="width:116px;height:auto;">
+              <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+                <sc-if value="{{ ciWelcome }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;">
+                    <span style="width:76px;height:76px;border-radius:50%;background:#00BFB3;display:grid;place-items:center;font-size:34px;color:#FFFFFF;">✓</span>
+                    <p style="margin:0;font-weight:300;font-size:44px;line-height:1;letter-spacing:-0.02em;">{{ t.welcome }},<br>{{ firstName }}</p>
+                    <p style="margin:0;max-width:260px;font-size:15px;line-height:1.55;color:#C9D4DF;text-wrap:balance;">{{ t.ciReady }}</p>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ ciFinder }}" hint-placeholder-val="{{ true }}">
+                  <div style="position:relative;width:220px;height:220px;border-radius:28px;background:rgba(255,255,255,0.06);backdrop-filter:blur(4px);">
+                    <span style="position:absolute;top:0;left:0;width:44px;height:44px;border-top:3px solid #FFFFFF;border-left:3px solid #FFFFFF;border-radius:28px 0 0 0;"></span>
+                    <span style="position:absolute;top:0;right:0;width:44px;height:44px;border-top:3px solid #FFFFFF;border-right:3px solid #FFFFFF;border-radius:0 28px 0 0;"></span>
+                    <span style="position:absolute;bottom:0;left:0;width:44px;height:44px;border-bottom:3px solid #FFFFFF;border-left:3px solid #FFFFFF;border-radius:0 0 0 28px;"></span>
+                    <span style="position:absolute;bottom:0;right:0;width:44px;height:44px;border-bottom:3px solid #FFFFFF;border-right:3px solid #FFFFFF;border-radius:0 0 28px 0;"></span>
+                    {{ scanLine }}
+                  </div>
+                </sc-if>
+              </div>
+              <sc-if value="{{ ciFinder }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:14px;">
+                  <p style="margin:0;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:#7FD3F2;">{{ t.ciEyebrow }}</p>
+                  <p style="margin:0;font-weight:300;font-size:38px;line-height:1.04;letter-spacing:-0.02em;text-wrap:balance;">{{ t.ciTitle }}</p>
+                  <p style="margin:0;font-size:15px;line-height:1.6;color:#C9D4DF;text-wrap:pretty;">{{ t.ciSub }}</p>
+                  <button type="button" onClick="{{ scan }}" disabled="{{ scanning }}" style="margin-top:8px;min-height:56px;border:0;border-radius:40px;background:#FFFFFF;color:#111A38;font-size:13px;letter-spacing:2.4px;text-transform:uppercase;cursor:pointer;">{{ scanLabel }}</button>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <div ref="{{ scrollRef }}" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:{{ contentPad }};box-sizing:border-box;">
+
+          <sc-if value="{{ vNow }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;gap:22px;padding:8px 20px 0;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+                <div style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+                  <p style="margin:0;font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ dayLong }} · {{ t.cancun }} {{ clock }}</p>
+                  <p style="margin:0;font-weight:300;font-size:34px;line-height:1;letter-spacing:-0.02em;">{{ t.hello }}, {{ firstName }}</p>
+                </div>
+                <button type="button" onClick="{{ goInbox }}" aria-label="{{ t.inbox }}" style="position:relative;flex:0 0 44px;width:44px;height:44px;border-radius:50%;border:1px solid light-dark(#E2E8ED,#1F2840);background:light-dark(#FFFFFF,#121A2C);color:light-dark(#111A38,#EEF2F7);cursor:pointer;display:grid;place-items:center;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg>
+                  <sc-if value="{{ hasUnread }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:6px;right:7px;min-width:16px;height:16px;padding:0 4px;box-sizing:border-box;border-radius:8px;background:#FF5A6B;color:#FFFFFF;font-size:10px;line-height:16px;text-align:center;">{{ unread }}</span></sc-if>
+                </button>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:light-dark(#55646F,#A8B7C5);">
+                <span style="font-size:22px;font-weight:300;color:light-dark(#111A38,#EEF2F7);">{{ temp }}</span><span>{{ cond }}</span><span style="width:3px;height:3px;border-radius:50%;background:currentColor;"></span><span>{{ t.seaTemp }}</span>
+              </div>
+
+              <div style="position:relative;border-radius:24px;overflow:hidden;background:#111A38;color:#FFFFFF;box-shadow:0 24px 50px -28px rgba(11,14,21,0.8);">
+                <img src="capgemini-save-the-date/assets/brand-line.png" alt="" style="display:block;width:100%;height:4px;object-fit:cover;">
+                <div style="padding:22px 22px 20px;display:flex;flex-direction:column;gap:14px;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <sc-if value="{{ nowCard.live }}" hint-placeholder-val="{{ false }}">{{ liveDot }}</sc-if>
+                    <span style="font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:#7FD3F2;">{{ nowCard.eyebrow }}</span>
+                  </div>
+                  <p style="margin:0;font-weight:300;font-size:30px;line-height:1.08;letter-spacing:-0.015em;text-wrap:balance;">{{ nowCard.title }}</p>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:#C9D4DF;">
+                    <sc-for list="{{ nowCard.meta }}" as="m" hint-placeholder-count="3"><span>{{ m }}</span></sc-for>
+                  </div>
+                  <sc-if value="{{ nowCard.hasBar }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                      <div style="height:4px;border-radius:4px;background:#243055;overflow:hidden;"><div style="height:100%;width:{{ nowCard.bar }};background:linear-gradient(90deg,#0058AB,#05A3E6,#00BFB3);"></div></div>
+                      <span style="font-size:12px;color:#A8B7C5;">{{ nowCard.barLabel }}</span>
+                    </div>
+                  </sc-if>
+                  <div style="display:flex;gap:8px;margin-top:4px;">
+                    <button type="button" onClick="{{ nowCard.a1 }}" style="flex:1;min-height:48px;border:0;border-radius:40px;background:#FFFFFF;color:#111A38;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;cursor:pointer;">{{ nowCard.l1 }}</button>
+                    <button type="button" onClick="{{ nowCard.a2 }}" style="flex:1;min-height:48px;border:1px solid #3A4A72;border-radius:40px;background:transparent;color:#FFFFFF;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;cursor:pointer;">{{ nowCard.l2 }}</button>
+                  </div>
+                </div>
+              </div>
+
+              <sc-if value="{{ hasLater }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;">
+                  <p style="margin:0 0 4px;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#55646F,#A8B7C5);">{{ t.later }}</p>
+                  <sc-for list="{{ later }}" as="l" hint-placeholder-count="2">
+                    <button type="button" onClick="{{ l.go }}" style="display:flex;gap:16px;align-items:center;padding:14px 0;border:0;border-bottom:1px solid light-dark(#E2E8ED,#1F2840);background:transparent;color:inherit;text-align:left;cursor:pointer;">
+                      <span style="flex:0 0 46px;font-family:'Ubuntu Mono',monospace;font-size:14px;color:light-dark(#0058AB,#3DB5F0);">{{ l.time }}</span>
+                      <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;"><span style="font-size:16px;">{{ l.title }}</span><span style="font-size:13px;color:light-dark(#55646F,#A8B7C5);">{{ l.loc }}</span></span>
+                      <span style="color:light-dark(#8A97A3,#5E7088);font-size:18px;">›</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <sc-for list="{{ tiles }}" as="tl" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ tl.go }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:18px;padding:16px;min-height:112px;border:1px solid light-dark(#E2E8ED,#1F2840);border-radius:20px;background:light-dark(#FFFFFF,#121A2C);color:inherit;text-align:left;cursor:pointer;">
+                    <span style="width:28px;height:4px;border-radius:4px;background:{{ tl.c }};"></span>
+                    <span style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:16px;">{{ tl.title }}</span><span style="font-size:13px;line-height:1.35;color:light-dark(#55646F,#A8B7C5);">{{ tl.sub }}</span></span>
+                  </button>
+                </sc-for>
+              </div>
+
+              <button type="button" onClick="{{ goPeople }}" style="display:flex;align-items:center;gap:14px;padding:16px;border:0;border-radius:20px;background:light-dark(#E8F1F8,#14203A);color:inherit;text-align:left;cursor:pointer;">
+                <span style="display:flex;">
+                  <sc-for list="{{ avatars }}" as="av" hint-placeholder-count="3"><span style="width:34px;height:34px;margin-right:-10px;border-radius:50%;border:2px solid light-dark(#E8F1F8,#14203A);background:{{ av.c }};color:#FFFFFF;font-size:11px;display:grid;place-items:center;">{{ av.i }}</span></sc-for>
+                </span>
+                <span style="flex:1;margin-left:10px;font-size:14px;line-height:1.4;text-wrap:pretty;">{{ marketLine }}</span>
+                <span style="color:light-dark(#0058AB,#3DB5F0);font-size:18px;">›</span>
+              </button>
+
+              <button type="button" onClick="{{ goConcierge }}" style="display:flex;align-items:center;gap:12px;padding:8px 8px 8px 18px;border:1px solid light-dark(#E2E8ED,#1F2840);border-radius:40px;background:light-dark(#FFFFFF,#121A2C);color:light-dark(#6B7884,#8394A8);font-size:14px;cursor:pointer;text-align:left;">
+                <span style="flex:0 0 10px;width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#0058AB,#05A3E6,#00BFB3);"></span>
+                <span style="flex:1;">{{ t.askPh }}</span>
+                <span style="width:38px;height:38px;border-radius:50%;background:#0058AB;color:#FFFFFF;display:grid;place-items:center;font-size:16px;">→</span>
+              </button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vAgenda }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:18px;padding:8px 20px 0;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;">
+                <p style="margin:0;font-weight:300;font-size:34px;line-height:1;letter-spacing:-0.02em;">{{ t.agendaTitle }}</p>
+                <div role="radiogroup" style="display:flex;padding:3px;border-radius:40px;background:light-dark(#E2E8ED,#1A2236);">
+                  <button type="button" role="radio" aria-checked="{{ allOn }}" onClick="{{ showAll }}" style="border:0;border-radius:40px;padding:8px 14px;font-size:12px;cursor:pointer;background:{{ allBg }};color:{{ allFg }};">{{ t.all }}</button>
+                  <button type="button" role="radio" aria-checked="{{ mineOn }}" onClick="{{ showMine }}" style="border:0;border-radius:40px;padding:8px 14px;font-size:12px;cursor:pointer;background:{{ mineBg }};color:{{ mineFg }};">{{ t.mine }}</button>
+                </div>
+              </div>
+              <div role="tablist" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+                <sc-for list="{{ dayTabs }}" as="d" hint-placeholder-count="4">
+                  <button type="button" role="tab" aria-selected="{{ d.on }}" onClick="{{ d.pick }}" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0;border-radius:16px;cursor:pointer;border:1px solid {{ d.bd }};background:{{ d.bg }};color:{{ d.fg }};">
+                    <span style="font-size:11px;letter-spacing:1.6px;text-transform:uppercase;">{{ d.wk }}</span>
+                    <span style="font-size:22px;font-weight:300;">{{ d.num }}</span>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;">
+                <sc-for list="{{ dayItems }}" as="it" hint-placeholder-count="5">
+                  <div style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid light-dark(#E2E8ED,#1F2840);opacity:{{ it.op }};">
+                    <div style="flex:0 0 48px;display:flex;flex-direction:column;gap:6px;">
+                      <span style="font-family:'Ubuntu Mono',monospace;font-size:14px;color:light-dark(#0058AB,#3DB5F0);">{{ it.time }}</span>
+                      <sc-if value="{{ it.hasTag }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;padding:3px 7px;border-radius:20px;background:{{ it.tagBg }};color:{{ it.tagFg }};">{{ it.tag }}</span></sc-if>
+                    </div>
+                    <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;">
+                      <span style="font-size:16px;line-height:1.3;">{{ it.title }}</span>
+                      <button type="button" onClick="{{ it.go }}" style="align-self:flex-start;display:flex;align-items:center;gap:6px;border:0;padding:0;background:transparent;font-size:13px;color:light-dark(#55646F,#A8B7C5);cursor:pointer;"><span style="width:6px;height:6px;border-radius:50%;background:#05A3E6;"></span>{{ it.loc }} ›</button>
+                      <sc-if value="{{ it.hasAlts }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;line-height:1.45;color:light-dark(#6B7884,#7F919F);">{{ it.alts }}</span></sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vMap }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:16px;padding:8px 20px 0;">
+              <p style="margin:0;font-weight:300;font-size:34px;line-height:1;letter-spacing:-0.02em;">{{ t.mapTitle }}</p>
+              <div style="position:relative;align-self:center;width:{{ mapBoxW }};height:{{ mapBoxH }};border-radius:26px;overflow:hidden;box-shadow:0 24px 48px -28px rgba(11,14,21,0.55);">
+                <div style="position:absolute;left:0;top:0;width:350px;height:440px;transform:scale({{ mapScale }});transform-origin:top left;">
+                  <svg width="350" height="440" viewBox="0 0 350 440" style="position:absolute;inset:0;display:block;">
+                    <rect x="0" y="0" width="350" height="440" style="fill:light-dark(#E4EBDF,#0E171C);"></rect>
+                    <path d="M0 108 C 40 96, 60 128, 18 136 L0 140 Z M232 104 C 280 96, 340 112, 350 132 L350 150 C 330 142, 300 128, 262 128 C 240 128, 222 118, 232 104 Z M150 196 C 168 186, 196 200, 190 222 C 184 244, 160 240, 152 226 C 146 214, 140 204, 150 196 Z M0 214 C 14 206, 24 214, 22 222 L0 226 Z M300 254 C 320 244, 350 250, 350 262 L350 290 C 330 292, 300 280, 300 254 Z" style="fill:light-dark(#CFE0C4,#13281F);"></path>
+                    <path d="M0 300 C 90 318, 260 286, 350 306 L350 440 L0 440 Z" style="fill:light-dark(#F4E7C9,#2C2A22);"></path>
+                    <path d="M0 370 C 100 392, 240 352, 350 378 L350 440 L0 440 Z" style="fill:light-dark(#8FD6EE,#0C3150);"></path>
+                    <path d="M0 384 C 100 406, 240 366, 350 392 L350 440 L0 440 Z" style="fill:light-dark(#52B8E4,#0A2742);"></path>
+                    <path d="M0 410 C 100 430, 240 392, 350 418" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="14 10" style="stroke:light-dark(rgba(255,255,255,0.7),rgba(127,211,242,0.35));animation:os-dash 3s linear infinite;"></path>
+                    <path d="M0 374 C 100 396, 240 356, 350 382" fill="none" stroke-width="2" style="stroke:light-dark(#FFFFFF,rgba(127,211,242,0.45));"></path>
+                    <path d="M214 150 C 250 132, 318 138, 322 176 C 326 212, 296 236, 262 232 C 236 230, 240 206, 222 200 C 200 192, 192 162, 214 150 Z" stroke-width="5" style="fill:light-dark(#7FD3F2,#11506B);stroke:light-dark(#FFFFFF,#1E3A52);"></path>
+                    <path d="M226 160 C 252 148, 302 152, 308 178" fill="none" stroke-width="3" stroke-linecap="round" style="stroke:light-dark(rgba(255,255,255,0.75),rgba(127,211,242,0.35));"></path>
+                    <circle cx="300" cy="206" r="9" stroke-width="3" style="fill:light-dark(#A9E4F5,#16607E);stroke:light-dark(#FFFFFF,#1E3A52);"></circle>
+                    <path d="M175 0 V46 M175 26 H70 V34" fill="none" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" style="stroke:light-dark(#C5CDD3,#1C2433);"></path>
+                    <path d="M175 0 V22" fill="none" stroke-width="1.5" stroke-dasharray="5 6" style="stroke:light-dark(#FFFFFF,#3A465E);"></path>
+                    <path d="M175 94 V318 M70 64 V116 H290 V98 M142 175 H175 M50 258 V268 H200 M96 258 V268 M142 258 V268 M100 338 V318 H264 V332" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" style="stroke:light-dark(#FFFFFF,#1F2A3E);"></path>
+                    <g style="fill:light-dark(#8DBF88,#1E4232);">
+                      <circle cx="16" cy="96" r="9"></circle><circle cx="30" cy="88" r="7"></circle><circle cx="244" cy="120" r="8"></circle><circle cx="330" cy="118" r="10"></circle><circle cx="198" cy="140" r="7"></circle><circle cx="160" cy="214" r="9"></circle><circle cx="182" cy="230" r="6"></circle><circle cx="12" cy="166" r="8"></circle><circle cx="12" cy="200" r="7"></circle><circle cx="330" cy="268" r="9"></circle><circle cx="312" cy="252" r="6"></circle><circle cx="30" cy="312" r="7"></circle><circle cx="190" cy="300" r="6"></circle><circle cx="326" cy="318" r="7"></circle><circle cx="150" cy="350" r="6"></circle>
+                    </g>
+                    <g style="fill:light-dark(#B3D7A9,#2A5642);">
+                      <circle cx="14" cy="94" r="4"></circle><circle cx="242" cy="118" r="3.5"></circle><circle cx="328" cy="115" r="4.5"></circle><circle cx="158" cy="211" r="4"></circle><circle cx="10" cy="164" r="3.5"></circle><circle cx="328" cy="265" r="4"></circle><circle cx="28" cy="310" r="3"></circle>
+                    </g>
+                    <text x="261" y="194" text-anchor="middle" font-size="9" letter-spacing="1.6" style="fill:light-dark(#0B5E86,#7FD3F2);font-family:'Ubuntu',sans-serif;text-transform:uppercase;">Lagoon pool</text>
+                    <text x="175" y="430" text-anchor="middle" font-size="10" letter-spacing="3.2" font-style="italic" style="fill:light-dark(#FFFFFF,#7FD3F2);font-family:'Ubuntu',sans-serif;">Caribbean Sea</text>
+                    <g transform="translate(332 22)">
+                      <circle r="12" style="fill:light-dark(rgba(255,255,255,0.85),rgba(18,26,44,0.85));"></circle>
+                      <path d="M0 -8 L4 2 L0 0 L-4 2 Z" style="fill:#05A3E6;"></path>
+                      <text y="9" text-anchor="middle" font-size="6" style="fill:light-dark(#111A38,#EEF2F7);font-family:'Ubuntu',sans-serif;">N</text>
+                    </g>
+                  </svg>
+                  {{ routeSvg }}
+                  <sc-for list="{{ mapLocs }}" as="ml" hint-placeholder-count="10">
+                    <button type="button" onClick="{{ ml.pick }}" aria-label="{{ ml.name }}" aria-pressed="{{ ml.on }}" style="position:absolute;left:{{ ml.x }};top:{{ ml.y }};width:{{ ml.w }};height:{{ ml.h }};border-radius:10px;border:0;background:{{ ml.bg }};color:{{ ml.fg }};box-shadow:{{ ml.sh }};transform:translateY({{ ml.lift }});font-size:9px;letter-spacing:.2px;line-height:1.15;padding:2px 3px;cursor:pointer;display:grid;place-items:center;text-align:center;transition:all .3s cubic-bezier(.2,.8,.2,1);">{{ ml.short }}</button>
+                  </sc-for>
+                  {{ youDot }}
+                  {{ destPin }}
+                </div>
+              </div>
+              <div style="display:flex;gap:6px;overflow-x:auto;margin:0 -20px;padding:0 20px 4px;">
+                <sc-for list="{{ destChips }}" as="dc" hint-placeholder-count="6">
+                  <button type="button" onClick="{{ dc.pick }}" style="flex:none;white-space:nowrap;border-radius:40px;padding:9px 14px;font-size:12px;cursor:pointer;border:1px solid {{ dc.bd }};background:{{ dc.bg }};color:{{ dc.fg }};">{{ dc.name }}</button>
+                </sc-for>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;background:light-dark(#FFFFFF,#121A2C);border:1px solid light-dark(#E2E8ED,#1F2840);">
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;">
+                  <span style="font-size:17px;">{{ destName }}</span>
+                  <span style="font-size:13px;color:light-dark(#55646F,#A8B7C5);">{{ destMeta }}</span>
+                </div>
+                <span style="font-size:28px;font-weight:300;color:light-dark(#0058AB,#3DB5F0);">{{ destMin }}</span>
+              </div>
+              <p style="margin:0;display:flex;align-items:center;gap:8px;font-size:12px;color:light-dark(#55646F,#A8B7C5);"><span style="width:10px;height:10px;border-radius:50%;background:#05A3E6;border:2px solid #FFFFFF;"></span>{{ t.youHere }}</p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vBadge }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:18px;padding:8px 20px 0;">
+              <div style="border-radius:28px;overflow:hidden;background:#111A38;color:#FFFFFF;box-shadow:0 30px 60px -30px rgba(11,14,21,0.8);">
+                <div style="position:relative;height:120px;background:#111A38 url('capgemini-save-the-date/assets/hero-v4.jpg') 20% 60%/cover;">
+                  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,26,56,0.1),rgba(17,26,56,0.85));"></div>
+                  <img src="capgemini-save-the-date/assets/logo-white.png" alt="Capgemini" style="position:absolute;top:20px;left:22px;width:104px;height:auto;">
+                  <span style="position:absolute;top:22px;right:22px;font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:#7FD3F2;">AK27 · Cancún</span>
+                </div>
+                <img src="capgemini-save-the-date/assets/brand-line.png" alt="" style="display:block;width:100%;height:5px;object-fit:cover;">
+                <div style="padding:24px 22px 26px;display:flex;flex-direction:column;gap:20px;">
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    <p style="margin:0;font-weight:300;font-size:40px;line-height:0.98;letter-spacing:-0.02em;">{{ firstName }}<br>{{ lastName }}</p>
+                    <p style="margin:0;font-size:14px;color:#C9D4DF;">{{ guestTitle }}</p>
+                    <p style="margin:0;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:#7FD3F2;">{{ countryName }}</p>
+                  </div>
+                  <div style="align-self:center;padding:14px;border-radius:18px;background:#FFFFFF;">
+                    <div style="display:grid;grid-template-columns:repeat(25,7px);grid-auto-rows:7px;">
+                      <sc-for list="{{ qr }}" as="q" hint-placeholder-count="0"><span style="background:{{ q }};"></span></sc-for>
+                    </div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#A8B7C5;">
+                    <span style="font-family:'Ubuntu Mono',monospace;font-size:15px;color:#FFFFFF;">{{ code }}</span>
+                    <span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#00BFB3;"></span>{{ t.checkedIn }}</span>
+                  </div>
+                </div>
+              </div>
+              <p style="margin:0;font-size:13px;line-height:1.55;text-align:center;color:light-dark(#55646F,#A8B7C5);text-wrap:balance;">{{ t.badgeHint }}</p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vMore }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:18px;padding:8px 20px 0;">
+              <p style="margin:0;font-weight:300;font-size:34px;line-height:1;letter-spacing:-0.02em;">{{ t.moreTitle }}</p>
+              <div style="display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:light-dark(#FFFFFF,#121A2C);border:1px solid light-dark(#E2E8ED,#1F2840);">
+                <sc-for list="{{ moreRows }}" as="r" hint-placeholder-count="6">
+                  <button type="button" onClick="{{ r.go }}" style="display:flex;align-items:center;gap:14px;padding:16px 18px;border:0;border-bottom:1px solid light-dark(#EEF2F5,#1A2236);background:transparent;color:inherit;text-align:left;cursor:pointer;">
+                    <span style="flex:0 0 4px;width:4px;height:28px;border-radius:4px;background:{{ r.c }};"></span>
+                    <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;"><span style="font-size:16px;">{{ r.title }}</span><span style="font-size:13px;color:light-dark(#55646F,#A8B7C5);">{{ r.sub }}</span></span>
+                    <span style="color:light-dark(#8A97A3,#5E7088);font-size:18px;">›</span>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#55646F,#A8B7C5);">{{ t.language }}</span>
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+                  <sc-for list="{{ langBtns }}" as="lb" hint-placeholder-count="4">
+                    <button type="button" onClick="{{ lb.pick }}" aria-pressed="{{ lb.on }}" style="min-height:44px;border-radius:14px;font-size:13px;cursor:pointer;border:1px solid {{ lb.bd }};background:{{ lb.bg }};color:{{ lb.fg }};">{{ lb.l }}</button>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ inSub }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:4px 20px 0;">
+              <button type="button" onClick="{{ back }}" style="display:flex;align-items:center;gap:6px;min-height:44px;border:0;padding:0;background:transparent;color:light-dark(#0058AB,#3DB5F0);font-size:15px;cursor:pointer;">‹ {{ backLabel }}</button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vShuttle }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:20px;padding:4px 20px 0;">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <p style="margin:0;font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ sh.eyebrow }}</p>
+                <p style="margin:0;font-weight:300;font-size:32px;line-height:1.05;letter-spacing:-0.02em;">{{ sh.title }}</p>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:10px;padding:22px;border-radius:24px;background:#111A38;color:#FFFFFF;">
+                <span style="font-weight:300;font-size:64px;line-height:0.9;letter-spacing:-0.04em;font-variant-numeric:tabular-nums;">{{ sh.big }}</span>
+                <span style="font-size:14px;line-height:1.35;color:#C9D4DF;">{{ sh.bigLabel }}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;">
+                <sc-for list="{{ sh.steps }}" as="s" hint-placeholder-count="4">
+                  <div style="display:flex;gap:14px;">
+                    <div style="flex:0 0 20px;display:flex;flex-direction:column;align-items:center;">
+                      <span style="width:16px;height:16px;border-radius:50%;box-sizing:border-box;border:2px solid {{ s.ring }};background:{{ s.fill }};margin-top:2px;"></span>
+                      <span style="flex:1;width:2px;min-height:26px;background:{{ s.line }};"></span>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:2px;padding-bottom:18px;">
+                      <span style="font-size:16px;color:{{ s.fg }};">{{ s.label }}</span>
+                      <span style="font-size:13px;color:light-dark(#55646F,#A8B7C5);">{{ s.sub }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="border-top:1px solid light-dark(#E2E8ED,#1F2840);">
+                <sc-for list="{{ sh.rows }}" as="r" hint-placeholder-count="3">
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid light-dark(#E2E8ED,#1F2840);font-size:14px;"><span style="font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);line-height:20px;">{{ r.k }}</span><span style="text-align:right;">{{ r.v }}</span></div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vDinner }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:20px;padding:4px 20px 0;">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <p style="margin:0;font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ dn.when }}</p>
+                <p style="margin:0;font-weight:300;font-size:32px;line-height:1.05;letter-spacing:-0.02em;">{{ t.s_cel }}</p>
+              </div>
+              <div style="display:flex;gap:16px;align-items:stretch;">
+                <div style="flex:0 0 120px;display:flex;flex-direction:column;justify-content:space-between;padding:18px;border-radius:24px;background:#111A38;color:#FFFFFF;">
+                  <span style="font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:#7FD3F2;">{{ t.yourTable }}</span>
+                  <span style="font-weight:300;font-size:72px;line-height:0.85;letter-spacing:-0.04em;">12</span>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:24px;background:light-dark(#FFFFFF,#121A2C);border:1px solid light-dark(#E2E8ED,#1F2840);">
+                  <span style="align-self:stretch;text-align:center;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px;border-radius:6px;background:light-dark(#E2E8ED,#1F2840);color:light-dark(#55646F,#A8B7C5);">{{ t.stage }}</span>
+                  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:7px;justify-items:center;">
+                    <sc-for list="{{ dn.tables }}" as="tb" hint-placeholder-count="15"><span style="width:24px;height:24px;border-radius:50%;background:{{ tb.bg }};color:{{ tb.fg }};font-size:9px;display:grid;place-items:center;">{{ tb.n }}</span></sc-for>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#55646F,#A8B7C5);">{{ t.tablemates }}</span>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                  <sc-for list="{{ dn.mates }}" as="p" hint-placeholder-count="6">
+                    <span style="display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:40px;background:light-dark(#FFFFFF,#121A2C);border:1px solid light-dark(#E2E8ED,#1F2840);font-size:13px;"><span style="width:26px;height:26px;border-radius:50%;background:{{ p.c }};color:#FFFFFF;font-size:10px;display:grid;place-items:center;">{{ p.i }}</span>{{ p.name }}</span>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="border-top:1px solid light-dark(#E2E8ED,#1F2840);">
+                <sc-for list="{{ dn.rows }}" as="r" hint-placeholder-count="3">
+                  <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid light-dark(#E2E8ED,#1F2840);font-size:14px;"><span style="flex:none;font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);line-height:20px;">{{ r.k }}</span><span style="text-align:right;line-height:1.45;text-wrap:pretty;">{{ r.v }}</span></div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vPeople }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:18px;padding:4px 20px 0;">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <p style="margin:0;font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ countryName }} · {{ marketCount }}</p>
+                <p style="margin:0;font-weight:300;font-size:32px;line-height:1.05;letter-spacing:-0.02em;">{{ t.peopleTitle }}</p>
+                <p style="margin:0;font-size:14px;line-height:1.55;color:light-dark(#55646F,#A8B7C5);">{{ t.peopleSub }}</p>
+              </div>
+              <div style="display:flex;flex-direction:column;">
+                <sc-for list="{{ people }}" as="p" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid light-dark(#E2E8ED,#1F2840);">
+                    <span style="position:relative;flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:{{ p.c }};color:#FFFFFF;font-size:14px;display:grid;place-items:center;">{{ p.i }}<span style="position:absolute;right:0;bottom:0;width:11px;height:11px;border-radius:50%;border:2px solid light-dark(#F4F6F8,#0A0E1A);background:{{ p.dot }};"></span></span>
+                    <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;"><span style="font-size:16px;">{{ p.name }}</span><span style="font-size:13px;color:light-dark(#55646F,#A8B7C5);">{{ p.role }} · {{ p.city }}</span></span>
+                    <button type="button" onClick="{{ p.hi }}" style="flex:none;min-height:36px;border-radius:40px;padding:0 14px;font-size:12px;cursor:pointer;border:1px solid {{ p.bd }};background:{{ p.bg }};color:{{ p.fg }};transition:all .2s ease;">{{ p.label }}</button>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vLive }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:20px;padding:4px 20px 0;">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <p style="margin:0;display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ liveDot }}{{ liveSession }}</p>
+                <p style="margin:0;font-weight:300;font-size:32px;line-height:1.05;letter-spacing:-0.02em;">{{ t.liveTitle }}</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px;padding:20px;border-radius:24px;background:light-dark(#FFFFFF,#121A2C);border:1px solid light-dark(#E2E8ED,#1F2840);">
+                <span style="font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ t.poll }}</span>
+                <p style="margin:0;font-size:19px;line-height:1.3;text-wrap:balance;">{{ t.pollQ }}</p>
+                <sc-for list="{{ pollOpts }}" as="po" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ po.vote }}" disabled="{{ voted }}" style="position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid {{ po.bd }};background:light-dark(#F4F6F8,#0E1424);color:inherit;font-size:14px;text-align:left;cursor:pointer;">
+                    <span style="position:absolute;left:0;top:0;bottom:0;width:{{ po.w }};background:{{ po.fill }};transition:width .8s cubic-bezier(.2,.8,.2,1);"></span>
+                    <span style="position:relative;">{{ po.l }}</span>
+                    <span style="position:relative;font-family:'Ubuntu Mono',monospace;font-size:13px;">{{ po.pct }}</span>
+                  </button>
+                </sc-for>
+                <span style="font-size:12px;color:light-dark(#55646F,#A8B7C5);">{{ pollNote }}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#55646F,#A8B7C5);">{{ t.qa }}</span>
+                <form onSubmit="{{ askQ }}" style="display:flex;gap:8px;padding:6px 6px 6px 16px;border-radius:40px;background:light-dark(#FFFFFF,#121A2C);border:1px solid light-dark(#E2E8ED,#1F2840);">
+                  <input value="{{ qInput }}" onChange="{{ onQInput }}" placeholder="{{ t.qaPh }}" aria-label="{{ t.qaPh }}" style="flex:1;min-width:0;border:0;background:transparent;font-size:14px;color:inherit;outline:none;">
+                  <button type="submit" style="flex:none;min-height:40px;padding:0 16px;border:0;border-radius:40px;background:#0058AB;color:#FFFFFF;font-size:12px;cursor:pointer;">{{ t.send }}</button>
+                </form>
+                <sc-for list="{{ qs }}" as="q" hint-placeholder-count="3">
+                  <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid light-dark(#E2E8ED,#1F2840);">
+                    <button type="button" onClick="{{ q.up }}" aria-pressed="{{ q.on }}" style="flex:0 0 46px;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 0;border-radius:12px;border:1px solid {{ q.bd }};background:{{ q.bg }};color:{{ q.fg }};cursor:pointer;"><span style="font-size:12px;">▲</span><span style="font-size:13px;">{{ q.n }}</span></button>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:4px;"><span style="font-size:15px;line-height:1.45;">{{ q.text }}</span><span style="font-size:12px;color:light-dark(#55646F,#A8B7C5);">{{ q.who }}</span></div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vInbox }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:16px;padding:4px 20px 0;">
+              <p style="margin:0;font-weight:300;font-size:32px;line-height:1.05;letter-spacing:-0.02em;">{{ t.inbox }}</p>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <sc-for list="{{ inbox }}" as="a" hint-placeholder-count="3">
+                  <div style="display:flex;flex-direction:column;gap:6px;padding:16px 18px;border-radius:20px;background:light-dark(#FFFFFF,#121A2C);border:1px solid light-dark(#E2E8ED,#1F2840);">
+                    <span style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);"><span>{{ a.when }}</span><span style="width:8px;height:8px;border-radius:50%;background:{{ a.dot }};"></span></span>
+                    <span style="font-size:16px;">{{ a.title }}</span>
+                    <span style="font-size:14px;line-height:1.5;color:light-dark(#55646F,#A8B7C5);">{{ a.body }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ vConcierge }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:14px;padding:4px 20px 0;min-height:560px;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <span style="flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#0058AB,#05A3E6 55%,#00BFB3);display:grid;place-items:center;font-size:15px;color:#FFFFFF;">AK</span>
+                <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:20px;">{{ t.ccTitle }}</span><span style="font-size:13px;color:light-dark(#55646F,#A8B7C5);">{{ t.ccSub }}</span></div>
+              </div>
+              <div aria-live="polite" style="flex:1;display:flex;flex-direction:column;gap:8px;">
+                <sc-for list="{{ ccMsgs }}" as="m" hint-placeholder-count="0">
+                  <div style="align-self:{{ m.align }};max-width:84%;background:{{ m.bg }};color:{{ m.fg }};padding:11px 15px;border-radius:{{ m.radius }};font-size:14px;line-height:1.55;white-space:pre-wrap;text-wrap:pretty;">{{ m.text }}</div>
+                </sc-for>
+                <sc-if value="{{ ccBusy }}" hint-placeholder-val="{{ false }}">
+                  <div style="align-self:flex-start;padding:12px 16px;border-radius:18px 18px 18px 6px;background:light-dark(#FFFFFF,#121A2C);font-size:14px;color:light-dark(#55646F,#A8B7C5);">{{ typing }}</div>
+                </sc-if>
+                <sc-if value="{{ ccShowSug }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;">
+                    <sc-for list="{{ ccSug }}" as="s" hint-placeholder-count="3">
+                      <button type="button" onClick="{{ s.ask }}" style="border:1px solid light-dark(#C7D1DA,#2E3A57);background:transparent;color:inherit;border-radius:40px;padding:10px 15px;font-size:13px;cursor:pointer;text-align:left;">{{ s.q }}</button>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+              <form onSubmit="{{ ccSubmit }}" style="position:sticky;bottom:0;display:flex;gap:8px;padding:6px 6px 6px 18px;border-radius:40px;background:light-dark(#FFFFFF,#121A2C);border:1px solid light-dark(#E2E8ED,#1F2840);">
+                <input value="{{ ccInput }}" onChange="{{ ccOnInput }}" placeholder="{{ t.askPh }}" aria-label="{{ t.askPh }}" style="flex:1;min-width:0;border:0;background:transparent;font-size:14px;color:inherit;outline:none;">
+                <button type="submit" aria-label="{{ t.send }}" style="flex:0 0 40px;width:40px;height:40px;border:0;border-radius:50%;background:#0058AB;color:#FFFFFF;font-size:16px;cursor:pointer;">→</button>
+              </form>
+            </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+          <nav aria-label="Primary" style="position:absolute;left:0;right:0;bottom:0;z-index:15;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 8px {{ tabPadB }};background:light-dark(rgba(255,255,255,0.88),rgba(14,19,32,0.88));backdrop-filter:blur(20px);border-top:1px solid light-dark(#E2E8ED,#1A2236);">
+            <button type="button" onClick="{{ tabNow }}" style="display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;border:0;background:transparent;cursor:pointer;color:{{ tc.now }};font-size:10px;letter-spacing:.4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{ t.tabNow }}</button>
+            <button type="button" onClick="{{ tabAgenda }}" style="display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;border:0;background:transparent;cursor:pointer;color:{{ tc.agenda }};font-size:10px;letter-spacing:.4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>{{ t.tabAgenda }}</button>
+            <button type="button" onClick="{{ tabMap }}" style="display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;border:0;background:transparent;cursor:pointer;color:{{ tc.map }};font-size:10px;letter-spacing:.4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"></path><path d="M9 4v14M15 6v14"></path></svg>{{ t.tabMap }}</button>
+            <button type="button" onClick="{{ tabBadge }}" style="display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;border:0;background:transparent;cursor:pointer;color:{{ tc.badge }};font-size:10px;letter-spacing:.4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"></rect><circle cx="12" cy="10" r="3"></circle><path d="M8.5 17h7"></path></svg>{{ t.tabBadge }}</button>
+            <button type="button" onClick="{{ tabMore }}" style="display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;border:0;background:transparent;cursor:pointer;color:{{ tc.more }};font-size:10px;letter-spacing:.4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg>{{ t.tabMore }}</button>
+          </nav>
+        </sc-if>
+        <sc-if value="{{ framed }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;bottom:8px;left:50%;margin-left:-67px;width:134px;height:5px;border-radius:3px;background:{{ homeBar }};z-index:30;"></div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;demoControls&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const STOPS = ['#0058AB', '#1A86D0', '#05A3E6', '#00BFB3'];
+const GUESTS = {
+  amorgan: { first: 'Alex', last: 'Morgan', title: 'Vice President, Client Partner', country: 'United States', lang: 'en', diet: 'None', picks: { 0: 'a1', 1: 'b1', 2: 'c1' } },
+  sramirez: { first: 'Sofía', last: 'Ramírez', title: 'Head of Digital Transformation', country: 'Mexico', lang: 'es', diet: 'Vegetarian', picks: { 0: 'a2', 1: 'b3', 2: 'c3' } },
+  lsouza: { first: 'Lucas', last: 'Souza', title: 'Director, Cloud & Data', country: 'Brazil', lang: 'pt', diet: 'None', picks: { 0: 'a1', 1: 'b3', 2: 'c2' } }
+};
+const TRACKS = { a1: 'coralA', a2: 'coralB', a3: 'coralC', b1: 'coralB', b2: 'coralA', b3: 'coralC', c1: 'coralA', c2: 'coralB', c3: 'coralC' };
+const SLOT_OPTS = [['a1', 'a2', 'a3'], ['b1', 'b2', 'b3'], ['c1', 'c2', 'c3']];
+const LOCS = {
+  lobby: { x: 115, y: 46, w: 120, h: 48 }, bay: { x: 28, y: 34, w: 84, h: 30 }, azul: { x: 252, y: 52, w: 76, h: 46 },
+  ball: { x: 26, y: 132, w: 116, h: 70 }, coralA: { x: 30, y: 222, w: 40, h: 36 }, coralB: { x: 76, y: 222, w: 40, h: 36 }, coralC: { x: 122, y: 222, w: 40, h: 36 },
+  terrace: { x: 200, y: 252, w: 92, h: 30 }, beach: { x: 52, y: 338, w: 96, h: 30 }, pav: { x: 212, y: 332, w: 104, h: 38 }
+};
+const NODES = { lobby: [175, 94], bay: [70, 64], azul: [290, 98], ball: [142, 175], coralA: [50, 258], coralB: [96, 258], coralC: [142, 258], terrace: [200, 268], beach: [100, 338], pav: [264, 332],
+  J1: [175, 116], B1: [70, 116], A1: [290, 116], J2: [175, 175], J3: [175, 268], J4: [175, 318], BC1: [100, 318], P1: [264, 318], cA1: [50, 268], cB1: [96, 268], cC1: [142, 268] };
+const ADJ = {};
+'lobby-J1 bay-B1 B1-J1 azul-A1 A1-J1 J1-J2 ball-J2 J2-J3 coralA-cA1 coralB-cB1 coralC-cC1 cA1-cB1 cB1-cC1 cC1-J3 terrace-J3 J3-J4 beach-BC1 BC1-J4 pav-P1 P1-J4'.split(' ').forEach(e => { const [a, b] = e.split('-'); (ADJ[a] = ADJ[a] || []).push(b); (ADJ[b] = ADJ[b] || []).push(a); });
+const MOMENTS = [
+  { d: 0, m: 860, you: 'bay', label: 'Sun 14:20 · Arriving' },
+  { d: 1, m: 520, you: 'azul', label: 'Mon 08:40 · Pre-keynote' },
+  { d: 1, m: 565, you: 'ball', label: 'Mon 09:25 · Keynote live' },
+  { d: 2, m: 652, you: null, label: 'Tue 10:52 · Between tracks' },
+  { d: 2, m: 1145, you: 'lobby', label: 'Tue 19:05 · Pre-dinner' },
+  { d: 3, m: 760, you: 'lobby', label: 'Wed 12:40 · Departure' }
+];
+const PUSH_FOR = [5, 0, 1, 2, 3, 4];
+const PEOPLE = {
+  'United States': [['Jordan Lee', 'r_vp', 'Chicago'], ['Priya Nair', 'r_dir', 'New York'], ['Marcus Hill', 'r_arch', 'Dallas'], ['Emily Chen', 'r_mgr', 'San Francisco'], ['David Brooks', 'r_head', 'Atlanta']],
+  Mexico: [['Diego Herrera', 'r_dir', 'Ciudad de México'], ['Valeria Cruz', 'r_mgr', 'Monterrey'], ['Andrés Molina', 'r_arch', 'Guadalajara'], ['Lucía Torres', 'r_head', 'Ciudad de México'], ['Carlos Ibarra', 'r_vp', 'Monterrey']],
+  Brazil: [['Mariana Alves', 'r_head', 'São Paulo'], ['Rafael Costa', 'r_dir', 'Rio de Janeiro'], ['Beatriz Lima', 'r_arch', 'São Paulo'], ['Thiago Rocha', 'r_mgr', 'Belo Horizonte'], ['Camila Freitas', 'r_vp', 'Curitiba']]
+};
+const COUNTS = { 'United States': 148, Mexico: 62, Brazil: 54 };
+const MATES = ['Jordan Lee', 'Valeria Cruz', 'Rafael Costa', 'Émilie Gagnon', 'Sebastián Rojas'];
+const POLL_BASE = [128, 64, 91, 47];
+const QS_BASE = [34, 21, 12];
+const T = {
+  en: {
+    hello: 'Hello', cancun: 'Cancún', justNow: 'now', seaTemp: 'Sea 26°', welcome: 'Welcome',
+    upNext: 'Up next', liveNow: 'Live now', tonight: 'Tonight', welcomeCun: 'Welcome to Cancún', yourShuttle: 'Your shuttle',
+    inMin: n => `in ${n} min`, minWalk: n => `${n} min walk`, minLeft: n => `${n} min left`, table: n => `Table ${n}`, boards: x => `Boards ${x}`, etaIn: n => `Arriving in ${n} min`,
+    directions: 'Directions', showBadge: 'Badge', trackShuttle: 'Track', vote: 'Vote', ask: 'Ask', myTable: 'My table', myAgenda: 'Agenda',
+    shuttleIn: 'Shuttle 3 to the resort', shuttleOut: 'Shuttle 7 to Cancún airport', later: 'Later today',
+    tBadge: 'Badge', tShuttle: 'Shuttle', tDinner: 'Dinner', tLive: 'Live', checkedIn: 'Checked in', pollOpen: 'Poll open now', qaOpen: 'Q&A and polls', boardsAt: x => `Departs ${x}`,
+    fromMarket: (n, m) => `${n} colleagues from ${m} are here this week`, sayHello: 'Say hello', sent: 'Sent ✓', peopleTitle: 'Who’s here', peopleSub: 'Colleagues from your market on site. Tap to send a hello — they’ll see your badge name.',
+    askPh: 'Ask the concierge anything…', ccTitle: 'Concierge', ccSub: 'Answers from the event details only', typing: 'Typing…', ccSug: ['Where is my next session?', 'What should I wear tonight?', 'When does my shuttle leave?'], ccErr: 'I can’t reach the concierge right now — the hospitality desk in the lobby can help.',
+    tabNow: 'Now', tabAgenda: 'Agenda', tabMap: 'Map', tabBadge: 'Badge', tabMore: 'More',
+    agendaTitle: 'Agenda', all: 'All', mine: 'Mine', done: 'Done', now: 'Now', next: 'Next', alsoOn: 'Also on: ',
+    mapTitle: 'Resort map', youHere: 'You are here', fromYou: 'from where you are', youAreThere: 'You’re here',
+    badgeHint: 'Hold up to the reader at session doors. Your screen brightens automatically.',
+    moreTitle: 'More', language: 'Language', inbox: 'Announcements', back: 'Back',
+    rShuttle: 'Shuttle & transfers', rDinner: 'Dinner & table', rPeople: 'Who’s here', rLive: 'Live polls & Q&A', rCc: 'Concierge', rInbox: 'Announcements',
+    shArr: ['Landed at CUN', 'Met by your host', 'On the way', 'At the resort'], shDep: ['Check out', 'Board at the shuttle bay', 'On the way', 'At CUN airport'],
+    shBigArr: 'min to the resort', shBigDep: 'until boarding', vehicle: 'Vehicle', host: 'Host', flight: 'Flight', from: 'From', notAdded: 'Not added yet', scheduled: 'Scheduled', done2: 'Done', onNow: 'Now',
+    yourTable: 'Your table', stage: 'Stage', tablemates: 'At your table', dietary: 'Dietary', dress: 'Dress code', dressVal: 'Evening chic. Light fabrics and beach-friendly shoes.', where: 'Where',
+    diet: { None: 'No requirements', Vegetarian: 'Vegetarian · noted for the kitchen', Vegan: 'Vegan', 'Gluten-free': 'Gluten-free', Halal: 'Halal', Kosher: 'Kosher' },
+    liveTitle: 'Live polls & Q&A', poll: 'Live poll', pollQ: 'Which shift will shape your clients’ 2027 most?', pollOpts: ['AI at enterprise scale', 'Sustainable transformation', 'Data & cloud', 'Customer experience'], votes: n => `${n} votes · results on screen at 09:45`, tapVote: 'Tap to vote — results stay anonymous', qa: 'Questions for the speakers', qaPh: 'Ask the speakers…', send: 'Send', you: 'You',
+    qs: ['How will we measure AI value with clients in the first 90 days?', 'Which markets are piloting the new partner model first?', 'Will the keynote slides be shared after the session?'],
+    ciEyebrow: 'Americas Kickoff 2027', ciTitle: 'Scan your badge to begin', ciSub: 'Point your camera at the QR code on your badge. We’ll take it from there.', ciScan: 'Scan badge', ciScanning: 'Reading badge…', ciReady: 'Your programme, badge and transfers are ready.',
+    w: { clear: 'Clear', partly: 'Partly cloudy', cloudy: 'Cloudy', rain: 'Showers', storm: 'Storms' },
+    r_vp: 'Vice President', r_dir: 'Director', r_head: 'Head of Practice', r_mgr: 'Engagement Manager', r_arch: 'Solutions Architect',
+    ann: [['Doors are open', 'Opening keynote starts at 09:00 in the Grand Ballroom. Coffee is on the way in.'], ['Live poll is open', 'Vote from the Live tab — results go on screen at 09:45.'], ['Room change', 'Partner ecosystem forum now meets in Coral Room A.'], ['Carts to the Pavilion', 'Golf carts leave the lobby every 5 minutes from 19:00.'], ['Shuttle 7 boards soon', 'Head to the shuttle bay by 13:05. Your luggage is already loaded.'], ['Welcome to Cancún', 'Your host is waiting just past customs with a Capgemini sign.']],
+    days: ['Sunday 31 Jan', 'Monday 1 Feb', 'Tuesday 2 Feb', 'Wednesday 3 Feb'], dayS: ['Sun', 'Mon', 'Tue', 'Wed'], dayNum: ['31', '1', '2', '3'],
+    countries: { 'United States': 'the United States', Mexico: 'Mexico', Brazil: 'Brazil' }, countryLabel: { 'United States': 'United States', Mexico: 'Mexico', Brazil: 'Brazil' },
+    s_arr: 'Arrivals & check-in', s_wel: 'Welcome reception', s_odin: 'Opening dinner', s_bkf: 'Breakfast', s_key: 'Opening keynote', s_mkt: 'Market perspectives', s_lun: 'Lunch', s_work: 'Working sessions', s_eve: 'Evening programme', s_wg: 'Working groups', s_cel: 'Celebration dinner', s_clo: 'Closing plenary', s_brn: 'Farewell brunch', s_dep: 'Departures',
+    a1: 'AI at enterprise scale', a2: 'Sustainable transformation', a3: 'Financial services deep-dive', b1: 'Client innovation lab', b2: 'Partner ecosystem forum', b3: 'Data & cloud roundtable', c1: 'Leadership workshop', c2: 'Market strategy sessions', c3: 'Customer experience studio',
+    l: { lobby: 'Lobby & registration', bay: 'Shuttle bay', azul: 'Azul restaurant', ball: 'Grand Ballroom', coralA: 'Coral Room A', coralB: 'Coral Room B', coralC: 'Coral Room C', terrace: 'Lagoon Terrace', beach: 'Beach Club', pav: 'Beach Pavilion' },
+    ls: { lobby: 'Lobby', bay: 'Shuttles', azul: 'Azul', ball: 'Ballroom', coralA: 'Coral A', coralB: 'Coral B', coralC: 'Coral C', terrace: 'Terrace', beach: 'Beach Club', pav: 'Pavilion' }
+  },
+  es: {
+    hello: 'Hola', cancun: 'Cancún', justNow: 'ahora', seaTemp: 'Mar 26°', welcome: 'Bienvenida',
+    upNext: 'A continuación', liveNow: 'En vivo', tonight: 'Esta noche', welcomeCun: 'Bienvenida a Cancún', yourShuttle: 'Tu traslado',
+    inMin: n => `en ${n} min`, minWalk: n => `${n} min a pie`, minLeft: n => `quedan ${n} min`, table: n => `Mesa ${n}`, boards: x => `Abordaje ${x}`, etaIn: n => `Llegas en ${n} min`,
+    directions: 'Cómo llegar', showBadge: 'Gafete', trackShuttle: 'Seguir', vote: 'Votar', ask: 'Preguntar', myTable: 'Mi mesa', myAgenda: 'Agenda',
+    shuttleIn: 'Traslado 3 al resort', shuttleOut: 'Traslado 7 al aeropuerto de Cancún', later: 'Más tarde hoy',
+    tBadge: 'Gafete', tShuttle: 'Traslado', tDinner: 'Cena', tLive: 'En vivo', checkedIn: 'Registrada', pollOpen: 'Encuesta abierta', qaOpen: 'Preguntas y encuestas', boardsAt: x => `Sale ${x}`,
+    fromMarket: (n, m) => `${n} colegas de ${m} están aquí esta semana`, sayHello: 'Saludar', sent: 'Enviado ✓', peopleTitle: 'Quién está aquí', peopleSub: 'Colegas de tu mercado en el evento. Toca para saludar: verán el nombre de tu gafete.',
+    askPh: 'Pregúntale al concierge…', ccTitle: 'Concierge', ccSub: 'Responde solo con la información del evento', typing: 'Escribiendo…', ccSug: ['¿Dónde es mi próxima sesión?', '¿Qué me pongo esta noche?', '¿A qué hora sale mi traslado?'], ccErr: 'No puedo conectar con el concierge ahora; el módulo de hospitalidad en el lobby puede ayudarte.',
+    tabNow: 'Ahora', tabAgenda: 'Agenda', tabMap: 'Mapa', tabBadge: 'Gafete', tabMore: 'Más',
+    agendaTitle: 'Agenda', all: 'Todo', mine: 'Mío', done: 'Hecho', now: 'Ahora', next: 'Sigue', alsoOn: 'También: ',
+    mapTitle: 'Mapa del resort', youHere: 'Estás aquí', fromYou: 'desde donde estás', youAreThere: 'Ya estás aquí',
+    badgeHint: 'Acércalo al lector en la puerta de cada sesión. El brillo sube automáticamente.',
+    moreTitle: 'Más', language: 'Idioma', inbox: 'Avisos', back: 'Atrás',
+    rShuttle: 'Traslados', rDinner: 'Cena y mesa', rPeople: 'Quién está aquí', rLive: 'Encuestas y preguntas', rCc: 'Concierge', rInbox: 'Avisos',
+    shArr: ['Aterrizaste en CUN', 'Te recibió tu anfitrión', 'En camino', 'En el resort'], shDep: ['Check-out', 'Aborda en la zona de traslados', 'En camino', 'En el aeropuerto CUN'],
+    shBigArr: 'min para llegar al resort', shBigDep: 'para abordar', vehicle: 'Vehículo', host: 'Anfitrión', flight: 'Vuelo', from: 'Desde', notAdded: 'Aún sin agregar', scheduled: 'Programado', done2: 'Listo', onNow: 'Ahora',
+    yourTable: 'Tu mesa', stage: 'Escenario', tablemates: 'En tu mesa', dietary: 'Alimentación', dress: 'Código de vestimenta', dressVal: 'Elegante de noche. Telas ligeras y calzado para la playa.', where: 'Dónde',
+    diet: { None: 'Sin requisitos', Vegetarian: 'Vegetariana · avisado a cocina', Vegan: 'Vegana', 'Gluten-free': 'Sin gluten', Halal: 'Halal', Kosher: 'Kosher' },
+    liveTitle: 'Encuestas y preguntas', poll: 'Encuesta en vivo', pollQ: '¿Qué cambio definirá más el 2027 de tus clientes?', pollOpts: ['IA a escala empresarial', 'Transformación sostenible', 'Datos y nube', 'Experiencia del cliente'], votes: n => `${n} votos · resultados en pantalla a las 09:45`, tapVote: 'Toca para votar; es anónimo', qa: 'Preguntas para los ponentes', qaPh: 'Pregunta a los ponentes…', send: 'Enviar', you: 'Tú',
+    qs: ['¿Cómo mediremos el valor de la IA con clientes en los primeros 90 días?', '¿Qué mercados probarán primero el nuevo modelo de socios?', '¿Se compartirán las diapositivas del keynote?'],
+    ciEyebrow: 'Americas Kickoff 2027', ciTitle: 'Escanea tu gafete para empezar', ciSub: 'Apunta la cámara al código QR de tu gafete. Nosotros nos encargamos del resto.', ciScan: 'Escanear gafete', ciScanning: 'Leyendo gafete…', ciReady: 'Tu programa, gafete y traslados están listos.',
+    w: { clear: 'Despejado', partly: 'Parcialmente nublado', cloudy: 'Nublado', rain: 'Chubascos', storm: 'Tormentas' },
+    r_vp: 'Vicepresidente', r_dir: 'Director', r_head: 'Líder de práctica', r_mgr: 'Gerente de proyecto', r_arch: 'Arquitecto de soluciones',
+    ann: [['Las puertas están abiertas', 'El keynote de apertura empieza a las 09:00 en el Grand Ballroom. Hay café en la entrada.'], ['Encuesta en vivo abierta', 'Vota desde la pestaña En vivo; resultados en pantalla a las 09:45.'], ['Cambio de sala', 'El foro del ecosistema de socios ahora es en la Coral Room A.'], ['Carritos al Pavilion', 'Salen carritos del lobby cada 5 minutos desde las 19:00.'], ['El traslado 7 sale pronto', 'Ve a la zona de traslados antes de las 13:05. Tu equipaje ya está cargado.'], ['Bienvenida a Cancún', 'Tu anfitrión te espera saliendo de aduana con un letrero de Capgemini.']],
+    days: ['Domingo 31 ene', 'Lunes 1 feb', 'Martes 2 feb', 'Miércoles 3 feb'], dayS: ['Dom', 'Lun', 'Mar', 'Mié'], dayNum: ['31', '1', '2', '3'],
+    countries: { 'United States': 'Estados Unidos', Mexico: 'México', Brazil: 'Brasil' }, countryLabel: { 'United States': 'Estados Unidos', Mexico: 'México', Brazil: 'Brasil' },
+    s_arr: 'Llegadas y registro', s_wel: 'Recepción de bienvenida', s_odin: 'Cena de apertura', s_bkf: 'Desayuno', s_key: 'Keynote de apertura', s_mkt: 'Perspectivas de mercado', s_lun: 'Comida', s_work: 'Sesiones de trabajo', s_eve: 'Programa nocturno', s_wg: 'Grupos de trabajo', s_cel: 'Cena de celebración', s_clo: 'Plenaria de cierre', s_brn: 'Brunch de despedida', s_dep: 'Salidas',
+    a1: 'IA a escala empresarial', a2: 'Transformación sostenible', a3: 'A fondo: servicios financieros', b1: 'Laboratorio de innovación con clientes', b2: 'Foro del ecosistema de socios', b3: 'Mesa redonda de datos y nube', c1: 'Taller de liderazgo', c2: 'Sesiones de estrategia de mercado', c3: 'Estudio de experiencia del cliente',
+    l: { lobby: 'Lobby y registro', bay: 'Zona de traslados', azul: 'Restaurante Azul', ball: 'Grand Ballroom', coralA: 'Coral Room A', coralB: 'Coral Room B', coralC: 'Coral Room C', terrace: 'Terraza Laguna', beach: 'Beach Club', pav: 'Beach Pavilion' },
+    ls: { lobby: 'Lobby', bay: 'Traslados', azul: 'Azul', ball: 'Ballroom', coralA: 'Coral A', coralB: 'Coral B', coralC: 'Coral C', terrace: 'Terraza', beach: 'Beach Club', pav: 'Pavilion' }
+  },
+  pt: {
+    hello: 'Olá', cancun: 'Cancún', justNow: 'agora', seaTemp: 'Mar 26°', welcome: 'Bem-vindo',
+    upNext: 'A seguir', liveNow: 'Ao vivo', tonight: 'Hoje à noite', welcomeCun: 'Bem-vindo a Cancún', yourShuttle: 'Seu traslado',
+    inMin: n => `em ${n} min`, minWalk: n => `${n} min a pé`, minLeft: n => `faltam ${n} min`, table: n => `Mesa ${n}`, boards: x => `Embarque ${x}`, etaIn: n => `Chegada em ${n} min`,
+    directions: 'Como chegar', showBadge: 'Crachá', trackShuttle: 'Acompanhar', vote: 'Votar', ask: 'Perguntar', myTable: 'Minha mesa', myAgenda: 'Agenda',
+    shuttleIn: 'Traslado 3 para o resort', shuttleOut: 'Traslado 7 para o aeroporto de Cancún', later: 'Mais tarde hoje',
+    tBadge: 'Crachá', tShuttle: 'Traslado', tDinner: 'Jantar', tLive: 'Ao vivo', checkedIn: 'Check-in feito', pollOpen: 'Enquete aberta', qaOpen: 'Perguntas e enquetes', boardsAt: x => `Sai ${x}`,
+    fromMarket: (n, m) => `${n} colegas do ${m} estão aqui esta semana`, sayHello: 'Dizer olá', sent: 'Enviado ✓', peopleTitle: 'Quem está aqui', peopleSub: 'Colegas do seu mercado no evento. Toque para dizer olá — eles verão o nome do seu crachá.',
+    askPh: 'Pergunte ao concierge…', ccTitle: 'Concierge', ccSub: 'Responde só com as informações do evento', typing: 'Digitando…', ccSug: ['Onde é minha próxima sessão?', 'O que vestir hoje à noite?', 'Que horas sai meu traslado?'], ccErr: 'Não consigo falar com o concierge agora — o balcão de hospitalidade no lobby pode ajudar.',
+    tabNow: 'Agora', tabAgenda: 'Agenda', tabMap: 'Mapa', tabBadge: 'Crachá', tabMore: 'Mais',
+    agendaTitle: 'Agenda', all: 'Tudo', mine: 'Minha', done: 'Feito', now: 'Agora', next: 'Próximo', alsoOn: 'Também: ',
+    mapTitle: 'Mapa do resort', youHere: 'Você está aqui', fromYou: 'de onde você está', youAreThere: 'Você já está aqui',
+    badgeHint: 'Aproxime do leitor na porta das sessões. O brilho da tela aumenta automaticamente.',
+    moreTitle: 'Mais', language: 'Idioma', inbox: 'Avisos', back: 'Voltar',
+    rShuttle: 'Traslados', rDinner: 'Jantar e mesa', rPeople: 'Quem está aqui', rLive: 'Enquetes e perguntas', rCc: 'Concierge', rInbox: 'Avisos',
+    shArr: ['Pousou em CUN', 'Recebido pelo anfitrião', 'A caminho', 'No resort'], shDep: ['Check-out', 'Embarque na área de traslados', 'A caminho', 'No aeroporto CUN'],
+    shBigArr: 'min até o resort', shBigDep: 'até o embarque', vehicle: 'Veículo', host: 'Anfitrião', flight: 'Voo', from: 'De', notAdded: 'Ainda não informado', scheduled: 'Agendado', done2: 'Feito', onNow: 'Agora',
+    yourTable: 'Sua mesa', stage: 'Palco', tablemates: 'Na sua mesa', dietary: 'Alimentação', dress: 'Traje', dressVal: 'Esporte fino noturno. Tecidos leves e calçado para areia.', where: 'Onde',
+    diet: { None: 'Sem restrições', Vegetarian: 'Vegetariano · cozinha avisada', Vegan: 'Vegano', 'Gluten-free': 'Sem glúten', Halal: 'Halal', Kosher: 'Kosher' },
+    liveTitle: 'Enquetes e perguntas', poll: 'Enquete ao vivo', pollQ: 'Qual mudança vai marcar mais o 2027 dos seus clientes?', pollOpts: ['IA em escala corporativa', 'Transformação sustentável', 'Dados e nuvem', 'Experiência do cliente'], votes: n => `${n} votos · resultados no telão às 09:45`, tapVote: 'Toque para votar — é anônimo', qa: 'Perguntas aos palestrantes', qaPh: 'Pergunte aos palestrantes…', send: 'Enviar', you: 'Você',
+    qs: ['Como vamos medir o valor da IA com clientes nos primeiros 90 dias?', 'Quais mercados vão testar primeiro o novo modelo de parceiros?', 'Os slides do keynote serão compartilhados?'],
+    ciEyebrow: 'Americas Kickoff 2027', ciTitle: 'Escaneie seu crachá para começar', ciSub: 'Aponte a câmera para o QR code do seu crachá. A gente cuida do resto.', ciScan: 'Escanear crachá', ciScanning: 'Lendo crachá…', ciReady: 'Sua programação, crachá e traslados estão prontos.',
+    w: { clear: 'Céu limpo', partly: 'Parcialmente nublado', cloudy: 'Nublado', rain: 'Pancadas de chuva', storm: 'Tempestades' },
+    r_vp: 'Vice-presidente', r_dir: 'Diretor', r_head: 'Líder de prática', r_mgr: 'Gerente de projeto', r_arch: 'Arquiteto de soluções',
+    ann: [['As portas estão abertas', 'O keynote de abertura começa às 09:00 no Grand Ballroom. Tem café na entrada.'], ['Enquete ao vivo aberta', 'Vote na aba Ao vivo — resultados no telão às 09:45.'], ['Mudança de sala', 'O fórum do ecossistema de parceiros agora é na Coral Room A.'], ['Carrinhos para o Pavilion', 'Carrinhos saem do lobby a cada 5 minutos a partir das 19:00.'], ['Traslado 7 embarca em breve', 'Vá para a área de traslados até 13:05. Sua bagagem já foi embarcada.'], ['Bem-vindo a Cancún', 'Seu anfitrião espera logo após a alfândega com uma placa da Capgemini.']],
+    days: ['Domingo, 31 jan', 'Segunda, 1 fev', 'Terça, 2 fev', 'Quarta, 3 fev'], dayS: ['Dom', 'Seg', 'Ter', 'Qua'], dayNum: ['31', '1', '2', '3'],
+    countries: { 'United States': 'Estados Unidos', Mexico: 'México', Brazil: 'Brasil' }, countryLabel: { 'United States': 'Estados Unidos', Mexico: 'México', Brazil: 'Brasil' },
+    s_arr: 'Chegadas e check-in', s_wel: 'Recepção de boas-vindas', s_odin: 'Jantar de abertura', s_bkf: 'Café da manhã', s_key: 'Keynote de abertura', s_mkt: 'Perspectivas de mercado', s_lun: 'Almoço', s_work: 'Sessões de trabalho', s_eve: 'Programação noturna', s_wg: 'Grupos de trabalho', s_cel: 'Jantar de celebração', s_clo: 'Plenária de encerramento', s_brn: 'Brunch de despedida', s_dep: 'Partidas',
+    a1: 'IA em escala corporativa', a2: 'Transformação sustentável', a3: 'Mergulho em serviços financeiros', b1: 'Laboratório de inovação com clientes', b2: 'Fórum do ecossistema de parceiros', b3: 'Mesa-redonda de dados e nuvem', c1: 'Workshop de liderança', c2: 'Sessões de estratégia de mercado', c3: 'Estúdio de experiência do cliente',
+    l: { lobby: 'Lobby e credenciamento', bay: 'Área de traslados', azul: 'Restaurante Azul', ball: 'Grand Ballroom', coralA: 'Coral Room A', coralB: 'Coral Room B', coralC: 'Coral Room C', terrace: 'Terraço Lagoa', beach: 'Beach Club', pav: 'Beach Pavilion' },
+    ls: { lobby: 'Lobby', bay: 'Traslados', azul: 'Azul', ball: 'Ballroom', coralA: 'Coral A', coralB: 'Coral B', coralC: 'Coral C', terrace: 'Terraço', beach: 'Beach Club', pav: 'Pavilion' }
+  },
+  fr: {
+    hello: 'Bonjour', cancun: 'Cancún', justNow: 'maintenant', seaTemp: 'Mer 26°', welcome: 'Bienvenue',
+    upNext: 'Ensuite', liveNow: 'En direct', tonight: 'Ce soir', welcomeCun: 'Bienvenue à Cancún', yourShuttle: 'Votre navette',
+    inMin: n => `dans ${n} min`, minWalk: n => `${n} min à pied`, minLeft: n => `encore ${n} min`, table: n => `Table ${n}`, boards: x => `Embarquement ${x}`, etaIn: n => `Arrivée dans ${n} min`,
+    directions: 'Itinéraire', showBadge: 'Badge', trackShuttle: 'Suivre', vote: 'Voter', ask: 'Question', myTable: 'Ma table', myAgenda: 'Agenda',
+    shuttleIn: 'Navette 3 vers le resort', shuttleOut: 'Navette 7 vers l’aéroport de Cancún', later: 'Plus tard aujourd’hui',
+    tBadge: 'Badge', tShuttle: 'Navette', tDinner: 'Dîner', tLive: 'Direct', checkedIn: 'Enregistré', pollOpen: 'Sondage ouvert', qaOpen: 'Questions et sondages', boardsAt: x => `Départ ${x}`,
+    fromMarket: (n, m) => `${n} collègues ${m} sont ici cette semaine`, sayHello: 'Saluer', sent: 'Envoyé ✓', peopleTitle: 'Qui est là', peopleSub: 'Des collègues de votre marché sur place. Touchez pour saluer — ils verront le nom de votre badge.',
+    askPh: 'Demandez au concierge…', ccTitle: 'Concierge', ccSub: 'Répond uniquement à partir des infos de l’événement', typing: 'Rédaction…', ccSug: ['Où est ma prochaine session ?', 'Que porter ce soir ?', 'À quelle heure part ma navette ?'], ccErr: 'Le concierge est injoignable pour le moment — le comptoir d’accueil du lobby peut vous aider.',
+    tabNow: 'Maintenant', tabAgenda: 'Agenda', tabMap: 'Plan', tabBadge: 'Badge', tabMore: 'Plus',
+    agendaTitle: 'Agenda', all: 'Tout', mine: 'Le mien', done: 'Fini', now: 'En cours', next: 'Ensuite', alsoOn: 'Aussi : ',
+    mapTitle: 'Plan du resort', youHere: 'Vous êtes ici', fromYou: 'depuis votre position', youAreThere: 'Vous y êtes',
+    badgeHint: 'Présentez-le au lecteur à l’entrée des sessions. La luminosité augmente automatiquement.',
+    moreTitle: 'Plus', language: 'Langue', inbox: 'Annonces', back: 'Retour',
+    rShuttle: 'Navettes et transferts', rDinner: 'Dîner et table', rPeople: 'Qui est là', rLive: 'Sondages et questions', rCc: 'Concierge', rInbox: 'Annonces',
+    shArr: ['Atterri à CUN', 'Accueilli par votre hôte', 'En route', 'Au resort'], shDep: ['Départ de la chambre', 'Embarquement à l’aire des navettes', 'En route', 'À l’aéroport CUN'],
+    shBigArr: 'min avant le resort', shBigDep: 'avant l’embarquement', vehicle: 'Véhicule', host: 'Hôte', flight: 'Vol', from: 'Depuis', notAdded: 'Pas encore ajouté', scheduled: 'Prévu', done2: 'Fait', onNow: 'En cours',
+    yourTable: 'Votre table', stage: 'Scène', tablemates: 'À votre table', dietary: 'Régime', dress: 'Tenue', dressVal: 'Chic du soir. Tissus légers et chaussures adaptées à la plage.', where: 'Lieu',
+    diet: { None: 'Aucune restriction', Vegetarian: 'Végétarien · cuisine prévenue', Vegan: 'Végane', 'Gluten-free': 'Sans gluten', Halal: 'Halal', Kosher: 'Casher' },
+    liveTitle: 'Sondages et questions', poll: 'Sondage en direct', pollQ: 'Quel changement marquera le plus l’année 2027 de vos clients ?', pollOpts: ['L’IA à l’échelle', 'Transformation durable', 'Données et cloud', 'Expérience client'], votes: n => `${n} votes · résultats à l’écran à 09:45`, tapVote: 'Touchez pour voter — c’est anonyme', qa: 'Questions aux intervenants', qaPh: 'Posez une question…', send: 'Envoyer', you: 'Vous',
+    qs: ['Comment mesurer la valeur de l’IA avec nos clients dans les 90 premiers jours ?', 'Quels marchés pilotent d’abord le nouveau modèle partenaires ?', 'Les slides du keynote seront-elles partagées ?'],
+    ciEyebrow: 'Americas Kickoff 2027', ciTitle: 'Scannez votre badge pour commencer', ciSub: 'Pointez l’appareil photo vers le QR code de votre badge. On s’occupe du reste.', ciScan: 'Scanner le badge', ciScanning: 'Lecture du badge…', ciReady: 'Votre programme, votre badge et vos transferts sont prêts.',
+    w: { clear: 'Dégagé', partly: 'Partiellement nuageux', cloudy: 'Nuageux', rain: 'Averses', storm: 'Orages' },
+    r_vp: 'Vice-président', r_dir: 'Directeur', r_head: 'Responsable de practice', r_mgr: 'Responsable de mission', r_arch: 'Architecte solutions',
+    ann: [['Les portes sont ouvertes', 'Le keynote d’ouverture commence à 09:00 au Grand Ballroom. Café à l’entrée.'], ['Sondage en direct ouvert', 'Votez depuis l’onglet Direct — résultats à l’écran à 09:45.'], ['Changement de salle', 'Le forum de l’écosystème partenaires se tient désormais en Coral Room A.'], ['Voiturettes vers le Pavilion', 'Départ du lobby toutes les 5 minutes à partir de 19:00.'], ['La navette 7 part bientôt', 'Rendez-vous à l’aire des navettes avant 13:05. Vos bagages sont déjà chargés.'], ['Bienvenue à Cancún', 'Votre hôte vous attend après la douane avec un panneau Capgemini.']],
+    days: ['Dimanche 31 janv.', 'Lundi 1er févr.', 'Mardi 2 févr.', 'Mercredi 3 févr.'], dayS: ['Dim', 'Lun', 'Mar', 'Mer'], dayNum: ['31', '1', '2', '3'],
+    countries: { 'United States': 'des États-Unis', Mexico: 'du Mexique', Brazil: 'du Brésil' }, countryLabel: { 'United States': 'États-Unis', Mexico: 'Mexique', Brazil: 'Brésil' },
+    s_arr: 'Arrivées et enregistrement', s_wel: 'Réception de bienvenue', s_odin: 'Dîner d’ouverture', s_bkf: 'Petit-déjeuner', s_key: 'Keynote d’ouverture', s_mkt: 'Perspectives marchés', s_lun: 'Déjeuner', s_work: 'Sessions de travail', s_eve: 'Programme du soir', s_wg: 'Groupes de travail', s_cel: 'Dîner de célébration', s_clo: 'Plénière de clôture', s_brn: 'Brunch d’au revoir', s_dep: 'Départs',
+    a1: 'L’IA à l’échelle de l’entreprise', a2: 'Transformation durable', a3: 'Services financiers en profondeur', b1: 'Lab d’innovation clients', b2: 'Forum de l’écosystème partenaires', b3: 'Table ronde données et cloud', c1: 'Atelier leadership', c2: 'Sessions stratégie marchés', c3: 'Studio expérience client',
+    l: { lobby: 'Lobby et accueil', bay: 'Aire des navettes', azul: 'Restaurant Azul', ball: 'Grand Ballroom', coralA: 'Coral Room A', coralB: 'Coral Room B', coralC: 'Coral Room C', terrace: 'Terrasse Lagune', beach: 'Beach Club', pav: 'Beach Pavilion' },
+    ls: { lobby: 'Lobby', bay: 'Navettes', azul: 'Azul', ball: 'Ballroom', coralA: 'Coral A', coralB: 'Coral B', coralC: 'Coral C', terrace: 'Terrasse', beach: 'Beach Club', pav: 'Pavilion' }
+  }
+};
+const LANG_NAMES = { en: 'English', es: 'Spanish', pt: 'Portuguese', fr: 'French' };
+const hash = s => { let x = 7; for (const c of s) x = (x * 31 + c.charCodeAt(0)) >>> 0; return x; };
+const hhmm = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+const ctr = k => NODES[k];
+const routePts = (a, b) => { const par = { [a]: null }, q = [a]; while (q.length) { const n = q.shift(); if (n === b) break; for (const m of ADJ[n]) if (!(m in par)) { par[m] = n; q.push(m); } } const out = []; for (let n = b; n; n = par[n]) out.unshift(NODES[n]); return out; };
+const walkMin = (a, b) => { if (!a || a === b) return 0; const p = routePts(a, b); let d = 0; for (let i = 1; i < p.length; i++) d += Math.abs(p[i][0] - p[i - 1][0]) + Math.abs(p[i][1] - p[i - 1][1]); return Math.max(1, Math.round(d / 45)); };
+const initials = n => n.split(' ').map(w => w[0]).slice(0, 2).join('');
+const wxKey = c => c <= 1 ? 'clear' : c <= 2 ? 'partly' : c <= 48 ? 'cloudy' : c <= 82 ? 'rain' : 'storm';
+const makeQR = seed => {
+  const N = 25, g = []; let s = seed || 1;
+  const rnd = () => { s = (s * 1103515245 + 12345) >>> 0; return (s >>> 16) & 1; };
+  const finder = (r, c) => { for (const [fr, fc] of [[0, 0], [0, N - 7], [N - 7, 0]]) { const y = r - fr, x = c - fc; if (y >= -1 && y <= 7 && x >= -1 && x <= 7) { if (y < 0 || x < 0 || y > 6 || x > 6) return 0; return (y === 0 || y === 6 || x === 0 || x === 6 || (y >= 2 && y <= 4 && x >= 2 && x <= 4)) ? 1 : 0; } } return -1; };
+  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) { const f = finder(r, c); g.push((f === -1 ? rnd() : f) ? '#111A38' : '#FFFFFF'); }
+  return g;
+};
+
+class Component extends DCLogic {
+  state = this.initState();
+  scrollRef = React.createRef();
+  initState() {
+    const q = new URLSearchParams(location.search);
+    const gid = GUESTS[q.get('guest')] ? q.get('guest') : 'sramirez';
+    const lang = T[q.get('lang')] ? q.get('lang') : GUESTS[gid].lang;
+    const th = q.get('theme');
+    let reg = null; try { reg = JSON.parse(localStorage.getItem('ak27-registration') || 'null'); } catch (e) {}
+    return {
+      guestId: gid, lang, theme: ['light', 'dark'].includes(th) ? th : 'auto', moment: Math.min(5, Math.max(0, +(q.get('moment') || 1))),
+      embedded: q.get('embed') === '1', reg, checkedIn: q.get('checkin') === '0' ? false : !!q.get('skipcheckin'), scanning: false, ciWelcome: false,
+      tab: 'now', sub: null, day: 1, mine: false, dest: null, vote: null, qVotes: {}, myQs: [], qInput: '', hello: {},
+      push: null, pushOn: false, seen: 0, ccMsgs: [], ccInput: '', ccBusy: false, wx: null, vw: innerWidth, vh: innerHeight, now: Date.now(), etaStart: Date.now()
+    };
+  }
+  componentDidMount() {
+    this.onResize = () => this.setState({ vw: innerWidth, vh: innerHeight });
+    addEventListener('resize', this.onResize);
+    this.tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this.setState({ day: MOMENTS[this.state.moment].d });
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=21.16&longitude=-86.85&current=temperature_2m,weather_code&timezone=America%2FCancun')
+      .then(r => r.json()).then(j => j && j.current && this.setState({ wx: { t: Math.round(j.current.temperature_2m), c: j.current.weather_code } })).catch(() => {});
+    if (this.state.checkedIn) this.schedulePush();
+  }
+  componentWillUnmount() { removeEventListener('resize', this.onResize); clearInterval(this.tick); clearTimeout(this.pt); clearTimeout(this.ph); }
+  componentDidUpdate(ps, pst) {
+    const s = this.state;
+    if ((pst.tab !== s.tab || pst.sub !== s.sub) && this.scrollRef.current) this.scrollRef.current.scrollTop = s.sub === 'cc' ? this.scrollRef.current.scrollHeight : 0;
+    if ((pst.ccMsgs !== s.ccMsgs || pst.ccBusy !== s.ccBusy) && this.scrollRef.current) this.scrollRef.current.scrollTop = this.scrollRef.current.scrollHeight;
+  }
+  schedulePush(delay = 1400) { clearTimeout(this.pt); this.pt = setTimeout(() => this.showPush(PUSH_FOR[this.state.moment]), delay); }
+  showPush(i) {
+    clearTimeout(this.ph);
+    this.setState({ push: i, pushOn: true });
+    this.ph = setTimeout(() => this.setState({ pushOn: false }), 5200);
+  }
+  setMoment(i) { this.setState({ moment: i, day: MOMENTS[i].d, tab: 'now', sub: null, dest: null, etaStart: Date.now(), vote: null }, () => this.checkedInPush()); }
+  checkedInPush() { if (this.state.checkedIn) this.schedulePush(); }
+  go(tab, sub = null, extra = {}) { this.setState({ tab, sub, ...extra }); }
+  scan = () => {
+    if (this.state.scanning) return;
+    this.setState({ scanning: true });
+    setTimeout(() => this.setState({ scanning: false, ciWelcome: true }), 1500);
+    setTimeout(() => this.setState({ ciWelcome: false, checkedIn: true, tab: 'now', sub: null }, () => this.schedulePush(900)), 3300);
+  };
+  guest() {
+    const g = GUESTS[this.state.guestId], r = this.state.reg;
+    const match = r && r.form && r.form.firstName && r.form.firstName.toLowerCase() === g.first.toLowerCase();
+    return {
+      ...g, diet: (match && r.form.diet) || g.diet,
+      picks: (match && r.agendaSaved && r.picks && Object.keys(r.picks).length === 3) ? r.picks : g.picks,
+      code: (match && r.code) || 'AK27-' + (hash(g.first + g.last).toString(36).toUpperCase() + 'QX4').slice(0, 4),
+      flight: (match && r.flight && r.flight.no) || null
+    };
+  }
+  sched(g) {
+    const tr = i => ({ s: [540, 660, 840][i], d: [90, 90, 120][i], k: g.picks[i], loc: TRACKS[g.picks[i]], slot: i });
+    return [
+      [{ s: 600, d: 480, k: 's_arr', loc: 'lobby' }, { s: 1110, d: 90, k: 's_wel', loc: 'terrace' }, { s: 1200, d: 150, k: 's_odin', loc: 'beach' }],
+      [{ s: 450, d: 75, k: 's_bkf', loc: 'azul' }, { s: 540, d: 90, k: 's_key', loc: 'ball', live: true }, { s: 660, d: 90, k: 's_mkt', loc: 'ball' }, { s: 780, d: 60, k: 's_lun', loc: 'terrace' }, { s: 900, d: 150, k: 's_work', loc: 'coralB' }, { s: 1170, d: 180, k: 's_eve', loc: 'beach' }],
+      [{ s: 450, d: 75, k: 's_bkf', loc: 'azul' }, tr(0), tr(1), { s: 780, d: 60, k: 's_lun', loc: 'terrace' }, tr(2), { s: 990, d: 90, k: 's_wg', loc: 'coralA' }, { s: 1170, d: 210, k: 's_cel', loc: 'pav' }],
+      [{ s: 450, d: 75, k: 's_bkf', loc: 'azul' }, { s: 540, d: 120, k: 's_clo', loc: 'ball', live: true }, { s: 690, d: 90, k: 's_brn', loc: 'terrace' }, { s: 780, d: 180, k: 's_dep', loc: 'bay' }]
+    ];
+  }
+  askConcierge = async q => {
+    q = (q || '').trim(); if (!q || this.state.ccBusy) return;
+    const msgs = [...this.state.ccMsgs, { role: 'user', text: q }];
+    this.setState({ ccMsgs: msgs, ccInput: '', ccBusy: true });
+    const g = this.guest(), t = T.en, S = this.sched(g), M = MOMENTS[this.state.moment];
+    const system = [
+      `You are the on-site concierge for Capgemini Americas Kickoff 2027 at a resort in Cancún (31 Jan – 3 Feb 2027). Reply in ${LANG_NAMES[this.state.lang]}, in 1–3 short sentences, warm and precise.`,
+      'Only use the facts below. If something is not covered, say the hospitality desk in the lobby can help. Never invent names, room numbers or phone numbers.',
+      `CURRENT TIME: ${t.days[M.d]} ${hhmm(M.m)} Cancún time.`,
+      'SCHEDULE: ' + S.map((d, i) => t.days[i] + ': ' + d.map(x => `${hhmm(x.s)} ${t[x.k]} (${t.l[x.loc]})`).join('; ')).join(' | '),
+      `GUEST: ${g.first} ${g.last}, ${g.title}, ${g.country}. Badge ${g.code}. Dietary: ${g.diet}. Celebration dinner table 12 at the Beach Pavilion, dress code: ${t.dressVal} Arrival transfer Shuttle 3 from CUN; departure Shuttle 7 boards 13:15 Wednesday at the shuttle bay${g.flight ? ', flight ' + g.flight : ''}.`,
+      'VENUE: Lobby & registration and the shuttle bay are at the resort entrance; Azul restaurant next to the lobby; Grand Ballroom and Coral Rooms A–C in the conference wing; Lagoon Terrace and pool beside the ballroom; Beach Club and Beach Pavilion on the sand. Golf carts run from the lobby to the Pavilion. Weather ~28 °C by day, ~20 °C at night.'
+    ].join('\n');
+    try {
+      const req = { system, max_tokens: 300, messages: msgs.map(m => ({ role: m.role, content: m.text })) };
+      let text;
+      if (window.claude && window.claude.complete) text = await window.claude.complete(req);
+      else { const r = await fetch('/api/concierge', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req) }); if (!r.ok) throw new Error(); text = (await r.json()).text; }
+      this.setState(s => ({ ccMsgs: [...s.ccMsgs, { role: 'assistant', text: String(text).trim() }], ccBusy: false }));
+    } catch (e) {
+      this.setState(s => ({ ccMsgs: [...s.ccMsgs, { role: 'assistant', text: T[s.lang].ccErr }], ccBusy: false }));
+    }
+  };
+  renderVals() {
+    const st = this.state, t = T[st.lang], g = this.guest(), M = MOMENTS[st.moment], S = this.sched(g);
+    const title = it => t[it.k] || T.en[it.k];
+    const you = M.you || TRACKS[g.picks[0]];
+    const framed = st.vw >= 720, showPanel = framed && (this.props.demoControls ?? true);
+    const zoom = framed ? Math.min(1, (st.vh - 48) / 892) : 1;
+    const mapTo = loc => () => this.go('map', null, { dest: loc });
+    const status = (d, it) => d < M.d || (d === M.d && it.s + it.d <= M.m) ? 'done' : d === M.d && it.s <= M.m ? 'now' : 'up';
+    const today = S[M.d];
+    const nextIt = today.find(it => it.s > M.m);
+    const nowIt = today.find(it => it.s <= M.m && it.s + it.d > M.m);
+
+    // Right-now card
+    const elapsed = Math.floor((st.now - st.etaStart) / 1000);
+    const etaSec = Math.max(0, 18 * 60 - elapsed);
+    let nc;
+    const it3 = S[2][2], it1 = S[1][1];
+    if (st.moment === 0) nc = { eyebrow: t.welcomeCun, title: t.shuttleIn, meta: [t.etaIn(Math.ceil(etaSec / 60)), 'CUN → ' + t.l.lobby], a1: () => this.go('more', 'shuttle'), l1: t.trackShuttle, a2: () => this.go('badge'), l2: t.showBadge };
+    else if (st.moment === 1) nc = { eyebrow: `${t.upNext} · ${t.inMin(it1.s - M.m)}`, title: title(it1), meta: [hhmm(it1.s), t.l.ball, t.minWalk(walkMin(you, 'ball'))], a1: mapTo('ball'), l1: t.directions, a2: () => this.go('badge'), l2: t.showBadge };
+    else if (st.moment === 2) nc = { live: true, eyebrow: t.liveNow, title: title(it1), meta: [t.l.ball, `${hhmm(it1.s)}–${hhmm(it1.s + it1.d)}`], hasBar: true, bar: Math.round((M.m - it1.s) / it1.d * 100) + '%', barLabel: t.minLeft(it1.s + it1.d - M.m), a1: () => this.go('more', 'live'), l1: t.vote, a2: () => this.go('more', 'live'), l2: t.ask };
+    else if (st.moment === 3) { const n = S[2][2]; nc = { eyebrow: `${t.upNext} · ${t.inMin(n.s - M.m)}`, title: title(n), meta: [hhmm(n.s), t.l[n.loc], t.minWalk(walkMin(you, n.loc))], a1: mapTo(n.loc), l1: t.directions, a2: () => this.go('agenda', null, { day: 2 }), l2: t.myAgenda }; }
+    else if (st.moment === 4) { const n = S[2][6]; nc = { eyebrow: `${t.tonight} · ${t.inMin(n.s - M.m)}`, title: title(n), meta: [hhmm(n.s), t.l.pav, t.table(12)], a1: () => this.go('more', 'dinner'), l1: t.myTable, a2: mapTo('pav'), l2: t.directions }; }
+    else nc = { eyebrow: t.yourShuttle, title: t.shuttleOut, meta: [t.boards('13:15'), t.l.bay, ...(g.flight ? [g.flight] : [])], a1: () => this.go('more', 'shuttle'), l1: t.trackShuttle, a2: mapTo('bay'), l2: t.directions };
+    nc = { live: false, hasBar: false, bar: '0%', barLabel: '', ...nc };
+
+    const laterList = today.filter(it => it.s > M.m && it !== (st.moment === 3 ? S[2][2] : st.moment === 4 ? S[2][6] : st.moment === 1 ? it1 : null)).slice(0, 2)
+      .map(it => ({ time: hhmm(it.s), title: title(it), loc: t.l[it.loc], go: mapTo(it.loc) }));
+
+    const liveNow = st.moment === 2;
+    const dep = st.moment >= 1;
+    const tiles = [
+      { title: t.tBadge, sub: `${t.checkedIn} · ${g.code}`, c: STOPS[0], go: () => this.go('badge') },
+      { title: t.tShuttle, sub: st.moment === 0 ? t.etaIn(Math.ceil(etaSec / 60)) : t.boardsAt(`${t.dayS[3]} 13:15`), c: STOPS[1], go: () => this.go('more', 'shuttle') },
+      { title: t.tDinner, sub: `${t.table(12)} · ${t.dayS[2]} 19:30`, c: STOPS[2], go: () => this.go('more', 'dinner') },
+      { title: t.tLive, sub: liveNow ? t.pollOpen : t.qaOpen, c: STOPS[3], go: () => this.go('more', 'live') }
+    ];
+    const ppl = PEOPLE[g.country] || PEOPLE['United States'];
+    const cnt = COUNTS[g.country] || 100;
+    const grad = i => STOPS[i % 4];
+
+    // Agenda
+    const items = (S[st.day] || []).map(it => {
+      const s = status(st.day, it), isNext = it === nextIt && st.day === M.d;
+      const alts = it.slot !== undefined ? SLOT_OPTS[it.slot].filter(o => o !== it.k).map(o => t[o]).join(' · ') : '';
+      const tag = s === 'now' ? t.now : isNext ? t.next : s === 'done' ? t.done : '';
+      return { time: hhmm(it.s), title: title(it), loc: t.l[it.loc], go: mapTo(it.loc), op: s === 'done' ? 0.5 : 1, hasTag: !!tag, tag,
+        tagBg: s === 'now' ? '#00BFB3' : isNext ? '#0058AB' : 'light-dark(#E2E8ED,#1F2840)', tagFg: s === 'done' ? 'light-dark(#55646F,#A8B7C5)' : '#FFFFFF',
+        hasAlts: !st.mine && !!alts, alts: t.alsoOn + alts, mineItem: it.slot !== undefined };
+    });
+
+    // Map
+    const dest = st.dest || (nextIt ? nextIt.loc : 'ball');
+    const pts = you && dest !== you ? routePts(you, dest) : null;
+    const ptsStr = pts ? pts.map(p => p.join(',')).join(' ') : '';
+    const routeSvg = pts ? React.createElement('svg', { key: 'r' + you + dest, width: 350, height: 440, style: { position: 'absolute', inset: 0, pointerEvents: 'none' } },
+      React.createElement('defs', null, React.createElement('linearGradient', { id: 'osRoute', x1: 0, y1: 0, x2: 1, y2: 1 },
+        React.createElement('stop', { offset: '0%', stopColor: '#0058AB' }), React.createElement('stop', { offset: '55%', stopColor: '#05A3E6' }), React.createElement('stop', { offset: '100%', stopColor: '#00BFB3' }))),
+      React.createElement('polyline', { points: ptsStr, fill: 'none', stroke: '#05A3E6', strokeOpacity: 0.22, strokeWidth: 14, strokeLinecap: 'round', strokeLinejoin: 'round' }),
+      React.createElement('polyline', { points: ptsStr, fill: 'none', stroke: 'url(#osRoute)', strokeWidth: 5, strokeLinecap: 'round', strokeLinejoin: 'round' }),
+      React.createElement('polyline', { points: ptsStr, fill: 'none', stroke: '#FFFFFF', strokeWidth: 2, strokeLinecap: 'round', strokeDasharray: '1 9', style: { animation: 'os-dash .7s linear infinite' } })) : null;
+    const [yx, yy] = you ? ctr(you) : [0, 0];
+    const youDot = you ? React.createElement('span', { style: { position: 'absolute', left: yx - 9, top: yy - 9, width: 18, height: 18, borderRadius: '50%', background: '#05A3E6', border: '3px solid #FFFFFF', boxSizing: 'border-box', boxShadow: '0 2px 6px rgba(0,0,0,.3)', animation: 'os-pulse 1.6s ease-out infinite', pointerEvents: 'none', zIndex: 3 } }) : null;
+    const [dx, dy] = ctr(dest);
+    const destPin = pts ? React.createElement('span', { key: 'p' + dest, style: { position: 'absolute', left: dx - 13, top: dy - 34, width: 26, height: 26, borderRadius: '50% 50% 50% 0', transform: 'rotate(-45deg)', background: 'linear-gradient(135deg,#0058AB,#05A3E6 60%,#00BFB3)', boxShadow: '0 6px 14px -4px rgba(0,40,90,.6)', pointerEvents: 'none', zIndex: 3, display: 'grid', placeItems: 'center' } },
+      React.createElement('span', { style: { width: 9, height: 9, borderRadius: '50%', background: '#FFFFFF' } })) : null;
+    const mapScale = framed ? 1 : Math.min(1, (st.vw - 40) / 350);
+    const wm = walkMin(you, dest);
+
+    // Shuttle
+    const arr = st.moment === 0;
+    const boardSec = Math.max(0, (35 * 60) - elapsed);
+    const stepAt = arr ? 2 : st.moment === 5 ? 1 : 0;
+    const labels = arr ? t.shArr : t.shDep;
+    const subs = arr ? ['13:52', '14:05', t.onNow, ''] : st.moment === 5 ? [t.done2, '13:15 · ' + t.l.bay, '', '~14:00'] : [t.scheduled + ` · ${t.dayS[3]}`, '13:15 · ' + t.l.bay, '', '~14:00'];
+    const sh = {
+      eyebrow: arr ? t.welcomeCun : `${t.days[3]}`, title: arr ? t.shuttleIn : t.shuttleOut,
+      big: arr ? String(Math.ceil(etaSec / 60)) : st.moment === 5 ? `${Math.floor(boardSec / 60)}:${String(boardSec % 60).padStart(2, '0')}` : '13:15',
+      bigLabel: arr ? t.shBigArr : st.moment === 5 ? t.shBigDep : t.boards(''),
+      steps: labels.map((label, i) => ({ label, sub: subs[i], ring: i <= stepAt ? '#05A3E6' : 'light-dark(#C7D1DA,#2E3A57)', fill: i < stepAt ? '#05A3E6' : i === stepAt ? 'light-dark(#FFFFFF,#0A0E1A)' : 'transparent', line: i === 3 ? 'transparent' : i < stepAt ? '#05A3E6' : 'light-dark(#E2E8ED,#1F2840)', fg: i <= stepAt ? 'light-dark(#111A38,#EEF2F7)' : 'light-dark(#6B7884,#7F919F)' })),
+      rows: [{ k: t.vehicle, v: arr ? 'Shuttle 3 · Sprinter' : 'Shuttle 7 · Sprinter' }, { k: t.host, v: arr ? 'Ana' : 'Rodrigo' }, { k: t.flight, v: g.flight || t.notAdded }]
+    };
+
+    // Dinner
+    const dn = {
+      when: `${t.days[2]} · 19:30`,
+      tables: Array.from({ length: 15 }, (_, i) => ({ n: i + 1, bg: i + 1 === 12 ? '#05A3E6' : 'light-dark(#E2E8ED,#1F2840)', fg: i + 1 === 12 ? '#FFFFFF' : 'light-dark(#55646F,#7F919F)' })),
+      mates: [{ name: g.first + ' ' + g.last, i: initials(g.first + ' ' + g.last), c: '#111A38' }, ...MATES.map((n, i) => ({ name: n, i: initials(n), c: grad(i) }))],
+      rows: [{ k: t.where, v: t.l.pav }, { k: t.dress, v: t.dressVal }, { k: t.dietary, v: t.diet[g.diet] || g.diet }]
+    };
+
+    // Live
+    const base = POLL_BASE.map((v, i) => v + (st.vote === i ? 1 : 0));
+    const tot = base.reduce((a, b) => a + b, 0);
+    const voted = st.vote !== null;
+    const qsAll = [...st.myQs.map(q => ({ text: q, n0: 0, who: t.you, id: 'm' + q })), ...t.qs.map((q, i) => ({ text: q, n0: QS_BASE[i], who: ppl[i][0], id: 'q' + i }))]
+      .map(q => { const on = !!st.qVotes[q.id]; return { ...q, n: q.n0 + (on ? 1 : 0), on }; }).sort((a, b) => b.n - a.n)
+      .map(q => ({ ...q, up: () => this.setState(s => ({ qVotes: { ...s.qVotes, [q.id]: !s.qVotes[q.id] } })), bg: q.on ? '#0058AB' : 'transparent', fg: q.on ? '#FFFFFF' : 'inherit', bd: q.on ? '#0058AB' : 'light-dark(#C7D1DA,#2E3A57)' }));
+    const liveIt = st.moment <= 2 ? it1 : S[3][1];
+
+    // Inbox
+    const annMs = MOMENTS.map((m, i) => i).filter(i => i <= st.moment).reverse();
+    const annIdx = annMs.map(i => PUSH_FOR[i]);
+    const inbox = annMs.map((mi, k) => { const i = PUSH_FOR[mi], m = MOMENTS[mi]; return { title: t.ann[i][0], body: t.ann[i][1], when: k === 0 ? `${t.dayS[m.d]} · ${t.justNow}` : `${t.dayS[m.d]} · ${hhmm(m.m - 5)}`, dot: k === 0 ? '#05A3E6' : 'transparent' }; });
+    const unread = Math.max(0, st.moment + 1 - st.seen);
+
+    const view = st.sub || st.tab;
+    const subBack = { shuttle: 'more', dinner: 'more', people: 'more', live: 'more', cc: 'more', inbox: 'more' };
+    const tcol = k => st.tab === k && !st.sub ? 'light-dark(#0058AB,#3DB5F0)' : st.tab === k ? 'light-dark(#0058AB,#3DB5F0)' : 'light-dark(#6B7884,#7F919F)';
+    const pill = on => ({ bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#111A38' : '#D6E2EB', bd: on ? '#FFFFFF' : '#3A4660' });
+    const showCheckin = !st.checkedIn;
+    const wxk = st.wx ? wxKey(st.wx.c) : 'clear';
+
+    return {
+      t, pagePad: framed ? '24px' : '0', showPanel, embedded: st.embedded, closeEmbed: () => { try { parent.postMessage('ak27-close-onsite', '*'); } catch (e) {} },
+      framed, phoneZoom: zoom, phoneW: framed ? '390px' : '100vw', phoneH: framed ? '844px' : '100dvh', bezel: framed ? '12px' : '0', outerR: framed ? '64px' : '0', innerR: framed ? '52px' : '0',
+      phoneShadow: framed ? '0 0 0 2px #2A3142, 0 60px 120px -40px rgba(0,0,0,0.8)' : 'none',
+      scheme: st.theme === 'auto' ? 'light dark' : st.theme, sbFg: showCheckin ? '#FFFFFF' : 'light-dark(#111A38,#FFFFFF)', homeBar: showCheckin ? '#FFFFFF' : 'light-dark(#111A38,#FFFFFF)',
+      clock: hhmm(M.m), dayLong: t.days[M.d],
+      pushTop: framed ? '52px' : 'calc(env(safe-area-inset-top) + 8px)', pushY: st.pushOn ? '0px' : '-160%', pushOp: st.pushOn ? 1 : 0,
+      push: st.push !== null ? { title: t.ann[st.push][0], body: t.ann[st.push][1] } : { title: '', body: '' },
+      openPush: () => { this.setState({ pushOn: false, seen: st.moment + 1 }); this.go('more', 'inbox'); },
+      showCheckin, ciPad: framed ? '64px 28px 44px' : 'calc(env(safe-area-inset-top) + 24px) 28px calc(env(safe-area-inset-bottom) + 28px)',
+      ciWelcome: st.ciWelcome, ciFinder: !st.ciWelcome, scanning: st.scanning, scan: this.scan, scanLabel: st.scanning ? t.ciScanning : t.ciScan,
+      scanLine: React.createElement('span', { style: { position: 'absolute', left: '10%', right: '10%', height: 2, borderRadius: 2, background: '#7FD3F2', boxShadow: '0 0 18px 4px rgba(127,211,242,0.6)', animation: `os-scan ${st.scanning ? '0.7s' : '2.4s'} ease-in-out infinite` } }),
+      firstName: g.first, lastName: g.last, guestTitle: g.title, countryName: t.countryLabel[g.country] || g.country, code: g.code, qr: makeQR(hash(g.code)),
+      scrollRef: this.scrollRef, contentPad: framed ? '58px 0 104px' : 'calc(env(safe-area-inset-top) + 12px) 0 calc(env(safe-area-inset-bottom) + 96px)',
+      showTabs: !showCheckin, tabPadB: framed ? '26px' : 'calc(env(safe-area-inset-bottom) + 8px)',
+      tc: { now: tcol('now'), agenda: tcol('agenda'), map: tcol('map'), badge: tcol('badge'), more: tcol('more') },
+      tabNow: () => this.go('now'), tabAgenda: () => this.go('agenda', null, { day: M.d }), tabMap: () => this.go('map'), tabBadge: () => this.go('badge'), tabMore: () => this.go('more'),
+      vNow: view === 'now', vAgenda: view === 'agenda', vMap: view === 'map', vBadge: view === 'badge', vMore: view === 'more',
+      vShuttle: view === 'shuttle', vDinner: view === 'dinner', vPeople: view === 'people', vLive: view === 'live', vInbox: view === 'inbox', vConcierge: view === 'cc',
+      inSub: !!st.sub, back: () => this.setState({ sub: null }), backLabel: st.tab === 'now' ? t.tabNow : t.moreTitle,
+      goInbox: () => { this.setState({ seen: st.moment + 1 }); this.go(st.tab, 'inbox'); }, hasUnread: unread > 0, unread: String(unread),
+      temp: (st.wx ? st.wx.t : 27) + '°', cond: t.w[wxk],
+      nowCard: nc, liveDot: React.createElement('span', { style: { width: 8, height: 8, borderRadius: '50%', background: '#FF5A6B', flex: '0 0 8px', animation: 'os-blink 1.4s ease-in-out infinite' } }),
+      hasLater: laterList.length > 0, later: laterList, tiles,
+      avatars: ppl.slice(0, 3).map((p, i) => ({ i: initials(p[0]), c: grad(i) })), marketLine: t.fromMarket(cnt, t.countries[g.country] || g.country),
+      goPeople: () => this.go(st.tab, 'people'), goConcierge: () => this.go(st.tab, 'cc'),
+      allOn: !st.mine, mineOn: st.mine, showAll: () => this.setState({ mine: false }), showMine: () => this.setState({ mine: true }),
+      allBg: !st.mine ? 'light-dark(#FFFFFF,#2A3550)' : 'transparent', allFg: !st.mine ? 'light-dark(#111A38,#FFFFFF)' : 'light-dark(#55646F,#A8B7C5)',
+      mineBg: st.mine ? 'light-dark(#FFFFFF,#2A3550)' : 'transparent', mineFg: st.mine ? 'light-dark(#111A38,#FFFFFF)' : 'light-dark(#55646F,#A8B7C5)',
+      dayTabs: [0, 1, 2, 3].map(d => { const on = st.day === d; return { wk: t.dayS[d], num: t.dayNum[d], on, pick: () => this.setState({ day: d }), bg: on ? '#111A38' : 'light-dark(#FFFFFF,#121A2C)', fg: on ? '#FFFFFF' : 'inherit', bd: on ? '#111A38' : 'light-dark(#E2E8ED,#1F2840)' }; }),
+      dayItems: items,
+      mapLocs: Object.keys(LOCS).map(k => { const l = LOCS[k], on = k === dest; return { name: t.l[k], short: t.ls[k], on, x: l.x + 'px', y: l.y + 'px', w: l.w + 'px', h: l.h + 'px', pick: () => this.setState({ dest: k }),
+        bg: on ? 'linear-gradient(135deg,#0058AB,#05A3E6)' : 'light-dark(#FFFFFF,#1B2640)', fg: on ? '#FFFFFF' : 'light-dark(#2A3A4C,#C9D4DF)', lift: on ? '-3px' : '0px',
+        sh: on ? '0 4px 0 #003E7A, 0 14px 22px -8px rgba(0,60,130,0.6)' : '0 3px 0 light-dark(#C3CEC4,#080D16), 0 8px 14px -8px rgba(0,0,0,0.35)' }; }),
+      routeSvg, youDot, destPin, mapScale, mapBoxW: Math.round(350 * mapScale) + 'px', mapBoxH: Math.round(440 * mapScale) + 'px',
+      destChips: Object.keys(LOCS).map(k => { const on = k === dest; return { name: t.l[k], pick: () => this.setState({ dest: k }), bg: on ? '#111A38' : 'transparent', fg: on ? '#FFFFFF' : 'inherit', bd: on ? '#111A38' : 'light-dark(#C7D1DA,#2E3A57)' }; }),
+      destName: t.l[dest], destMeta: wm ? t.minWalk(wm) + ' ' + t.fromYou : t.youAreThere, destMin: wm ? wm + "'" : '✓',
+      moreRows: [
+        { title: t.rShuttle, sub: tiles[1].sub, c: STOPS[1], go: () => this.go('more', 'shuttle') },
+        { title: t.rDinner, sub: tiles[2].sub, c: STOPS[2], go: () => this.go('more', 'dinner') },
+        { title: t.rPeople, sub: `${t.countryLabel[g.country] || g.country} · ${cnt}`, c: STOPS[0], go: () => this.go('more', 'people') },
+        { title: t.rLive, sub: tiles[3].sub, c: STOPS[3], go: () => this.go('more', 'live') },
+        { title: t.rCc, sub: t.ccSub, c: '#7FD3F2', go: () => this.go('more', 'cc') },
+        { title: t.rInbox, sub: t.ann[annIdx[0]][0], c: '#FF8593', go: () => { this.setState({ seen: st.moment + 1 }); this.go('more', 'inbox'); } }
+      ],
+      langBtns: ['en', 'es', 'pt', 'fr'].map(l => { const on = st.lang === l; return { l: l.toUpperCase(), on, pick: () => this.setState({ lang: l }), bg: on ? '#111A38' : 'transparent', fg: on ? '#FFFFFF' : 'inherit', bd: on ? '#111A38' : 'light-dark(#C7D1DA,#2E3A57)' }; }),
+      sh, dn,
+      marketCount: String(cnt),
+      people: ppl.map((p, i) => { const on = !!st.hello[p[0]]; return { name: p[0], role: t[p[1]], city: p[2], i: initials(p[0]), c: grad(i), dot: i % 3 === 2 ? '#C7D1DA' : '#00BFB3', hi: () => this.setState(s => ({ hello: { ...s.hello, [p[0]]: true } })), label: on ? t.sent : t.sayHello, bg: on ? '#00BFB3' : 'transparent', fg: on ? '#FFFFFF' : 'light-dark(#0058AB,#3DB5F0)', bd: on ? '#00BFB3' : 'light-dark(#0058AB,#3DB5F0)' }; }),
+      liveSession: `${title(liveIt)} · ${t.l.ball}`, voted,
+      pollOpts: t.pollOpts.map((l, i) => { const pct = Math.round(base[i] / tot * 100); return { l, vote: () => this.setState({ vote: i }), pct: voted ? pct + '%' : '', w: voted ? pct + '%' : '0%', fill: st.vote === i ? 'rgba(5,163,230,0.28)' : 'light-dark(rgba(17,26,56,0.07),rgba(255,255,255,0.07))', bd: st.vote === i ? '#05A3E6' : 'light-dark(#E2E8ED,#1F2840)' }; }),
+      pollNote: voted ? t.votes(tot) : t.tapVote,
+      qInput: st.qInput, onQInput: e => this.setState({ qInput: e.target.value }), askQ: e => { e.preventDefault(); const v = st.qInput.trim(); if (v) this.setState(s => ({ myQs: [v, ...s.myQs], qInput: '', qVotes: { ...s.qVotes, ['m' + v]: true } })); },
+      qs: qsAll, inbox,
+      ccMsgs: st.ccMsgs.map(m => { const u = m.role === 'user'; return { text: m.text, align: u ? 'flex-end' : 'flex-start', bg: u ? '#0058AB' : 'light-dark(#FFFFFF,#121A2C)', fg: u ? '#FFFFFF' : 'inherit', radius: u ? '18px 18px 6px 18px' : '18px 18px 18px 6px' }; }),
+      ccBusy: st.ccBusy, typing: t.typing, ccShowSug: !st.ccMsgs.length && !st.ccBusy, ccSug: t.ccSug.map(q => ({ q, ask: () => this.askConcierge(q) })),
+      ccInput: st.ccInput, ccOnInput: e => this.setState({ ccInput: e.target.value }), ccSubmit: e => { e.preventDefault(); this.askConcierge(this.state.ccInput); },
+      demoGroups: [
+        { label: 'Attendee', opts: Object.keys(GUESTS).map(id => ({ l: `${GUESTS[id].first} · ${GUESTS[id].lang.toUpperCase()}`, on: st.guestId === id, pick: () => this.setState({ guestId: id, lang: GUESTS[id].lang, hello: {}, ccMsgs: [] }) })) },
+        { label: 'Language', opts: ['en', 'es', 'pt', 'fr'].map(l => ({ l: l.toUpperCase(), on: st.lang === l, pick: () => this.setState({ lang: l }) })) },
+        { label: 'Moment on site', opts: MOMENTS.map((m, i) => ({ l: m.label, on: st.moment === i, pick: () => this.setMoment(i) })) },
+        { label: 'Appearance', opts: [['auto', 'System'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => ({ l, on: st.theme === v, pick: () => this.setState({ theme: v }) })) }
+      ].map(gp => ({ label: gp.label, opts: gp.opts.map(o => ({ ...o, ...pill(o.on) })) })),
+      demoPush: () => { if (!st.checkedIn) return; this.showPush(PUSH_FOR[st.moment]); },
+      replayCheckin: () => this.setState({ checkedIn: false, ciWelcome: false, scanning: false, pushOn: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

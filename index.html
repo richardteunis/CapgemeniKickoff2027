@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0045AC">
+<title>Americas Kickoff 2027 · Register</title>
+<meta name="description" content="Capgemini Americas Kickoff 2027 · Cancún · 31 Jan – 3 Feb 2027">
+<meta property="og:title" content="Americas Kickoff 2027 — A Bolder Horizon">
+<meta property="og:image" content="/capgemini-save-the-date/assets/hero-v4.jpg">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;family=Ubuntu+Mono&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>
+html{scroll-behavior:smooth;}
+*:focus-visible{outline:2px solid #05A3E6;outline-offset:3px;}
+body{margin:0;background:#111A38;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+html{color-scheme:light dark;}
+a{color:light-dark(#0058AB,#3DB5F0);text-decoration:none;}
+a:hover{color:light-dark(#00427F,#7FD3F2);}
+input,select,textarea,button{font-family:inherit;}
+input::placeholder,textarea::placeholder{color:#56688F;}
+select option{color:#111A38;background:#FFFFFF;}
+@keyframes rlp-spin{to{transform:rotate(360deg);}}
+@keyframes rlp-pulse{0%{box-shadow:0 0 0 0 rgba(0,191,179,.7);}100%{box-shadow:0 0 0 10px rgba(0,191,179,0);}}
+</style>
+</helmet>
+
+<div style="font-family:'Ubuntu','Helvetica Neue',Helvetica,Arial,sans-serif;color-scheme:{{ scheme }};color:light-dark(#111A38,#EEF2F7);background:light-dark(#FFFFFF,#121A2C);overflow-x:hidden;">
+  <a href="#register" style="position:fixed;left:16px;top:-80px;z-index:60;background:#FFFFFF;color:#111A38;padding:12px 20px;border-radius:40px;font-size:13px;" style-focus="top:16px;">{{ t.skip }}</a>
+
+  <header data-screen-label="Nav" style="position:fixed;top:0;left:0;right:0;z-index:30;background:{{ navBg }};backdrop-filter:{{ navBlur }};border-bottom:1px solid {{ navLine }};transition:background .4s ease,border-color .4s ease;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(12px,2vw,18px) clamp(16px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <a href="#top" style="display:flex;align-items:center;gap:22px;">
+        <img src="capgemini-save-the-date/assets/logo-white.png" alt="Capgemini" style="display:block;width:clamp(92px,24vw,124px);height:auto;">
+      </a>
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:clamp(8px,2.2vw,30px);min-width:0;">
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+          <a href="#programme" style="width:124px;text-align:right;white-space:nowrap;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:#D6E2EB;" style-hover="color:#FFFFFF;">{{ t.navProgramme }}</a>
+          <a href="#arrival" style="width:76px;text-align:right;white-space:nowrap;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:#D6E2EB;" style-hover="color:#FFFFFF;">{{ t.navTravel }}</a>
+        </sc-if>
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+          <div role="group" aria-label="Language" style="display:flex;border:1px solid rgba(255,255,255,0.28);border-radius:40px;padding:3px;">
+            <sc-for list="{{ langs }}" as="l" hint-placeholder-count="4">
+              <button type="button" onClick="{{ l.pick }}" aria-pressed="{{ l.on }}" aria-label="{{ l.name }}" lang="{{ l.id }}" style="border:0;cursor:pointer;border-radius:40px;padding:7px clamp(6px,1.4vw,9px);min-height:30px;font-size:10px;letter-spacing:1.4px;background:{{ l.bg }};color:{{ l.fg }};transition:background .25s ease;">{{ l.code }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+          <label style="position:relative;display:flex;align-items:center;">
+            <select aria-label="Language" value="{{ lang }}" onChange="{{ onLangSelect }}" style="appearance:none;-webkit-appearance:none;min-height:40px;border:1px solid rgba(255,255,255,0.28);border-radius:40px;background:transparent;color:#FFFFFF;padding:0 28px 0 14px;font-family:inherit;font-size:11px;letter-spacing:1.6px;cursor:pointer;">
+              <sc-for list="{{ langs }}" as="l" hint-placeholder-count="4">
+                <option value="{{ l.id }}" style="color:#111A38;">{{ l.code }}</option>
+              </sc-for>
+            </select>
+            <span aria-hidden="true" style="position:absolute;right:12px;top:50%;margin-top:-3px;width:6px;height:6px;border-right:1px solid #FFFFFF;border-bottom:1px solid #FFFFFF;transform:rotate(45deg) translateY(-2px);pointer-events:none;"></span>
+          </label>
+        </sc-if>
+        <a href="{{ navCtaHref }}" style="min-height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:clamp(1.2px,0.45vw,2.4px);text-transform:uppercase;color:#111A38;background:#FFFFFF;padding:12px clamp(12px,2vw,18px);border-radius:40px;white-space:nowrap;width:{{ navCtaW }};box-sizing:border-box;text-align:center;" style-hover="background:#05A3E6;color:#FFFFFF;">{{ navCta }}</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="top" data-screen-label="Hero" style="position:relative;min-height:max(100vh,680px);background:#111A38;overflow:hidden;display:flex;align-items:flex-end;">
+    <img ref="{{ heroImgRef }}" src="capgemini-save-the-date/assets/hero-v4.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:28% center;transform-origin:30% 60%;">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,21,0.55) 0%,rgba(11,14,21,0) 22%,rgba(11,14,21,0) 50%,rgba(11,14,21,0.72) 100%),linear-gradient(90deg,rgba(17,26,56,0.5) 0%,rgba(17,26,56,0) 60%);"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,170,140,0.4) 0%,rgba(150,110,170,0.22) 45%,rgba(11,14,21,0.35) 100%);opacity:{{ sky.dawn }};transition:opacity 2.4s ease;"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 80% at 75% 70%,rgba(255,140,70,0.42) 0%,rgba(190,80,90,0.25) 35%,rgba(40,30,90,0.5) 75%),linear-gradient(180deg,rgba(40,30,90,0.35) 0%,rgba(11,14,21,0.2) 100%);opacity:{{ sky.dusk }};transition:opacity 2.4s ease;"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(4,7,18,0.82) 0%,rgba(10,22,60,0.55) 55%,rgba(4,7,18,0.85) 100%);opacity:{{ sky.night }};transition:opacity 2.4s ease;"></div>
+
+    <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:140px clamp(20px,4vw,56px) clamp(36px,6vh,64px);box-sizing:border-box;">
+      <p data-hero="0" aria-hidden="true" style="position:absolute;top:104px;right:clamp(20px,4vw,56px);margin:0;display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#A8C3D6;"><span style="display:block;width:28px;height:1px;background:rgba(168,195,214,0.6);"></span>{{ skyPhase }}</p>
+      <div data-hero="0" style="display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 12px;max-width:100%;box-sizing:border-box;margin:0 0 clamp(18px,2.6vh,28px);padding:9px 16px;border:1px solid rgba(255,255,255,0.26);border-radius:40px;background:rgba(11,14,21,0.38);backdrop-filter:blur(12px);font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:#FFFFFF;">
+        {{ liveDot }}<span>{{ v.skyLive }}</span><span style="font-family:'Ubuntu Mono',ui-monospace,monospace;letter-spacing:1px;font-size:12px;color:#7FD3F2;">{{ skyClock }}</span><sc-if value="{{ hasWx }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Ubuntu Mono',ui-monospace,monospace;letter-spacing:1px;font-size:12px;color:#FFFFFF;">{{ wxTemp }}</span><span style="color:#D6E2EB;">{{ wxLabel }}</span></sc-if>
+      </div>
+      <p data-hero="0" style="margin:0 0 clamp(20px,3vh,36px);font-size:11px;letter-spacing:4.4px;text-transform:uppercase;color:#7FD3F2;">{{ heroEyebrow }}</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px 32px;">
+      <h1 style="margin:0;font-weight:300;font-size:clamp(64px,12.4vw,196px);line-height:0.9;letter-spacing:-0.035em;color:#FFFFFF;">
+        <span data-hero="1" style="display:block;">A Bolder</span>
+        <span data-hero="2" style="display:block;color:#05A3E6;">Horizon</span>
+      </h1>
+          <sc-if value="{{ showPass }}" hint-placeholder-val="{{ false }}">
+          <div data-hero="4" style="flex:0 1 440px;min-width:min(100%,360px);box-sizing:border-box;border-radius:14px;overflow:hidden;background:rgba(11,14,21,0.52);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.22);color:#FFFFFF;">
+            <img src="capgemini-save-the-date/assets/brand-line.png" alt="" style="display:block;width:100%;height:4px;object-fit:cover;">
+            <div style="padding:20px 24px 20px;display:flex;flex-direction:column;gap:20px;">
+              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#7FD3F2;">{{ v.bp }}  ·  AK27</span>
+                <span style="display:flex;align-items:baseline;gap:10px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#D6E2EB;">{{ v.bpIn }}<span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:13px;letter-spacing:0.5px;color:#FFFFFF;">{{ bpClock }}</span></span>
+              </div>
+              <div style="display:grid;grid-template-columns:auto minmax(40px,1fr) auto;align-items:center;gap:18px;">
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <span style="font-size:9px;letter-spacing:2.2px;text-transform:uppercase;color:#A8C3D6;">{{ v.bpFrom }}</span>
+                  <span style="font-weight:300;font-size:clamp(40px,4vw,54px);line-height:1;letter-spacing:-0.01em;">{{ bp.from }}</span>
+                  <span style="font-size:12px;color:#A8C3D6;">{{ bp.fromCity }}</span>
+                </div>
+                <div style="position:relative;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.1),#05A3E6 50%,rgba(255,255,255,0.1));">
+                  <span style="position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-5px 0 0 -5px;border-radius:50%;background:#05A3E6;box-shadow:0 0 0 4px rgba(5,163,230,0.25);"></span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;text-align:right;">
+                  <span style="font-size:9px;letter-spacing:2.2px;text-transform:uppercase;color:#A8C3D6;">{{ v.bpTo }}</span>
+                  <span style="font-weight:300;font-size:clamp(40px,4vw,54px);line-height:1;letter-spacing:-0.01em;color:#05A3E6;">CUN</span>
+                  <span style="font-size:12px;color:#A8C3D6;">Cancún</span>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.2fr);gap:14px;border-top:1px solid rgba(255,255,255,0.16);padding-top:16px;">
+                <div style="display:flex;flex-direction:column;gap:6px;min-width:0;"><span style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#A8C3D6;">{{ v.bpPax }}</span><span style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ bp.pax }}</span></div>
+                <div style="display:flex;flex-direction:column;gap:6px;min-width:0;"><span style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#A8C3D6;">{{ v.bpDate }}</span><span style="font-size:14px;white-space:nowrap;">{{ bp.date }}</span></div>
+                <div style="display:flex;flex-direction:column;gap:6px;min-width:0;"><span style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#A8C3D6;">{{ v.bpGate }}</span><span style="font-size:14px;">{{ bp.gate }}</span></div>
+                <div style="display:flex;flex-direction:column;gap:6px;min-width:0;"><span style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#A8C3D6;">{{ v.bpConf }}</span><span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:14px;color:#7FD3F2;">{{ bp.conf }}</span></div>
+              </div>
+            </div>
+            <div style="border-top:1px dashed rgba(255,255,255,0.3);padding:14px 24px;height:52px;box-sizing:border-box;display:flex;overflow:hidden;">
+              <sc-for list="{{ barcode }}" as="b" hint-placeholder-count="40">
+                <span style="flex:0 0 auto;width:{{ b.w }};height:100%;background:{{ b.c }};"></span>
+              </sc-for>
+            </div>
+          </div>
+          </sc-if>
+      </div>
+      <div style="margin:clamp(28px,4.5vh,48px) 0 clamp(28px,4vh,44px);overflow:hidden;">
+        <img ref="{{ lineRef }}" src="capgemini-save-the-date/assets/brand-line.png" alt="" style="display:block;width:100%;height:9px;transform-origin:left center;">
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 48px;">
+        <div data-hero="3" style="display:flex;flex-direction:column;gap:22px;">
+          <p style="margin:0;font-size:13px;line-height:22px;letter-spacing:3.2px;text-transform:uppercase;color:#FFFFFF;">{{ x.k92 }}<br><span style="color:#A8C3D6;">{{ x.k93 }}</span></p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;">
+            <a href="{{ heroHref }}" style="display:inline-flex;align-items:center;gap:14px;background:#FFFFFF;color:#111A38;border-radius:40px;padding:18px 34px;font-size:12px;letter-spacing:2.6px;text-transform:uppercase;" style-hover="background:#05A3E6;color:#FFFFFF;">{{ heroCta }}<span style="font-size:15px;">→</span></a>
+            <a href="#programme" style="display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,0.6);color:#FFFFFF;border-radius:40px;padding:18px 30px;font-size:12px;letter-spacing:2.6px;text-transform:uppercase;" style-hover="border-color:#FFFFFF;background:rgba(255,255,255,0.08);color:#FFFFFF;">{{ t.theProgramme }}</a>
+          </div>
+        </div>
+
+        <sc-if value="{{ showCountdown }}" hint-placeholder-val="{{ true }}">
+        <div data-hero="4" style="display:flex;flex-direction:column;gap:14px;">
+          <span style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#A8C3D6;">{{ t.doorsOpen }}</span>
+          <div style="display:flex;border-top:1px solid rgba(255,255,255,0.28);">
+            <div style="padding:14px 22px 0 0;min-width:74px;">
+              <div style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:clamp(34px,3.6vw,52px);line-height:1;color:#FFFFFF;">{{ cd.d }}</div>
+              <div style="margin-top:10px;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#A8C3D6;">{{ t.days }}</div>
+            </div>
+            <div style="padding:14px 22px 0;border-left:1px solid rgba(255,255,255,0.18);">
+              <div style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:clamp(34px,3.6vw,52px);line-height:1;color:#FFFFFF;">{{ cd.h }}</div>
+              <div style="margin-top:10px;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#A8C3D6;">{{ t.hours }}</div>
+            </div>
+            <div style="padding:14px 22px 0;border-left:1px solid rgba(255,255,255,0.18);">
+              <div style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:clamp(34px,3.6vw,52px);line-height:1;color:#FFFFFF;">{{ cd.m }}</div>
+              <div style="margin-top:10px;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#A8C3D6;">{{ t.min }}</div>
+            </div>
+            <div style="padding:14px 0 0 22px;border-left:1px solid rgba(255,255,255,0.18);">
+              <div style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:clamp(34px,3.6vw,52px);line-height:1;color:#05A3E6;">{{ cd.s }}</div>
+              <div style="margin-top:10px;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#A8C3D6;">{{ t.sec }}</div>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showMy }}" hint-placeholder-val="{{ false }}">
+  <section id="my" data-screen-label="My registration" style="background:light-dark(#F4F6F8,#0A0E1A);scroll-margin-top:60px;border-bottom:1px solid light-dark(#E2E8ED,#1F2840);">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(64px,8vw,112px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px clamp(40px,6vw,96px);">
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <p style="margin:0;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ t.navMy }}&nbsp;&nbsp;·&nbsp;&nbsp;{{ code }}</p>
+        <h2 style="margin:0;font-weight:300;font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-0.025em;color:light-dark(#111A38,#EEF2F7);">{{ myHeading }}</h2>
+        <p style="margin:0;max-width:420px;font-size:16px;line-height:1.75;color:light-dark(#55646F,#A8B7C5);text-wrap:pretty;">{{ x.k8 }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;">
+          <button type="button" onClick="{{ openWallet }}" style="display:inline-flex;align-items:center;gap:12px;border:0;cursor:pointer;background:light-dark(#111A38,#FFFFFF);color:light-dark(#FFFFFF,#111A38);border-radius:40px;padding:17px 30px;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;" style-hover="background:#0058AB;color:#FFFFFF;">{{ x.k9 }}</button>
+          <a href="#" onClick="{{ addCalendar }}" style="display:inline-flex;align-items:center;border:1px solid light-dark(#111A38,#EEF2F7);color:light-dark(#111A38,#EEF2F7);border-radius:40px;padding:16px 28px;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;" style-hover="background:light-dark(#111A38,#FFFFFF);color:light-dark(#FFFFFF,#111A38);">{{ x.k10 }}</a>
+        </div>
+        <button type="button" onClick="{{ startOver }}" style="align-self:flex-start;border:0;background:none;padding:0;cursor:pointer;font-size:13px;color:light-dark(#778694,#8FA0B4);border-bottom:1px solid light-dark(#C7D1DA,#2E3A57);">{{ x.signOut }}</button>
+      </div>
+      <div>
+        <div style="border-top:1px solid #D3DCE4;">
+          <sc-for list="{{ statusRows }}" as="r" hint-placeholder-count="5">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;padding:20px 0;border-bottom:1px solid #D3DCE4;">
+              <span style="flex:0 0 140px;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#778694,#8FA0B4);">{{ r.label }}</span>
+              <span style="flex:1 1 200px;font-size:16px;line-height:24px;color:light-dark(#111A38,#EEF2F7);">{{ r.detail }}</span>
+              <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:7px 12px;border-radius:40px;white-space:nowrap;background:{{ r.bg }};color:{{ r.fg }};border:1px solid {{ r.bd }};">{{ r.chip }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ needFlight }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ findFlight }}" noValidate="{{ true }}" style="margin-top:28px;background:light-dark(#FFFFFF,#121A2C);border-radius:4px;padding:24px 28px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 24px;">
+            <label style="flex:1 1 200px;display:flex;flex-direction:column;gap:8px;">
+              <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#778694,#8FA0B4);">{{ x.inbound }}</span>
+              <input value="{{ flightNo }}" onChange="{{ onFlightNo }}" placeholder="{{ x.flightPh }}" aria-describedby="flight-err" style="border:0;border-bottom:1px solid {{ flightBc }};padding:8px 0 10px;font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:20px;outline:none;background:transparent;color:light-dark(#111A38,#EEF2F7);text-transform:uppercase;border-radius:0;" style-focus="border-bottom-color:#0058AB;">
+              <span id="flight-err" style="font-size:12px;color:light-dark(#C42F3F,#FF8593);">{{ flightErr }}</span>
+            </label>
+            <button type="submit" style="display:inline-flex;align-items:center;gap:12px;border:0;cursor:pointer;background:#0058AB;color:#FFFFFF;border-radius:40px;padding:17px 30px;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;margin-bottom:22px;" style-hover="background:#00427F;">{{ flightSpinner }}{{ flightLabel }}</button>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <section data-screen-label="Marquee" style="background:light-dark(#FFFFFF,#121A2C);border-bottom:1px solid light-dark(#E2E8ED,#1F2840);overflow:hidden;padding:clamp(28px,4vw,48px) 0;">
+    <div ref="{{ marqueeRef }}" style="display:flex;width:max-content;">
+      <div style="display:flex;align-items:center;gap:clamp(28px,4vw,60px);padding-right:clamp(28px,4vw,60px);font-weight:300;font-size:clamp(40px,6.4vw,96px);line-height:1;letter-spacing:-0.02em;color:light-dark(#111A38,#EEF2F7);white-space:nowrap;">
+        <span>{{ x.k11 }}</span><span style="width:14px;height:14px;border-radius:50%;background:#05A3E6;flex:none;"></span>
+        <span style="color:light-dark(#0058AB,#3DB5F0);">{{ x.k12 }}</span><span style="width:14px;height:14px;border-radius:50%;background:#05A3E6;flex:none;"></span>
+        <span>{{ x.k13 }}</span><span style="width:14px;height:14px;border-radius:50%;background:#05A3E6;flex:none;"></span>
+        <span style="color:light-dark(#0058AB,#3DB5F0);">{{ x.k14 }}</span><span style="width:14px;height:14px;border-radius:50%;background:#05A3E6;flex:none;"></span>
+      </div>
+      <div aria-hidden="true" style="display:flex;align-items:center;gap:clamp(28px,4vw,60px);padding-right:clamp(28px,4vw,60px);font-weight:300;font-size:clamp(40px,6.4vw,96px);line-height:1;letter-spacing:-0.02em;color:light-dark(#111A38,#EEF2F7);white-space:nowrap;">
+        <span>{{ x.k11 }}</span><span style="width:14px;height:14px;border-radius:50%;background:#05A3E6;flex:none;"></span>
+        <span style="color:light-dark(#0058AB,#3DB5F0);">{{ x.k12 }}</span><span style="width:14px;height:14px;border-radius:50%;background:#05A3E6;flex:none;"></span>
+        <span>{{ x.k13 }}</span><span style="width:14px;height:14px;border-radius:50%;background:#05A3E6;flex:none;"></span>
+        <span style="color:light-dark(#0058AB,#3DB5F0);">{{ x.k14 }}</span><span style="width:14px;height:14px;border-radius:50%;background:#05A3E6;flex:none;"></span>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Statement" style="background:light-dark(#FFFFFF,#121A2C);">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(88px,12vw,168px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr) );gap:32px clamp(32px,5vw,80px);">
+      <div data-reveal="1" style="display:flex;flex-direction:column;gap:18px;">
+        <span style="font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ x.k15 }}</span>
+        <span style="width:48px;height:1px;background:#0058AB;"></span>
+      </div>
+      <div data-reveal="1" style="grid-column:span 3;min-width:0;">
+        <p style="margin:0;font-weight:300;font-size:clamp(28px,3.8vw,56px);line-height:1.18;letter-spacing:-0.015em;color:light-dark(#111A38,#EEF2F7);text-wrap:pretty;">{{ x.k16 }}<span style="color:#05A3E6;">{{ x.k17 }}</span>{{ x.k18 }}</p>
+        <p style="margin:clamp(32px,4vw,48px) 0 0;max-width:520px;font-size:17px;line-height:1.75;color:light-dark(#55646F,#A8B7C5);text-wrap:pretty;">{{ x.k19 }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="whos-coming" data-screen-label="Who's coming" style="position:relative;background:#0B0E15;overflow:hidden;scroll-margin-top:60px;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px);display:flex;flex-wrap:wrap;align-items:center;gap:48px clamp(40px,6vw,96px);">
+      <div data-reveal="1" style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:28px;">
+        <p style="margin:0;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:#7FD3F2;">{{ v.mapEy }}</p>
+        <h2 style="margin:0;font-weight:300;font-size:clamp(44px,6vw,88px);line-height:0.98;letter-spacing:-0.03em;color:#FFFFFF;">{{ v.mapA }}<br><span style="color:#05A3E6;">{{ v.mapB }}</span></h2>
+        <p style="margin:0;max-width:440px;font-size:16px;line-height:1.7;color:#A8B7C5;text-wrap:pretty;">{{ v.mapLede }}</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;border-top:1px solid #232C40;padding-top:28px;">
+          <span style="font-weight:300;font-size:clamp(72px,8vw,120px);line-height:0.85;letter-spacing:-0.04em;color:#FFFFFF;font-variant-numeric:tabular-nums;">{{ mapTotal }}</span>
+          <span style="font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA0B4;">{{ v.mapTotal }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <sc-for list="{{ markets }}" as="m" hint-placeholder-count="7">
+            <div style="display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr) 44px;align-items:center;gap:16px;padding:11px 0;border-bottom:1px solid #1A2133;">
+              <span style="font-size:14px;color:{{ m.fg }};transition:color .4s ease;">{{ m.name }}</span>
+              <span style="display:block;height:3px;background:#1A2133;border-radius:3px;overflow:hidden;"><span style="display:block;height:100%;width:{{ m.w }};background:{{ m.bar }};border-radius:3px;transition:width .8s cubic-bezier(.2,.7,.2,1);"></span></span>
+              <span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:14px;text-align:right;color:#FFFFFF;">{{ m.c }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div aria-live="polite" style="display:flex;align-items:center;gap:12px;min-height:22px;font-size:14px;color:#D6E2EB;">{{ liveDot }}<span>{{ mapToast }}</span></div>
+        <p style="margin:0;font-size:11px;letter-spacing:0.4px;color:#8394A8;">{{ v.mapSample }}</p>
+      </div>
+      <div data-reveal="1" style="flex:1.2 1 420px;min-width:0;max-width:680px;margin:0 auto;">
+        <x-import component-from-global-scope="attendee-map" from="./attendee-map.js" data-counts="{{ mapCountsStr }}" data-pulse="{{ mapPulse }}" hint-size="100%,640px"></x-import>
+      </div>
+    </div>
+  </section>
+
+  <section id="programme" data-screen-label="Programme" style="background:light-dark(#F4F6F8,#0A0E1A);scroll-margin-top:60px;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px);">
+      <div data-reveal="1" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;margin-bottom:clamp(40px,5vw,64px);">
+        <div>
+          <p style="margin:0 0 22px;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ t.programmeEyebrow }}</p>
+          <h2 style="margin:0;font-weight:300;font-size:clamp(40px,5.6vw,80px);line-height:1;letter-spacing:-0.025em;color:light-dark(#111A38,#EEF2F7);">{{ x.k20 }}<br>{{ x.k21 }}</h2>
+        </div>
+        <p style="margin:0;font-size:13px;color:light-dark(#778694,#8FA0B4);">{{ x.k22 }}</p>
+      </div>
+
+      <div data-reveal="1">
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));">
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="4">
+            <button type="button" onClick="{{ d.pick }}" style="text-align:left;background:none;border:0;border-top:1px solid #D3DCE4;padding:24px clamp(8px,1.6vw,24px) 26px 0;cursor:pointer;display:flex;flex-direction:column;gap:12px;color:{{ d.fg }};transition:color .3s ease;" style-hover="color:light-dark(#111A38,#EEF2F7);">
+              <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;">{{ d.wk }}</span>
+              <span style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+                <span style="font-weight:300;font-size:clamp(44px,6vw,92px);line-height:0.9;letter-spacing:-0.04em;">{{ d.num }}</span>
+                <span style="font-size:11px;letter-spacing:2.4px;text-transform:uppercase;">{{ d.mon }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="position:relative;height:3px;margin-top:-3px;">
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,light-dark(#111A38,#FFFFFF) 0%,#0058AB 38%,#05A3E6 72%,#00BFB3 100%);clip-path:inset(0 {{ dayClip }} 0 0);transition:clip-path .7s cubic-bezier(.2,.7,.2,1);"></div>
+        </div>
+
+        <div ref="{{ panelRef }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px clamp(40px,7vw,120px);padding-top:clamp(48px,6vw,80px);">
+          <div>
+            <p style="margin:0 0 18px;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:light-dark(#778694,#8FA0B4);">{{ x.dayOf }}</p>
+            <h3 style="margin:0 0 24px;font-weight:300;font-size:clamp(34px,4vw,56px);line-height:1.05;letter-spacing:-0.02em;color:light-dark(#111A38,#EEF2F7);">{{ panel.title }}</h3>
+            <p style="margin:0;max-width:440px;font-size:17px;line-height:1.75;color:light-dark(#55646F,#A8B7C5);text-wrap:pretty;">{{ panel.lede }}</p>
+          </div>
+          <div style="border-top:1px solid #D3DCE4;">
+            <sc-for list="{{ panel.moments }}" as="m" hint-placeholder-count="3">
+              <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:22px 0;border-bottom:1px solid #D3DCE4;">
+                <span style="flex:0 0 120px;font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:15px;line-height:28px;color:light-dark(#0058AB,#3DB5F0);">{{ m.t }}</span>
+                <span style="flex:1 1 200px;font-size:19px;line-height:28px;color:light-dark(#111A38,#EEF2F7);">{{ m.l }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="speakers" data-screen-label="Speakers" style="background:light-dark(#FFFFFF,#121A2C);scroll-margin-top:60px;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px);">
+      <div data-reveal="1" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 40px;margin-bottom:clamp(40px,5vw,64px);">
+        <div>
+          <p style="margin:0 0 22px;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ t.speakersEyebrow }}</p>
+          <h2 style="margin:0;font-weight:300;font-size:clamp(40px,5.6vw,80px);line-height:1;letter-spacing:-0.025em;color:light-dark(#111A38,#EEF2F7);">{{ x.k23 }}<br>{{ x.k24 }}</h2>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:340px;">
+          <p style="margin:0;font-size:15px;line-height:1.7;color:light-dark(#55646F,#A8B7C5);">{{ x.k25 }}</p>
+          <button type="button" onClick="{{ toggleNotify }}" aria-pressed="{{ notify }}" style="display:inline-flex;align-items:center;gap:10px;cursor:pointer;border-radius:40px;padding:13px 22px;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;background:{{ notifyBg }};color:{{ notifyFg }};border:1px solid light-dark(#111A38,#EEF2F7);transition:all .25s ease;">{{ notifyLabel }}</button>
+        </div>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:28px 20px;">
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="position:relative;aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:light-dark(#E2E8ED,#1F2840);">
+            <img src="capgemini-save-the-date/assets/speaker-keynote.webp" alt="Keynote speaker" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+            <span style="position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:2.2px;text-transform:uppercase;background:#05A3E6;color:#FFFFFF;padding:6px 10px;border-radius:40px;pointer-events:none;">{{ x.k26 }}</span>
+          </div>
+          <div>
+            <p style="margin:0 0 6px;font-size:19px;color:light-dark(#111A38,#EEF2F7);">Speaker Name</p>
+            <p style="margin:0;font-size:13px;line-height:1.5;color:light-dark(#778694,#8FA0B4);">{{ x.k27 }}</p>
+          </div>
+        </div>
+        <sc-if value="{{ oct21Revealed }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="position:relative;aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:light-dark(#E2E8ED,#1F2840);">
+              <img src="capgemini-save-the-date/assets/speaker-oct21.webp" alt="Market perspectives speaker" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+              <span style="position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:2.2px;text-transform:uppercase;background:#05A3E6;color:#FFFFFF;padding:6px 10px;border-radius:40px;pointer-events:none;">{{ x.k26 }}</span>
+              <span style="position:absolute;left:0;right:0;bottom:0;height:3px;background:#0058AB;pointer-events:none;"></span>
+            </div>
+            <div>
+              <p style="margin:0 0 6px;font-size:19px;color:light-dark(#111A38,#EEF2F7);">Speaker Name</p>
+              <p style="margin:0;font-size:13px;line-height:1.5;color:light-dark(#778694,#8FA0B4);">{{ oct21Session }}</p>
+            </div>
+          </div>
+        </sc-if>
+        <sc-for list="{{ lockedSpeakers }}" as="s" hint-placeholder-count="5">
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="position:relative;aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:linear-gradient(160deg,#1A2550 0%,#111A38 55%,#0B0E15 100%);display:flex;flex-direction:column;justify-content:space-between;padding:20px;box-sizing:border-box;">
+              <span style="font-size:9px;letter-spacing:2.2px;text-transform:uppercase;color:#7FD3F2;">{{ s.inLabel }}</span>
+              <p style="margin:0;font-weight:300;font-size:clamp(36px,3.4vw,48px);line-height:0.95;letter-spacing:-0.03em;color:#FFFFFF;">{{ s.day }}<br><span style="color:#5E7088;">{{ s.mon }}</span></p>
+              <span style="position:absolute;left:0;right:0;bottom:0;height:3px;background:{{ s.bar }};"></span>
+            </div>
+            <div>
+              <p style="margin:0 0 6px;font-size:19px;color:light-dark(#9AA8B5,#6F8095);">{{ x.k28 }}</p>
+              <p style="margin:0;font-size:13px;line-height:1.5;color:light-dark(#778694,#8FA0B4);">{{ s.session }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="sessions" data-screen-label="Session builder" style="position:relative;background:#0B0E15;scroll-margin-top:60px;overflow:hidden;">
+    <img src="capgemini-save-the-date/assets/brand-line.png" alt="" style="position:absolute;left:0;top:0;width:100%;height:3px;object-fit:cover;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px);">
+      <div data-reveal="1" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 40px;margin-bottom:clamp(56px,7vw,96px);">
+        <div>
+          <p style="margin:0 0 22px;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:#7FD3F2;">{{ t.sessionsEyebrow }}</p>
+          <h2 style="margin:0;font-weight:300;font-size:clamp(44px,6.4vw,96px);line-height:0.98;letter-spacing:-0.03em;color:#FFFFFF;">{{ x.k29 }}<br>{{ x.k30 }}</h2>
+        </div>
+        <p style="margin:0;max-width:380px;font-size:16px;line-height:1.7;color:#A8B7C5;text-wrap:pretty;">{{ x.k31 }}</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(40px,4vw,64px);align-items:start;">
+        <div style="grid-column:auto / span {{ sessSpan }};min-width:0;display:flex;flex-direction:column;">
+          <sc-for list="{{ slots }}" as="sl" hint-placeholder-count="3">
+            <div role="radiogroup" aria-label="{{ sl.aria }}" style="position:relative;display:flex;flex-wrap:wrap;gap:20px 32px;padding:0 0 clamp(44px,5vw,64px) 28px;border-left:1px solid #243055;">
+              <span style="position:absolute;left:-6px;top:14px;width:11px;height:11px;border-radius:50%;background:{{ sl.dot }};box-shadow:0 0 0 4px #0B0E15;transition:background .35s ease;"></span>
+              <div style="flex:0 0 150px;display:flex;flex-direction:column;gap:10px;">
+                <span style="font-weight:300;font-size:clamp(40px,4vw,56px);line-height:1;letter-spacing:-0.02em;color:#FFFFFF;font-variant-numeric:tabular-nums;">{{ sl.time }}</span>
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA0B4;">{{ sl.name }}</span>
+              </div>
+              <div style="flex:1 1 460px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px;">
+                <sc-for list="{{ sl.opts }}" as="o" hint-placeholder-count="3">
+                  <button type="button" role="radio" aria-checked="{{ o.on }}" onClick="{{ o.pick }}" style="position:relative;overflow:hidden;text-align:left;cursor:pointer;border-radius:6px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:22px;min-height:184px;justify-content:space-between;background:{{ o.bg }};border:1px solid {{ o.bd }};transition:background .3s ease,border-color .3s ease,transform .3s ease;" style-hover="transform:translateY(-3px);">
+                    <img src="capgemini-save-the-date/assets/brand-line.png" alt="" style="position:absolute;left:0;top:0;width:100%;height:4px;object-fit:cover;opacity:{{ o.lineOp }};transition:opacity .3s ease;">
+                    <span style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+                      <span style="font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:{{ o.sub }};">{{ o.track }}</span>
+                      <span style="width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;border:1px solid {{ o.ringBd }};background:{{ o.ringBg }};color:#FFFFFF;transition:all .3s ease;">{{ o.mark }}</span>
+                    </span>
+                    <span style="font-size:clamp(18px,1.6vw,21px);line-height:1.25;letter-spacing:-0.01em;color:{{ o.fg }};text-wrap:pretty;">{{ o.title }}</span>
+                    <span style="display:flex;flex-direction:column;gap:9px;">
+                      <span style="display:block;height:3px;border-radius:3px;background:{{ o.track2 }};overflow:hidden;"><span style="display:block;height:100%;width:{{ o.fill }};background:{{ o.meter }};border-radius:3px;"></span></span>
+                      <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:{{ o.seatFg }};">{{ o.seats }}</span>
+                    </span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="position:sticky;top:96px;background:light-dark(#FFFFFF,#121A2C);border-radius:6px;overflow:hidden;">
+          <div style="padding:30px 28px;display:flex;flex-direction:column;gap:24px;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <p style="margin:0;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ x.yourTue }}</p>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
+                <sc-for list="{{ agenda }}" as="a" hint-placeholder-count="3">
+                  <span style="height:4px;border-radius:4px;background:{{ a.seg }};transition:background .35s ease;"></span>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;">
+              <sc-for list="{{ agenda }}" as="a" hint-placeholder-count="3">
+                <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid light-dark(#E2E8ED,#1F2840);">
+                  <span style="flex:0 0 48px;font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:14px;line-height:22px;color:light-dark(#0058AB,#3DB5F0);">{{ a.time }}</span>
+                  <span style="font-size:15px;line-height:22px;color:{{ a.fg }};">{{ a.title }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <button type="button" onClick="{{ saveAgenda }}" disabled="{{ agendaIncomplete }}" style="border:0;cursor:pointer;background:{{ saveBg }};color:{{ saveFg }};border-radius:40px;padding:17px 24px;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;transition:all .25s ease;">{{ saveLabel }}</button>
+            <p aria-live="polite" style="margin:0;font-size:13px;line-height:1.6;color:light-dark(#55646F,#A8B7C5);">{{ agendaNote }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stay" data-screen-label="Stay" style="position:relative;background:#111A38;overflow:hidden;min-height:clamp(560px,80vh,860px);display:flex;align-items:flex-end;scroll-margin-top:60px;">
+    <img ref="{{ parRef }}" src="capgemini-save-the-date/assets/closing.jpg" alt="A private terrace and infinity pool overlooking the Caribbean" style="position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;will-change:transform;">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,21,0) 30%,rgba(11,14,21,0.78) 100%);"></div>
+    <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:120px clamp(20px,4vw,56px) clamp(40px,6vw,72px);box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:40px;">
+      <div data-reveal="1" style="max-width:560px;">
+        <p style="margin:0 0 22px;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:#7FD3F2;">{{ x.k32 }}</p>
+        <h2 style="margin:0;font-weight:300;font-size:clamp(40px,5.6vw,80px);line-height:1;letter-spacing:-0.025em;color:#FFFFFF;">{{ x.k33 }}<br>{{ x.k34 }}</h2>
+      </div>
+      <div data-reveal="1" style="flex:0 1 460px;background:rgba(17,26,56,0.55);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.16);border-radius:4px;padding:8px 28px;">
+        <div style="display:flex;flex-wrap:wrap;gap:4px 20px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.14);">
+          <span style="flex:0 0 130px;font-size:10px;line-height:24px;letter-spacing:2.6px;text-transform:uppercase;color:#7FD3F2;">{{ x.k35 }}</span>
+          <span style="flex:1 1 200px;font-size:15px;line-height:24px;color:#FFFFFF;">{{ x.k36 }}</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px 20px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.14);">
+          <span style="flex:0 0 130px;font-size:10px;line-height:24px;letter-spacing:2.6px;text-transform:uppercase;color:#7FD3F2;">{{ x.k37 }}</span>
+          <span style="flex:1 1 200px;font-size:15px;line-height:24px;color:#FFFFFF;">{{ x.k38 }}</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px 20px;padding:20px 0;">
+          <span style="flex:0 0 130px;font-size:10px;line-height:24px;letter-spacing:2.6px;text-transform:uppercase;color:#7FD3F2;">{{ x.k39 }}</span>
+          <span style="flex:1 1 200px;font-size:15px;line-height:24px;color:#FFFFFF;">{{ x.k40 }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="arrival" data-screen-label="Arrival guide" style="background:light-dark(#FFFFFF,#121A2C);scroll-margin-top:60px;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px);">
+      <div data-reveal="1" style="margin-bottom:clamp(48px,6vw,80px);">
+        <p style="margin:0 0 22px;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ t.arrivalEyebrow }}</p>
+        <h2 style="margin:0;font-weight:300;font-size:clamp(40px,5.6vw,80px);line-height:1;letter-spacing:-0.025em;color:light-dark(#111A38,#EEF2F7);">{{ x.k41 }}<br>{{ x.k42 }}</h2>
+      </div>
+      <ol data-reveal="1" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:36px 24px;">
+        <li style="display:flex;flex-direction:column;gap:16px;"><span style="height:2px;background:light-dark(#111A38,#FFFFFF);"></span><span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:14px;color:light-dark(#0058AB,#3DB5F0);">01</span><span style="font-size:21px;color:light-dark(#111A38,#EEF2F7);">{{ x.k43 }}</span><span style="font-size:15px;line-height:1.65;color:light-dark(#55646F,#A8B7C5);">{{ x.k44 }}</span></li>
+        <li style="display:flex;flex-direction:column;gap:16px;"><span style="height:2px;background:#0058AB;"></span><span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:14px;color:light-dark(#0058AB,#3DB5F0);">02</span><span style="font-size:21px;color:light-dark(#111A38,#EEF2F7);">{{ x.k45 }}</span><span style="font-size:15px;line-height:1.65;color:light-dark(#55646F,#A8B7C5);">{{ x.k46 }}</span></li>
+        <li style="display:flex;flex-direction:column;gap:16px;"><span style="height:2px;background:#1A86D0;"></span><span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:14px;color:light-dark(#0058AB,#3DB5F0);">03</span><span style="font-size:21px;color:light-dark(#111A38,#EEF2F7);">{{ x.k47 }}</span><span style="font-size:15px;line-height:1.65;color:light-dark(#55646F,#A8B7C5);">{{ x.k48 }}</span></li>
+        <li style="display:flex;flex-direction:column;gap:16px;"><span style="height:2px;background:#05A3E6;"></span><span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:14px;color:light-dark(#0058AB,#3DB5F0);">04</span><span style="font-size:21px;color:light-dark(#111A38,#EEF2F7);">{{ x.k49 }}</span><span style="font-size:15px;line-height:1.65;color:light-dark(#55646F,#A8B7C5);">{{ x.k50 }}</span></li>
+        <li style="display:flex;flex-direction:column;gap:16px;"><span style="height:2px;background:#00BFB3;"></span><span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:14px;color:light-dark(#0058AB,#3DB5F0);">05</span><span style="font-size:21px;color:light-dark(#111A38,#EEF2F7);">{{ x.k51 }}</span><span style="font-size:15px;line-height:1.65;color:light-dark(#55646F,#A8B7C5);">{{ x.k52 }}</span></li>
+      </ol>
+      <div data-reveal="1" style="margin-top:clamp(56px,7vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));background:light-dark(#F4F6F8,#0A0E1A);border-radius:4px;">
+        <div style="padding:28px;display:flex;flex-direction:column;gap:10px;"><span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#778694,#8FA0B4);">{{ x.k53 }}</span><span style="font-size:16px;line-height:1.5;color:light-dark(#111A38,#EEF2F7);">{{ x.k54 }}</span></div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:10px;border-left:1px solid light-dark(#E2E8ED,#1F2840);"><span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#778694,#8FA0B4);">{{ x.k55 }}</span><span style="font-size:16px;line-height:1.5;color:light-dark(#111A38,#EEF2F7);">{{ x.k56 }}</span></div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:10px;border-left:1px solid light-dark(#E2E8ED,#1F2840);"><span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#778694,#8FA0B4);">{{ x.k57 }}</span><span style="font-size:16px;line-height:1.5;color:light-dark(#111A38,#EEF2F7);">{{ x.k58 }}</span></div>
+        <div style="padding:28px;display:flex;flex-direction:column;gap:10px;border-left:1px solid light-dark(#E2E8ED,#1F2840);"><span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:light-dark(#778694,#8FA0B4);">{{ x.k59 }}</span><span style="font-size:16px;line-height:1.5;color:light-dark(#111A38,#EEF2F7);">{{ x.k60 }}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pack" data-screen-label="What to pack" style="background:light-dark(#F4F6F8,#0A0E1A);scroll-margin-top:60px;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px);">
+      <div data-reveal="1" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 40px;margin-bottom:clamp(40px,5vw,64px);">
+        <div>
+          <p style="margin:0 0 22px;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ v.packEy }}</p>
+          <h2 style="margin:0;font-weight:300;font-size:clamp(40px,5.6vw,80px);line-height:1;letter-spacing:-0.025em;color:light-dark(#111A38,#EEF2F7);">{{ v.packA }}<br>{{ v.packB }}</h2>
+        </div>
+        <p style="margin:0;max-width:380px;font-size:16px;line-height:1.7;color:light-dark(#55646F,#A8B7C5);text-wrap:pretty;">{{ v.packLede }}</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;">
+        <sc-for list="{{ dress }}" as="d" hint-placeholder-count="4">
+          <div style="background:light-dark(#FFFFFF,#121A2C);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;">
+            <span style="display:block;height:4px;background:{{ d.bar }};"></span>
+            <div style="padding:26px 24px 28px;display:flex;flex-direction:column;gap:14px;">
+              <span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:13px;color:light-dark(#0058AB,#3DB5F0);">{{ d.date }}</span>
+              <span style="font-weight:300;font-size:30px;line-height:1.05;letter-spacing:-0.015em;color:light-dark(#111A38,#EEF2F7);">{{ d.code }}</span>
+              <span style="font-size:15px;line-height:1.65;color:light-dark(#55646F,#A8B7C5);text-wrap:pretty;">{{ d.desc }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div data-reveal="1" style="margin-top:12px;background:light-dark(#FFFFFF,#121A2C);border-radius:6px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:22px;">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px;">
+          <span style="font-size:22px;color:light-dark(#111A38,#EEF2F7);">{{ v.packList }}</span>
+          <span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:14px;color:light-dark(#0058AB,#3DB5F0);">{{ packCount }}</span>
+        </div>
+        <span style="display:block;height:4px;border-radius:4px;background:light-dark(#E2E8ED,#1F2840);overflow:hidden;"><span style="display:block;height:100%;width:{{ packPct }};background:linear-gradient(90deg,#0058AB,#05A3E6,#00BFB3);border-radius:4px;transition:width .5s cubic-bezier(.2,.7,.2,1);"></span></span>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:0 36px;">
+          <sc-for list="{{ packItems }}" as="p" hint-placeholder-count="8">
+            <button type="button" role="checkbox" aria-checked="{{ p.on }}" onClick="{{ p.toggle }}" style="display:flex;align-items:center;gap:14px;min-height:52px;padding:12px 0;border:0;border-bottom:1px solid light-dark(#E2E8ED,#1F2840);background:transparent;cursor:pointer;text-align:left;font-size:15px;color:{{ p.fg }};transition:color .25s ease;">
+              <span style="flex:0 0 20px;width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:1.5px solid {{ p.bd }};background:{{ p.bg }};color:#FFFFFF;display:grid;place-items:center;font-size:12px;transition:all .25s ease;">{{ p.mark }}</span>
+              <span style="text-decoration:{{ p.deco }};">{{ p.label }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="register" data-screen-label="Register" style="background:#111A38;scroll-margin-top:40px;position:relative;overflow:hidden;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(88px,11vw,152px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:56px clamp(48px,7vw,120px);">
+
+      <div data-reveal="1" style="display:flex;flex-direction:column;gap:28px;">
+        <p style="margin:0;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:#05A3E6;">{{ t.registration }}</p>
+        <h2 style="margin:0;font-weight:300;font-size:clamp(48px,6vw,92px);line-height:0.95;letter-spacing:-0.03em;color:#FFFFFF;">{{ regHeadA }}<br><span style="color:#05A3E6;">{{ regHeadB }}</span></h2>
+        <p style="margin:0;max-width:380px;font-size:16px;line-height:1.75;color:#A8B7C5;text-wrap:pretty;">{{ regLede }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:28px 40px;padding-top:24px;border-top:1px solid #243055;max-width:440px;">
+          <div>
+            <p style="margin:0 0 8px;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#7F919F;">{{ x.k61 }}</p>
+            <p style="margin:0;font-size:16px;color:#FFFFFF;">{{ x.k62 }}</p>
+          </div>
+          <div>
+            <p style="margin:0 0 8px;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#7F919F;">{{ x.k63 }}</p>
+            <a href="mailto:americas-kickoff@example.com" style="font-size:16px;color:#FFFFFF;border-bottom:1px solid #3A4A72;" style-hover="color:#05A3E6;">{{ x.k64 }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal="1" style="min-width:0;">
+        <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-items:end;margin-bottom:48px;">
+            <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;gap:12px;transform:translateY({{ s.lift }});">
+                <span style="font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:{{ s.fg }};transition:color .4s ease;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ s.label }}</span>
+                <span style="height:2px;background:{{ s.bar }};transition:background .5s ease;"></span>
+              </div>
+            </sc-for>
+          </div>
+
+          <form ref="{{ stepRef }}" onSubmit="{{ next }}" noValidate="{{ true }}" style="display:flex;flex-direction:column;gap:34px;">
+            <h3 style="margin:0;font-weight:300;font-size:clamp(26px,2.6vw,34px);line-height:1.2;color:#FFFFFF;">{{ stepTitle }}</h3>
+
+            <sc-if value="{{ isStep0 }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:30px 32px;">
+              <label style="display:flex;flex-direction:column;gap:10px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k65 }}</span>
+                <input value="{{ form.firstName }}" onChange="{{ on.firstName }}" autoComplete="given-name" style="border:0;border-bottom:1px solid {{ bc.firstName }};background:transparent;padding:8px 0 12px;font-size:19px;color:#FFFFFF;outline:none;border-radius:0;" style-focus="border-bottom-color:#05A3E6;">
+                <span style="font-size:12px;color:#FF8593;">{{ err.firstName }}</span>
+              </label>
+              <label style="display:flex;flex-direction:column;gap:10px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k66 }}</span>
+                <input value="{{ form.lastName }}" onChange="{{ on.lastName }}" autoComplete="family-name" style="border:0;border-bottom:1px solid {{ bc.lastName }};background:transparent;padding:8px 0 12px;font-size:19px;color:#FFFFFF;outline:none;border-radius:0;" style-focus="border-bottom-color:#05A3E6;">
+                <span style="font-size:12px;color:#FF8593;">{{ err.lastName }}</span>
+              </label>
+              <label style="display:flex;flex-direction:column;gap:10px;grid-column:1/-1;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k67 }}</span>
+                <input type="email" value="{{ form.email }}" onChange="{{ on.email }}" placeholder="name@capgemini.com" autoComplete="email" style="border:0;border-bottom:1px solid {{ bc.email }};background:transparent;padding:8px 0 12px;font-size:19px;color:#FFFFFF;outline:none;border-radius:0;" style-focus="border-bottom-color:#05A3E6;">
+                <span style="font-size:12px;color:#FF8593;">{{ err.email }}</span>
+              </label>
+              <label style="display:flex;flex-direction:column;gap:10px;grid-column:1/-1;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k68 }}</span>
+                <input value="{{ form.title }}" onChange="{{ on.title }}" autoComplete="organization-title" style="border:0;border-bottom:1px solid {{ bc.title }};background:transparent;padding:8px 0 12px;font-size:19px;color:#FFFFFF;outline:none;border-radius:0;" style-focus="border-bottom-color:#05A3E6;">
+                <span style="font-size:12px;color:#FF8593;">{{ err.title }}</span>
+              </label>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:34px;">
+              <label style="display:flex;flex-direction:column;gap:10px;position:relative;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k69 }}</span>
+                <select value="{{ form.country }}" onChange="{{ on.country }}" style="border:0;border-bottom:1px solid {{ bc.country }};background:transparent;padding:8px 0 12px;font-size:19px;color:#FFFFFF;outline:none;border-radius:0;appearance:none;cursor:pointer;" style-focus="border-bottom-color:#05A3E6;">
+                  <option value="">{{ x.k70 }}</option>
+                  <option value="United States">{{ x.k0 }}</option>
+                  <option value="Canada">{{ x.k1 }}</option>
+                  <option value="Mexico">{{ x.k2 }}</option>
+                  <option value="Brazil">{{ x.k3 }}</option>
+                  <option value="Argentina">{{ x.k4 }}</option>
+                  <option value="Colombia">{{ x.k5 }}</option>
+                  <option value="Chile">{{ x.k6 }}</option>
+                  <option value="Other">{{ x.k7 }}</option>
+                </select>
+                <span style="position:absolute;right:0;top:34px;color:#8FA3B3;pointer-events:none;">↓</span>
+                <span style="font-size:12px;color:#FF8593;">{{ err.country }}</span>
+              </label>
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k71 }}</span>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                  <sc-for list="{{ arrivalOpts }}" as="o" hint-placeholder-count="3">
+                    <button type="button" onClick="{{ o.pick }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:112px;padding:14px 20px;border-radius:4px;cursor:pointer;background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.bd }};transition:all .25s ease;">
+                      <span style="font-size:10px;letter-spacing:2.2px;text-transform:uppercase;opacity:0.8;">{{ o.wk }}</span>
+                      <span style="font-size:17px;">{{ o.label }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k72 }}</span>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                  <sc-for list="{{ departureOpts }}" as="o" hint-placeholder-count="2">
+                    <button type="button" onClick="{{ o.pick }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:112px;padding:14px 20px;border-radius:4px;cursor:pointer;background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.bd }};transition:all .25s ease;">
+                      <span style="font-size:10px;letter-spacing:2.2px;text-transform:uppercase;opacity:0.8;">{{ o.wk }}</span>
+                      <span style="font-size:17px;">{{ o.label }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:34px;">
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k73 }}</span>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                  <sc-for list="{{ dietOpts }}" as="o" hint-placeholder-count="6">
+                    <button type="button" onClick="{{ o.pick }}" style="padding:11px 20px;border-radius:40px;cursor:pointer;font-size:14px;background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.bd }};transition:all .25s ease;">{{ o.label }}</button>
+                  </sc-for>
+                </div>
+              </div>
+              <label style="display:flex;flex-direction:column;gap:10px;">
+                <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k74 }}<span style="letter-spacing:0;text-transform:none;color:#5E7088;">{{ x.k75 }}</span></span>
+                <textarea rows="2" value="{{ form.access }}" onChange="{{ on.access }}" placeholder="{{ x.accessPh }}" style="border:0;border-bottom:1px solid #34436E;background:transparent;padding:8px 0 12px;font-size:17px;line-height:1.5;color:#FFFFFF;outline:none;border-radius:0;resize:vertical;" style-focus="border-bottom-color:#05A3E6;"></textarea>
+              </label>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <label style="display:flex;gap:14px;align-items:flex-start;cursor:pointer;">
+                  <input type="checkbox" checked="{{ form.consent }}" onChange="{{ on.consent }}" style="width:18px;height:18px;margin:2px 0 0;accent-color:#05A3E6;flex:none;">
+                  <span style="font-size:14px;line-height:1.6;color:#A8B7C5;">{{ x.k76 }}<a href="#" style="color:#FFFFFF;border-bottom:1px solid #3A4A72;">{{ x.k77 }}</a>.</span>
+                </label>
+                <span style="font-size:12px;color:#FF8593;padding-left:32px;">{{ err.consent }}</span>
+              </div>
+            </div>
+            </sc-if>
+
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;padding-top:8px;">
+              <button type="submit" disabled="{{ sending }}" style="display:inline-flex;align-items:center;gap:14px;border:0;cursor:pointer;background:#FFFFFF;color:#111A38;border-radius:40px;padding:20px 40px;font-size:13px;letter-spacing:2.6px;text-transform:uppercase;transition:background .25s ease,color .25s ease;" style-hover="background:#05A3E6;color:#FFFFFF;">{{ spinner }}{{ nextLabel }}<span style="font-size:15px;">→</span></button>
+              <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}">
+                <button type="button" onClick="{{ back }}" style="border:0;background:none;padding:0;cursor:pointer;font-size:13px;letter-spacing:2.4px;text-transform:uppercase;color:#A8B7C5;" style-hover="color:#FFFFFF;">← {{ t.back }}</button>
+              </sc-if>
+            </div>
+          </form>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ showWaitlist }}" hint-placeholder-val="{{ false }}">
+        <form onSubmit="{{ joinWaitlist }}" noValidate="{{ true }}" style="display:flex;flex-direction:column;gap:30px;">
+          <h3 style="margin:0;font-weight:300;font-size:clamp(26px,2.6vw,34px);line-height:1.2;color:#FFFFFF;">{{ x.k78 }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.7;color:#A8B7C5;">{{ x.k79 }}</p>
+          <label style="display:flex;flex-direction:column;gap:10px;">
+            <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k80 }}</span>
+            <input value="{{ wl.name }}" onChange="{{ onWlName }}" autoComplete="name" style="border:0;border-bottom:1px solid #34436E;background:transparent;padding:8px 0 12px;font-size:19px;color:#FFFFFF;outline:none;border-radius:0;" style-focus="border-bottom-color:#05A3E6;">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:10px;">
+            <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">{{ x.k67 }}</span>
+            <input type="email" value="{{ wl.email }}" onChange="{{ onWlEmail }}" autoComplete="email" style="border:0;border-bottom:1px solid {{ wlBc }};background:transparent;padding:8px 0 12px;font-size:19px;color:#FFFFFF;outline:none;border-radius:0;" style-focus="border-bottom-color:#05A3E6;">
+            <span style="font-size:12px;color:#FF8593;">{{ wlErr }}</span>
+          </label>
+          <button type="submit" style="align-self:flex-start;display:inline-flex;align-items:center;gap:14px;border:0;cursor:pointer;background:#FFFFFF;color:#111A38;border-radius:40px;padding:20px 40px;font-size:13px;letter-spacing:2.6px;text-transform:uppercase;" style-hover="background:#05A3E6;color:#FFFFFF;">{{ x.k81 }}<span style="font-size:15px;">→</span></button>
+        </form>
+        </sc-if>
+
+        <sc-if value="{{ showWaitlisted }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:24px;">
+          <p style="margin:0;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:#05A3E6;">{{ x.k82 }}</p>
+          <p style="margin:0;font-weight:300;font-size:clamp(88px,12vw,160px);line-height:0.85;letter-spacing:-0.05em;color:#FFFFFF;">#{{ wlPos }}</p>
+          <p style="margin:0;max-width:420px;font-size:16px;line-height:1.7;color:#A8B7C5;">{{ x.k83 }}<span style="color:#FFFFFF;">{{ wl.email }}</span>{{ x.k84 }}</p>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ showClosed }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:28px;padding:clamp(28px,4vw,48px);border:1px solid #243055;border-radius:4px;">
+          <h3 style="margin:0;font-weight:300;font-size:clamp(28px,3vw,40px);line-height:1.15;color:#FFFFFF;">{{ x.k85 }}<br>{{ x.k86 }}</h3>
+          <p style="margin:0;max-width:440px;font-size:16px;line-height:1.7;color:#A8B7C5;">{{ x.k87 }}</p>
+          <a href="mailto:americas-kickoff@example.com" style="align-self:flex-start;display:inline-flex;align-items:center;gap:14px;background:#FFFFFF;color:#111A38;border-radius:40px;padding:18px 34px;font-size:12px;letter-spacing:2.6px;text-transform:uppercase;" style-hover="background:#05A3E6;color:#FFFFFF;">{{ x.k88 }}</a>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ showConfirm }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:36px;">
+          <div>
+            <p style="margin:0 0 18px;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:#05A3E6;">{{ t.registered }}</p>
+            <p style="margin:0;font-size:16px;line-height:1.7;color:#A8B7C5;">{{ x.k89 }}<span style="color:#FFFFFF;">{{ emailDisplay }}</span>.</p>
+          </div>
+
+          <div ref="{{ ticketRef }}" style="display:flex;flex-wrap:wrap;background:#FFFFFF;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,0.6);">
+            <div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;">
+              <img src="capgemini-save-the-date/assets/brand-line.png" alt="" style="display:block;width:100%;height:6px;object-fit:cover;">
+              <div style="padding:30px 32px 32px;display:flex;flex-direction:column;gap:26px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;">
+                  <img src="capgemini-save-the-date/assets/logo-blue.png" alt="Capgemini" style="display:block;width:104px;height:auto;">
+                  <span style="font-size:9px;letter-spacing:2.6px;text-transform:uppercase;color:#778694;">Americas Kickoff 2027</span>
+                </div>
+                <div>
+                  <p style="margin:0 0 6px;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#778694;">{{ x.k90 }}</p>
+                  <p style="margin:0;font-weight:300;font-size:clamp(28px,3vw,38px);line-height:1.1;letter-spacing:-0.01em;color:#111A38;">{{ nameDisplay }}</p>
+                  <p style="margin:6px 0 0;font-size:14px;color:#55646F;">{{ titleDisplay }}</p>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px;padding-top:22px;border-top:1px solid #E2E8ED;">
+                  <div>
+                    <p style="margin:0 0 6px;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#778694;">{{ x.k91 }}</p>
+                    <p style="margin:0;font-size:15px;color:#111A38;">{{ x.k92 }}</p>
+                  </div>
+                  <div>
+                    <p style="margin:0 0 6px;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#778694;">{{ x.k94 }}</p>
+                    <p style="margin:0;font-size:15px;color:#111A38;">{{ x.k95 }}</p>
+                  </div>
+                  <div>
+                    <p style="margin:0 0 6px;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#778694;">{{ x.k71 }}</p>
+                    <p style="margin:0;font-size:15px;color:#0058AB;">{{ arrDisp }}</p>
+                  </div>
+                  <div>
+                    <p style="margin:0 0 6px;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#778694;">{{ x.k72 }}</p>
+                    <p style="margin:0;font-size:15px;color:#0058AB;">{{ depDisp }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="flex:0 0 150px;position:relative;border-left:2px dashed #D3DCE4;background:#F4F6F8;padding:30px 24px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;">
+              <span style="position:absolute;top:-12px;left:-13px;width:24px;height:24px;border-radius:50%;background:#111A38;"></span>
+              <span style="position:absolute;bottom:-12px;left:-13px;width:24px;height:24px;border-radius:50%;background:#111A38;"></span>
+              <div>
+                <p style="margin:0 0 8px;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#778694;">{{ x.k96 }}</p>
+                <p style="margin:0;font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:22px;line-height:1.2;color:#111A38;word-break:break-all;">{{ code }}</p>
+              </div>
+              <div>
+                <p style="margin:0;font-weight:300;font-size:44px;line-height:0.9;letter-spacing:-0.03em;color:#05A3E6;">CUN</p>
+                <p style="margin:8px 0 0;font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:#778694;">{{ x.k97 }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;">
+            <button type="button" onClick="{{ openWallet }}" style="display:inline-flex;align-items:center;gap:14px;border:0;cursor:pointer;background:#FFFFFF;color:#111A38;border-radius:40px;padding:20px 36px;font-size:13px;letter-spacing:2.6px;text-transform:uppercase;" style-hover="background:#05A3E6;color:#FFFFFF;">{{ x.k9 }}<span style="font-size:15px;">→</span></button>
+            <a href="#" onClick="{{ addCalendar }}" style="display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,0.5);color:#FFFFFF;border-radius:40px;padding:19px 30px;font-size:13px;letter-spacing:2.6px;text-transform:uppercase;" style-hover="border-color:#FFFFFF;color:#FFFFFF;">{{ x.k98 }}</a>
+            <button type="button" onClick="{{ edit }}" style="border:0;background:none;padding:0;cursor:pointer;font-size:13px;letter-spacing:2.4px;text-transform:uppercase;color:#A8B7C5;" style-hover="color:#FFFFFF;">{{ x.k99 }}</button>
+          </div>
+        </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section id="share" data-screen-label="Postcard" style="background:light-dark(#F4F6F8,#0A0E1A);scroll-margin-top:60px;overflow:hidden;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(20px,4vw,56px);display:flex;flex-wrap:wrap;align-items:center;gap:56px clamp(40px,6vw,96px);">
+      <div data-reveal="1" style="flex:1 1 340px;min-width:0;display:flex;flex-direction:column;gap:28px;">
+        <p style="margin:0;font-size:11px;letter-spacing:3.4px;text-transform:uppercase;color:light-dark(#0058AB,#3DB5F0);">{{ v.pcEy }}</p>
+        <h2 style="margin:0;font-weight:300;font-size:clamp(40px,5.6vw,80px);line-height:1;letter-spacing:-0.025em;color:light-dark(#111A38,#EEF2F7);">{{ v.pcA }}<br>{{ v.pcB }}</h2>
+        <p style="margin:0;max-width:420px;font-size:16px;line-height:1.7;color:light-dark(#55646F,#A8B7C5);text-wrap:pretty;">{{ v.pcLede }}</p>
+        <div role="radiogroup" aria-label="Card style" style="display:flex;flex-wrap:wrap;gap:8px;">
+          <sc-for list="{{ pcStyles }}" as="s" hint-placeholder-count="3">
+            <button type="button" role="radio" aria-checked="{{ s.on }}" onClick="{{ s.pick }}" style="cursor:pointer;border-radius:40px;padding:11px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;background:{{ s.bg }};color:{{ s.fg }};border:1px solid {{ s.bd }};transition:all .25s ease;">{{ s.label }}</button>
+          </sc-for>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:10px;max-width:420px;">
+          <span style="font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:light-dark(#55646F,#A8B7C5);">{{ v.pcName }}</span>
+          <input value="{{ pcName }}" onChange="{{ onPcName }}" maxlength="40" style="border:0;border-bottom:1px solid light-dark(#9AA8B5,#3A4660);background:transparent;padding:10px 0;font-size:18px;color:light-dark(#111A38,#EEF2F7);outline:none;" style-focus="border-bottom-color:#0058AB;">
+        </label>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;">
+          <label style="position:relative;display:inline-flex;align-items:center;gap:12px;cursor:pointer;border:1px dashed light-dark(#9AA8B5,#3A4660);border-radius:40px;padding:8px 18px 8px 8px;font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:light-dark(#111A38,#EEF2F7);" style-hover="border-color:#0058AB;">
+            <span style="flex:0 0 36px;width:36px;height:36px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:light-dark(#E2E8ED,#1F2840);color:light-dark(#55646F,#A8B7C5);font-size:18px;">
+              <sc-if value="{{ hasPcPhoto }}" hint-placeholder-val="{{ false }}"><img src="{{ pcPhoto }}" alt="" style="width:100%;height:100%;object-fit:cover;"></sc-if>
+              <sc-if value="{{ noPcPhoto }}" hint-placeholder-val="{{ true }}"><span>+</span></sc-if>
+            </span>
+            {{ pcPhotoLabel }}
+            <input type="file" accept="image/*" onChange="{{ onPcPhoto }}" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;">
+          </label>
+          <sc-if value="{{ hasPcPhoto }}" hint-placeholder-val="{{ false }}">
+            <button type="button" onClick="{{ removePcPhoto }}" style="cursor:pointer;background:transparent;border:0;padding:8px 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:light-dark(#55646F,#A8B7C5);">{{ v.pcPhR }}</button>
+          </sc-if>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;">
+          <button type="button" onClick="{{ downloadCard }}" style="border:0;cursor:pointer;background:light-dark(#111A38,#FFFFFF);color:light-dark(#FFFFFF,#111A38);border-radius:40px;padding:17px 28px;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;" style-hover="background:#0058AB;color:#FFFFFF;">{{ v.pcDl }}</button>
+          <button type="button" onClick="{{ shareLinkedIn }}" style="cursor:pointer;background:transparent;color:light-dark(#111A38,#EEF2F7);border:1px solid light-dark(#111A38,#EEF2F7);border-radius:40px;padding:17px 26px;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;" style-hover="background:light-dark(#111A38,#FFFFFF);color:light-dark(#FFFFFF,#111A38);">{{ v.pcLi }}</button>
+          <button type="button" onClick="{{ copyCaption }}" style="cursor:pointer;background:transparent;color:light-dark(#0058AB,#3DB5F0);border:0;padding:17px 8px;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;">{{ pcCopyLabel }}</button>
+        </div>
+        <p aria-live="polite" style="margin:0;font-size:13px;line-height:1.6;color:light-dark(#55646F,#A8B7C5);">{{ v.pcHint }}</p>
+      </div>
+      <div data-reveal="1" style="flex:1.5 1 480px;min-width:0;">
+        <div style="position:relative;aspect-ratio:1200/627;border-radius:10px;overflow:hidden;container-type:inline-size;background:#111A38;box-shadow:0 50px 90px -40px rgba(17,26,56,0.55);transform:rotate(-1.4deg);">
+          <img src="capgemini-save-the-date/assets/hero-v4.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:28% center;opacity:{{ pc.imgOp }};transition:opacity .5s ease;">
+          <div style="position:absolute;inset:0;background:{{ pc.overlay }};"></div>
+          <sc-if value="{{ hasPcPhoto }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:0;right:0;bottom:1.4cqw;width:40cqw;overflow:hidden;">
+              <img src="{{ pcPhoto }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;">
+              <div style="position:absolute;inset:0;background:{{ pc.fade }};"></div>
+              <span style="position:absolute;left:0;top:0;bottom:0;width:0.35cqw;background:#FFFFFF;"></span>
+            </div>
+          </sc-if>
+          <div style="position:absolute;left:5cqw;top:5.5cqw;display:flex;flex-direction:column;gap:1.6cqw;">
+            <img src="capgemini-save-the-date/assets/logo-white.png" alt="Capgemini" style="display:block;width:13cqw;height:auto;">
+            <span style="font-size:1.25cqw;letter-spacing:0.3cqw;text-transform:uppercase;color:#FFFFFF;">Americas Kickoff 2027</span>
+          </div>
+          <div style="position:absolute;left:5cqw;bottom:7cqw;max-width:{{ pcTextMax }};display:flex;flex-direction:column;">
+            <span style="font-weight:300;font-size:4.4cqw;line-height:1;letter-spacing:-0.02em;color:{{ pc.accent }};transition:color .5s ease;margin-bottom:1.2cqw;">{{ v.pcIm }}</span>
+            <span style="font-size:7cqw;line-height:0.98;letter-spacing:-0.03em;color:#FFFFFF;text-wrap:balance;">{{ pcNameShow }}</span>
+            <span style="margin-top:1.4cqw;font-size:1.7cqw;line-height:1.3;color:#D6E2EB;">{{ pcTitle }}</span>
+            <span style="margin-top:2.2cqw;padding-top:1.6cqw;border-top:1px solid rgba(255,255,255,0.28);font-size:1.4cqw;letter-spacing:0.3cqw;text-transform:uppercase;color:{{ pc.accent }};transition:color .5s ease;">{{ v.pcDates }}</span>
+          </div>
+          <img src="capgemini-save-the-date/assets/brand-line.png" alt="" style="position:absolute;left:0;bottom:0;width:100%;height:1.4cqw;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ walletOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeWallet }}" style="position:fixed;inset:0;z-index:50;background:rgba(11,14,21,0.78);backdrop-filter:blur(10px);display:flex;padding:24px;overflow-y:auto;box-sizing:border-box;">
+    <div ref="{{ passRef }}" role="dialog" aria-modal="true" aria-label="Wallet pass preview" onClick="{{ stop }}" style="margin:auto;width:min(360px,100%);display:flex;flex-direction:column;gap:18px;">
+      <div style="background:#111A38;border-radius:18px;overflow:hidden;box-shadow:0 50px 100px -30px rgba(0,0,0,0.8);border:1px solid #243055;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 20px;">
+          <img src="capgemini-save-the-date/assets/logo-white.png" alt="Capgemini" style="display:block;width:96px;height:auto;">
+          <div style="text-align:right;"><p style="margin:0;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#7FD3F2;">{{ x.k94 }}</p><p style="margin:2px 0 0;font-size:15px;color:#FFFFFF;">{{ x.k100 }}</p></div>
+        </div>
+        <div style="position:relative;height:120px;background:#111A38 url('capgemini-save-the-date/assets/hero-v4.jpg') 25% 60%/cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,26,56,0.7),rgba(17,26,56,0));"></div>
+          <p style="position:absolute;left:20px;bottom:16px;margin:0;font-weight:300;font-size:30px;line-height:0.95;letter-spacing:-0.02em;color:#FFFFFF;">A Bolder<br><span style="color:#05A3E6;">Horizon</span></p>
+        </div>
+        <img src="capgemini-save-the-date/assets/brand-line.png" alt="" style="display:block;width:100%;height:4px;object-fit:cover;">
+        <div style="padding:18px 20px;display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;">
+          <div style="grid-column:1/-1;"><p style="margin:0;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#7FD3F2;">{{ x.k90 }}</p><p style="margin:3px 0 0;font-size:19px;color:#FFFFFF;">{{ nameDisplay }}</p></div>
+          <div><p style="margin:0;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#7FD3F2;">{{ x.k71 }}</p><p style="margin:3px 0 0;font-size:14px;color:#FFFFFF;">{{ arrDisp }}</p></div>
+          <div><p style="margin:0;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#7FD3F2;">{{ x.k47 }}</p><p style="margin:3px 0 0;font-size:14px;color:#FFFFFF;">{{ passTransfer }}</p></div>
+        </div>
+        <div style="margin:4px 20px 22px;background:#FFFFFF;border-radius:10px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(25,1fr);width:148px;height:148px;">
+            <sc-for list="{{ qr }}" as="q" hint-placeholder-count="0"><span style="background:{{ q.c }};"></span></sc-for>
+          </div>
+          <span style="font-family:'Ubuntu Mono',ui-monospace,monospace;font-size:13px;letter-spacing:1px;color:#111A38;">{{ code }}</span>
+        </div>
+      </div>
+      <p style="margin:0;font-size:13px;line-height:1.6;color:#A8B7C5;text-align:center;">{{ x.k101 }}</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="#" onClick="{{ walletApple }}" style="display:inline-flex;align-items:center;background:#000000;color:#FFFFFF;border:1px solid #3A4A72;border-radius:10px;padding:13px 20px;font-size:13px;" style-hover="color:#FFFFFF;border-color:#FFFFFF;">{{ x.k102 }}</a>
+        <a href="#" onClick="{{ walletGoogle }}" style="display:inline-flex;align-items:center;background:#000000;color:#FFFFFF;border:1px solid #3A4A72;border-radius:10px;padding:13px 20px;font-size:13px;" style-hover="color:#FFFFFF;border-color:#FFFFFF;">{{ x.k103 }}</a>
+      </div>
+      <p aria-live="polite" style="margin:0;font-size:13px;line-height:1.6;color:#7FD3F2;text-align:center;">{{ walletMsg }}</p>
+      <button type="button" onClick="{{ closeWallet }}" style="align-self:center;border:0;background:none;cursor:pointer;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:#A8B7C5;padding:8px;" style-hover="color:#FFFFFF;">{{ x.k104 }}</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <div style="position:fixed;right:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);z-index:45;display:flex;flex-direction:column;align-items:flex-end;gap:12px;">
+    <sc-if value="{{ demoOpen }}" hint-placeholder-val="{{ false }}">
+      <div role="dialog" aria-label="Demo settings" style="width:min(400px,calc(100vw - 32px));max-height:calc(100vh - 120px);overflow-y:auto;background:rgba(11,14,21,0.92);backdrop-filter:blur(18px);border:1px solid #232C40;border-radius:18px;box-shadow:0 40px 90px -24px rgba(0,0,0,0.7);color:#FFFFFF;">
+        <div style="position:relative;padding:18px 18px 18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #232C40;">
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <p style="margin:0;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#7FD3F2;">Demo controls</p>
+            <p style="margin:0;font-size:13px;color:#A8B7C5;">Preview every state of the experience</p>
+          </div>
+          <button type="button" onClick="{{ demoClose }}" aria-label="Close" style="flex:0 0 36px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,0.08);color:#FFFFFF;font-size:18px;line-height:1;cursor:pointer;" style-hover="background:rgba(255,255,255,0.16);">×</button>
+        </div>
+        <div style="padding:18px 22px 22px;display:flex;flex-direction:column;gap:18px;">
+          <sc-for list="{{ demoGroups }}" as="g" hint-placeholder-count="7">
+            <div role="radiogroup" aria-label="{{ g.label }}" style="display:flex;flex-direction:column;gap:9px;">
+              <span style="font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:#8FA0B4;">{{ g.label }}</span>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                <sc-for list="{{ g.opts }}" as="o" hint-placeholder-count="3">
+                  <button type="button" role="radio" aria-checked="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;border-radius:40px;padding:8px 13px;font-size:12px;background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.bd }};transition:all .2s ease;">{{ o.l }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <button type="button" onClick="{{ openOnsite }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:2px;cursor:pointer;background:#FFFFFF;color:#111A38;border:0;border-radius:14px;padding:14px 16px;text-align:left;"><span style="display:flex;flex-direction:column;gap:3px;"><span style="font-size:13px;">On-site app</span><span style="font-size:11px;color:#55646F;">Mobile experience in Cancún, as this guest</span></span><span style="font-size:16px;">→</span></button>
+          <button type="button" onClick="{{ resetDemo }}" style="align-self:flex-start;margin-top:4px;cursor:pointer;background:transparent;border:0;padding:6px 0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#FF9AA3;">Reset demo &amp; clear registration</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ ccOpen }}" hint-placeholder-val="{{ false }}">
+      <div role="dialog" aria-label="{{ v.ccTitle }}" style="width:min(400px,calc(100vw - 32px));height:min(600px,calc(100vh - 48px));background:light-dark(#F4F6F8,#0A0E1A);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 40px 90px -24px rgba(11,14,21,0.6),0 0 0 1px rgba(17,26,56,0.08);">
+        <div style="position:relative;background:#111A38;padding:18px 18px 20px 20px;display:flex;align-items:center;gap:14px;">
+          <span style="flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0058AB,#05A3E6 55%,#00BFB3);display:grid;place-items:center;font-size:15px;color:#FFFFFF;">AK</span>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;">
+            <p style="margin:0;font-size:16px;color:#FFFFFF;">{{ v.ccTitle }}</p>
+            <p style="margin:0;font-size:12px;line-height:1.4;color:#A8B7C5;text-wrap:balance;">{{ v.ccSub }}</p>
+          </div>
+          <button type="button" onClick="{{ ccClose }}" aria-label="Close" style="flex:0 0 36px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,0.08);color:#FFFFFF;font-size:18px;line-height:1;cursor:pointer;" style-hover="background:rgba(255,255,255,0.16);">×</button>
+          <img src="capgemini-save-the-date/assets/brand-line.png" alt="" style="position:absolute;left:0;bottom:0;width:100%;height:3px;object-fit:cover;">
+        </div>
+        <div ref="{{ ccListRef }}" aria-live="polite" style="flex:1;overflow-y:auto;padding:20px 16px;display:flex;flex-direction:column;gap:8px;">
+          <sc-for list="{{ ccMsgs }}" as="m" hint-placeholder-count="1">
+            <div style="align-self:{{ m.align }};max-width:82%;background:{{ m.bg }};color:{{ m.fg }};padding:11px 15px;border-radius:{{ m.radius }};font-size:14px;line-height:1.55;white-space:pre-wrap;text-wrap:pretty;box-shadow:{{ m.shadow }};">{{ m.text }}</div>
+          </sc-for>
+          <sc-if value="{{ ccBusy }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-start;background:light-dark(#FFFFFF,#121A2C);padding:13px 16px;border-radius:18px 18px 18px 6px;display:flex;box-shadow:0 1px 2px rgba(17,26,56,0.06);">{{ ccTyping }}</div>
+          </sc-if>
+          <sc-if value="{{ ccShowSug }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:8px;">
+              <sc-for list="{{ ccSug }}" as="s" hint-placeholder-count="3">
+                <button type="button" onClick="{{ s.ask }}" style="border:1px solid light-dark(#C7D1DA,#2E3A57);background:transparent;color:light-dark(#111A38,#EEF2F7);border-radius:40px;padding:9px 15px;font-size:13px;cursor:pointer;text-align:left;" style-hover="border-color:#0058AB;color:light-dark(#0058AB,#3DB5F0);background:light-dark(#FFFFFF,#121A2C);">{{ s.q }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <form onSubmit="{{ ccSubmit }}" style="display:flex;align-items:center;gap:8px;margin:0 12px 12px;padding:6px 6px 6px 18px;background:light-dark(#FFFFFF,#121A2C);border:1px solid light-dark(#E2E8ED,#1F2840);border-radius:40px;">
+          <input value="{{ ccInput }}" onChange="{{ ccOnInput }}" placeholder="{{ v.ccPh }}" aria-label="{{ v.ccPh }}" style="flex:1;min-width:0;border:0;background:light-dark(#FFFFFF,#121A2C);padding:10px 0;font-size:14px;color:light-dark(#111A38,#EEF2F7);outline:none;">
+          <button type="submit" aria-label="{{ v.ccSend }}" style="flex:0 0 40px;width:40px;height:40px;border:0;border-radius:50%;background:{{ ccSendBg }};color:#FFFFFF;font-size:17px;line-height:1;cursor:pointer;transition:background .2s ease;">→</button>
+        </form>
+      </div>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <sc-if value="{{ showDemo }}" hint-placeholder-val="{{ true }}">
+        <button type="button" onClick="{{ demoToggle }}" aria-expanded="{{ demoOpen }}" aria-label="Demo controls" style="min-height:48px;border:1px solid rgba(255,255,255,0.18);background:rgba(11,14,21,0.82);backdrop-filter:blur(12px);color:#D6E2EB;border-radius:40px;padding:14px 18px;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 40px -12px rgba(11,14,21,0.6);" style-hover="color:#FFFFFF;border-color:rgba(255,255,255,0.4);">Demo</button>
+      </sc-if>
+      <sc-if value="{{ ccClosed }}" hint-placeholder-val="{{ true }}">
+        <button type="button" onClick="{{ ccToggle }}" aria-expanded="false" style="display:flex;align-items:center;gap:12px;min-height:48px;border:1px solid rgba(255,255,255,0.18);background:#111A38;color:#FFFFFF;border-radius:40px;padding:14px 22px 14px 18px;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 40px -12px rgba(11,14,21,0.6);" style-hover="background:#0058AB;">
+          <span style="flex:0 0 10px;width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#0058AB,#05A3E6,#00BFB3);"></span>{{ ccLaunchText }}
+        </button>
+      </sc-if>
+    </div>
+  </div>
+
+  <sc-if value="{{ onsiteOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-label="On-site app demo" style="position:fixed;inset:0;z-index:90;background:#05070D;">
+      <iframe src="{{ onsiteSrc }}" title="On-site app demo" style="display:block;width:100%;height:100%;border:0;"></iframe>
+      <button type="button" onClick="{{ closeOnsite }}" aria-label="Close on-site demo" style="position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);background:rgba(11,14,21,0.8);color:#FFFFFF;font-size:20px;line-height:1;cursor:pointer;">×</button>
+    </div>
+  </sc-if>
+
+  <footer data-screen-label="Footer" style="background:#0B0E15;">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(56px,7vw,88px) clamp(20px,4vw,56px) 0;">
+      <p style="margin: 0; font-weight: 300; font-size: clamp(48px,10vw,160px); line-height: 0.9; letter-spacing: -0.04em; color: #7C8BBC24">{{ x.k105 }}</p>
+    </div>
+    <div style="max-width:1320px;margin:0 auto;padding:40px clamp(20px,4vw,56px) 36px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;">
+      <img src="capgemini-save-the-date/assets/logo-white.png" alt="Capgemini" style="display:block;width:124px;height:auto;">
+      <span style="font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#8FA3B3;">Get the Future You Want</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 22px;font-size:11px;color:#8496A4;">
+        <span>{{ x.k106 }}</span>
+        <a href="#" style="color:#8FA3B3;text-decoration:underline;">{{ x.k107 }}</a>
+        <a href="#" style="color:#8FA3B3;text-decoration:underline;">{{ x.k108 }}</a>
+        <a href="/dashboard" style="color:#8FA3B3;text-decoration:underline;">{{ x.k109 }}</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;guest&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Alex Morgan (EN)&quot;,&quot;Sofía Ramírez (ES)&quot;,&quot;Lucas Souza (PT)&quot;],&quot;default&quot;:&quot;None&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Personalization&quot;},&quot;registrationPhase&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Open&quot;,&quot;Waitlist&quot;,&quot;Closed&quot;],&quot;default&quot;:&quot;Open&quot;,&quot;tsType&quot;:&quot;'Open'|'Waitlist'|'Closed'&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;registrationState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Form&quot;,&quot;Confirmed&quot;],&quot;default&quot;:&quot;Form&quot;,&quot;tsType&quot;:&quot;'Form'|'Confirmed'&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;countdownMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Auto&quot;,&quot;Countdown&quot;,&quot;Boarding pass&quot;],&quot;default&quot;:&quot;Auto&quot;,&quot;tsType&quot;:&quot;'Auto'|'Countdown'|'Boarding pass'&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;colorMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;System&quot;,&quot;Light&quot;,&quot;Dark&quot;],&quot;default&quot;:&quot;System&quot;,&quot;tsType&quot;:&quot;'System'|'Light'|'Dark'&quot;,&quot;section&quot;:&quot;Experience&quot;},&quot;skyTime&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Live&quot;,&quot;Dawn&quot;,&quot;Day&quot;,&quot;Dusk&quot;,&quot;Night&quot;],&quot;default&quot;:&quot;Live&quot;,&quot;tsType&quot;:&quot;'Live'|'Dawn'|'Day'|'Dusk'|'Night'&quot;,&quot;section&quot;:&quot;Experience&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Experience&quot;},&quot;demoPanel&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Experience&quot;}}">
+const DAYS = [
+  { num: '31', mon: 'Jan', wk: 'Sunday', title: 'Arrive & settle in', lede: 'Arrivals through the day, followed by a welcome reception at sunset and dinner by the water.', moments: [{ t: 'From 10:00', l: 'Arrivals & check-in' }, { t: '18:30', l: 'Welcome reception' }, { t: '20:00', l: 'Opening dinner' }] },
+  { num: '01', mon: 'Feb', wk: 'Monday', title: 'Look further', lede: 'The first full day opens with leadership keynotes and perspectives on the year ahead across our markets.', moments: [{ t: '09:00', l: 'Opening keynote' }, { t: '11:00', l: 'Market perspectives' }, { t: '19:30', l: 'Evening programme' }] },
+  { num: '02', mon: 'Feb', wk: 'Tuesday', title: 'Build together', lede: 'Client and partner sessions, working groups, and the moments in between where the best ideas take shape.', moments: [{ t: '09:00', l: 'Parallel tracks — choose below' }, { t: '14:00', l: 'Working groups' }, { t: '19:30', l: 'Celebration dinner' }] },
+  { num: '03', mon: 'Feb', wk: 'Wednesday', title: 'Set the course', lede: 'Closing sessions bring everything together before departures from early afternoon.', moments: [{ t: '09:00', l: 'Closing plenary' }, { t: '11:30', l: 'Farewell brunch' }, { t: 'From 13:00', l: 'Departures' }] }
+];
+const ARR = [['Saturday', 'Sat 30 Jan'], ['Sunday', 'Sun 31 Jan'], ['Monday', 'Mon 1 Feb']];
+const DEP = [['Wednesday', 'Wed 3 Feb'], ['Thursday', 'Thu 4 Feb']];
+const DIET = ['None', 'Vegetarian', 'Vegan', 'Gluten-free', 'Halal', 'Kosher'];
+const STOPS = ['#0058AB', '#1A86D0', '#05A3E6', '#00BFB3'];
+const TARGET = new Date('2027-01-31T00:00:00-05:00').getTime();
+const EASE = 'cubic-bezier(.2,.7,.2,1)';
+const KEY = 'ak27-registration';
+const SPEAKERS = [
+  { date: '2026-10-21', session: 'Market perspectives · Mon 1 Feb' },
+  { date: '2026-11-04', session: 'Client spotlight · Tue 2 Feb' },
+  { date: '2026-11-18', session: 'Partner keynote · Tue 2 Feb' },
+  { date: '2026-12-02', session: 'Evening conversation · Mon 1 Feb' },
+  { date: '2026-12-16', session: 'Closing plenary · Wed 3 Feb' }
+];
+const SLOTS = [
+  { time: '09:00', name: 'Morning tracks', opts: [{ id: 'a1', title: 'AI at enterprise scale', track: 'Technology', seats: 38 }, { id: 'a2', title: 'Sustainable transformation', track: 'Strategy', seats: 12 }, { id: 'a3', title: 'Financial services deep-dive', track: 'Industry', seats: 24 }] },
+  { time: '11:00', name: 'Late-morning tracks', opts: [{ id: 'b1', title: 'Client innovation lab', track: 'Clients', seats: 8 }, { id: 'b2', title: 'Partner ecosystem forum', track: 'Partners', seats: 30 }, { id: 'b3', title: 'Data & cloud roundtable', track: 'Technology', seats: 16 }] },
+  { time: '14:00', name: 'Afternoon tracks', opts: [{ id: 'c1', title: 'Leadership workshop', track: 'Leadership', seats: 20 }, { id: 'c2', title: 'Market strategy sessions', track: 'Strategy', seats: 44 }, { id: 'c3', title: 'Customer experience studio', track: 'Industry', seats: 6 }] }
+];
+const GUESTS = {
+  amorgan: { firstName: 'Alex', lastName: 'Morgan', email: 'alex.morgan@capgemini.com', title: 'Vice President, Client Partner', country: 'United States', lang: 'en' },
+  sramirez: { firstName: 'Sofía', lastName: 'Ramírez', email: 'sofia.ramirez@capgemini.com', title: 'Head of Digital Transformation', country: 'Mexico', lang: 'es' },
+  lsouza: { firstName: 'Lucas', lastName: 'Souza', email: 'lucas.souza@capgemini.com', title: 'Director, Cloud & Data', country: 'Brazil', lang: 'pt' }
+};
+const GUEST_PROP = { 'Alex Morgan (EN)': 'amorgan', 'Sofía Ramírez (ES)': 'sramirez', 'Lucas Souza (PT)': 'lsouza' };
+const LANGS = [['en', 'EN', 'English'], ['es', 'ES', 'Español'], ['pt', 'PT', 'Português'], ['fr', 'FR', 'Français']];
+const T = {
+  en: { skip: 'Skip to registration', navProgramme: 'Programme', navTravel: 'Travel', navRegister: 'Register', navMy: 'My registration', open: 'Americas Kickoff 2027  ·  Registration now open', invited: 'you’re invited', welcomeBack: 'Welcome back', confirmed: 'your place is confirmed', registerNow: 'Register now', viewMy: 'View my registration', theProgramme: 'The programme', doorsOpen: 'Doors open in', days: 'Days', hours: 'Hours', min: 'Min', sec: 'Sec', programmeEyebrow: 'The programme', speakersEyebrow: 'Speakers', sessionsEyebrow: 'Build your Tuesday', arrivalEyebrow: 'Arriving in Cancún', registration: 'Registration', regA: 'Confirm', regB: 'your place', regLede: 'Three short steps. Your details are shared only with the planning team to arrange accommodation, transfers and event access.', s0: 'Tell us who you are', s1: 'How you’ll travel', s2: 'A few preferences', cont: 'Continue', back: 'Back', confirm: 'Confirm registration', confirming: 'Confirming', registered: 'You’re registered', steps: ['01 About you', '02 Travel', '03 Preferences', '04 Confirmed'] },
+  es: { skip: 'Ir al registro', navProgramme: 'Programa', navTravel: 'Viaje', navRegister: 'Registrarse', navMy: 'Mi registro', open: 'Americas Kickoff 2027  ·  Registro abierto', invited: 'tienes una invitación', welcomeBack: 'Hola de nuevo', confirmed: 'tu lugar está confirmado', registerNow: 'Regístrate ahora', viewMy: 'Ver mi registro', theProgramme: 'El programa', doorsOpen: 'Faltan', days: 'Días', hours: 'Horas', min: 'Min', sec: 'Seg', programmeEyebrow: 'El programa', speakersEyebrow: 'Ponentes', sessionsEyebrow: 'Arma tu martes', arrivalEyebrow: 'Llegada a Cancún', registration: 'Registro', regA: 'Confirma', regB: 'tu lugar', regLede: 'Tres pasos breves. Tus datos solo se comparten con el equipo organizador para gestionar alojamiento, traslados y acceso al evento.', s0: 'Cuéntanos quién eres', s1: 'Cómo viajarás', s2: 'Algunas preferencias', cont: 'Continuar', back: 'Atrás', confirm: 'Confirmar registro', confirming: 'Confirmando', registered: 'Registro confirmado', steps: ['01 Tus datos', '02 Viaje', '03 Preferencias', '04 Listo'] },
+  pt: { skip: 'Ir para a inscrição', navProgramme: 'Programação', navTravel: 'Viagem', navRegister: 'Inscrever-se', navMy: 'Minha inscrição', open: 'Americas Kickoff 2027  ·  Inscrições abertas', invited: 'este é o seu convite', welcomeBack: 'Olá novamente', confirmed: 'sua vaga está confirmada', registerNow: 'Inscreva-se agora', viewMy: 'Ver minha inscrição', theProgramme: 'A programação', doorsOpen: 'Faltam', days: 'Dias', hours: 'Horas', min: 'Min', sec: 'Seg', programmeEyebrow: 'A programação', speakersEyebrow: 'Palestrantes', sessionsEyebrow: 'Monte sua terça', arrivalEyebrow: 'Chegada em Cancún', registration: 'Inscrição', regA: 'Confirme', regB: 'sua vaga', regLede: 'Três passos rápidos. Seus dados são compartilhados apenas com a equipe organizadora para hospedagem, traslados e acesso ao evento.', s0: 'Conte quem você é', s1: 'Como você vai viajar', s2: 'Algumas preferências', cont: 'Continuar', back: 'Voltar', confirm: 'Confirmar inscrição', confirming: 'Confirmando', registered: 'Inscrição confirmada', steps: ['01 Seus dados', '02 Viagem', '03 Preferências', '04 Pronto'] },
+  fr: { skip: 'Aller à l’inscription', navProgramme: 'Programme', navTravel: 'Voyage', navRegister: 'S’inscrire', navMy: 'Mon inscription', open: 'Americas Kickoff 2027  ·  Inscriptions ouvertes', invited: 'votre invitation', welcomeBack: 'Bon retour', confirmed: 'votre place est confirmée', registerNow: 'Je m’inscris', viewMy: 'Voir mon inscription', theProgramme: 'Le programme', doorsOpen: 'Ouverture dans', days: 'Jours', hours: 'Heures', min: 'Min', sec: 'Sec', programmeEyebrow: 'Le programme', speakersEyebrow: 'Intervenants', sessionsEyebrow: 'Composez votre mardi', arrivalEyebrow: 'Arrivée à Cancún', registration: 'Inscription', regA: 'Confirmez', regB: 'votre place', regLede: 'Trois étapes rapides. Vos données ne sont partagées qu’avec l’équipe d’organisation pour l’hébergement, les transferts et l’accès.', s0: 'Présentez-vous', s1: 'Votre voyage', s2: 'Quelques préférences', cont: 'Continuer', back: 'Retour', confirm: 'Confirmer l’inscription', confirming: 'Confirmation', registered: 'Inscription confirmée', steps: ['01 Vous', '02 Voyage', '03 Préférences', '04 Confirmé'] }
+};
+const hash = s => { let x = 7; for (const c of s) x = (x * 31 + c.charCodeAt(0)) >>> 0; return x; };
+
+const P = {"Everything for your trip in one place. This page updates itself as the planning team confirms your room and transfer — so does your wallet pass.":["Todo tu viaje en un solo lugar. Esta página se actualiza sola a medida que el equipo organizador confirma tu habitación y traslado, y tu pase de Wallet también.","Tudo da sua viagem em um só lugar. Esta página se atualiza sozinha conforme a equipe organizadora confirma seu quarto e traslado — e seu passe da Wallet também.","Tout votre voyage au même endroit. Cette page se met à jour dès que l’équipe d’organisation confirme votre chambre et votre transfert — tout comme votre pass Wallet."],"Add to Wallet":["Añadir a Wallet","Adicionar à Wallet","Ajouter à Wallet"],"Add to calendar":["Añadir al calendario","Adicionar ao calendário","Ajouter au calendrier"],"Leadership Insights":["Visión de liderazgo","Visão de liderança","Regards de leaders"],"New Perspectives":["Nuevas perspectivas","Novas perspectivas","Nouvelles perspectives"],"Meaningful Connections":["Conexiones que importan","Conexões que importam","Des liens qui comptent"],"What’s Next":["Lo que viene","O que vem por aí","La suite"],"You’re invited":["Tienes una invitación","Você foi convidado","Vous êtes invité"],"Four days in Cancún to step back, ":["Cuatro días en Cancún para tomar distancia, ","Quatro dias em Cancún para ganhar distância, ","Quatre jours à Cancún pour prendre du recul, "],"look further":["mirar más lejos","olhar mais longe","voir plus loin"],", and set the course for the year ahead — together with leaders from across the Americas.":[" y marcar el rumbo del año que viene, junto a líderes de todas las Américas."," e definir o rumo do ano que vem — ao lado de líderes de todas as Américas."," et fixer le cap de l’année à venir — avec des leaders de toutes les Amériques."],"Registration takes about three minutes. Once confirmed, the planning team arranges your accommodation and transfers — you only need to book flights.":["El registro toma unos tres minutos. Una vez confirmado, el equipo organizador gestiona tu alojamiento y traslados; solo tienes que reservar los vuelos.","A inscrição leva cerca de três minutos. Depois de confirmada, a equipe organizadora cuida da sua hospedagem e dos traslados — você só precisa reservar os voos.","L’inscription prend environ trois minutes. Une fois confirmée, l’équipe d’organisation s’occupe de votre hébergement et de vos transferts — il ne vous reste qu’à réserver vos vols."],"Four days,":["Cuatro días,","Quatro dias,","Quatre jours,"],"one horizon":["un horizonte","um horizonte","un horizon"],"Indicative timings — the full agenda follows with your confirmation.":["Horarios orientativos: la agenda completa llegará con tu confirmación.","Horários indicativos — a agenda completa chega com a sua confirmação.","Horaires indicatifs — le programme complet suivra avec votre confirmation."],"Voices on":["Voces en","Vozes no","Des voix à"],"the horizon":["el horizonte","horizonte","l’horizon"],"One new voice is revealed every two weeks until we land in Cancún.":["Cada dos semanas revelamos una nueva voz hasta que aterricemos en Cancún.","Uma nova voz é revelada a cada duas semanas até chegarmos a Cancún.","Une nouvelle voix est dévoilée toutes les deux semaines jusqu’à notre arrivée à Cancún."],"Revealed":["Revelado","Revelado","Dévoilé"],"Opening keynote · Mon 1 Feb":["Keynote de apertura · lun 1 feb","Keynote de abertura · seg 1 fev","Keynote d’ouverture · lun. 1 févr."],"To be revealed":["Por revelar","A revelar","À dévoiler"],"Choose your":["Elige tus","Escolha suas","Choisissez vos"],"sessions":["sesiones","sessões","sessions"],"Tuesday 2 February runs as parallel tracks. Pick one per slot — your choices travel with your registration and wallet pass.":["El martes 2 de febrero hay sesiones en paralelo. Elige una por franja: tus elecciones viajan con tu registro y tu pase de Wallet.","Na terça, 2 de fevereiro, as sessões acontecem em paralelo. Escolha uma por horário — suas escolhas acompanham sua inscrição e seu passe da Wallet.","Le mardi 2 février se déroule en sessions parallèles. Choisissez-en une par créneau — vos choix suivent votre inscription et votre pass Wallet."],"Travel & stay":["Viaje y estancia","Viagem e estadia","Voyage et séjour"],"Your horizon,":["Tu horizonte,","Seu horizonte,","Votre horizon,"],"reserved.":["reservado.","reservado.","réservé."],"Accommodation":["Alojamiento","Hospedagem","Hébergement"],"Reserved on your behalf for the dates you register.":["Reservado a tu nombre para las fechas que registres.","Reservada em seu nome para as datas que você informar.","Réservé en votre nom pour les dates indiquées."],"Flights":["Vuelos","Voos","Vols"],"Book once confirmed. Fly into Cancún International (CUN).":["Reserva cuando tengas la confirmación. Vuela a Cancún Internacional (CUN).","Reserve após a confirmação. Voe para o Aeroporto Internacional de Cancún (CUN).","Réservez une fois confirmé. Arrivée à l’aéroport international de Cancún (CUN)."],"Transfers":["Traslados","Traslados","Transferts"],"Arranged for every attendee, both ways.":["Organizados para cada asistente, ida y vuelta.","Organizados para cada participante, ida e volta.","Organisés pour chaque participant, aller et retour."],"From wheels-down":["Del aterrizaje","Do pouso","De l’atterrissage"],"to welcome":["a la bienvenida","às boas-vindas","à l’accueil"],"Land at CUN":["Aterriza en CUN","Pouse em CUN","Atterrissez à CUN"],"International flights arrive at Terminals 3 and 4.":["Los vuelos internacionales llegan a las terminales 3 y 4.","Os voos internacionais chegam aos terminais 3 e 4.","Les vols internationaux arrivent aux terminaux 3 et 4."],"Find your host":["Encuentra a tu anfitrión","Encontre seu anfitrião","Retrouvez votre hôte"],"Capgemini hosts wait just past customs in the arrivals hall.":["El equipo de Capgemini te espera justo después de aduanas, en la sala de llegadas.","A equipe da Capgemini espera logo após a alfândega, no saguão de desembarque.","Les hôtes Capgemini vous attendent juste après la douane, dans le hall des arrivées."],"Transfer":["Traslado","Traslado","Transfert"],"A private shuttle to the resort — about 25 minutes.":["Un shuttle privado al resort, unos 25 minutos.","Um transfer privado até o resort — cerca de 25 minutos.","Une navette privée jusqu’au resort — environ 25 minutes."],"Welcome desk":["Recepción del evento","Balcão de boas-vindas","Accueil"],"Badge, room key and welcome pack in a single stop.":["Gafete, llave de habitación y kit de bienvenida en una sola parada.","Crachá, chave do quarto e kit de boas-vindas em uma única parada.","Badge, clé de chambre et kit de bienvenue en un seul arrêt."],"Settle in":["Instálate","Acomode-se","Installez-vous"],"Time to unwind before the welcome reception at 18:30.":["Tiempo para descansar antes de la recepción de bienvenida a las 18:30.","Tempo para relaxar antes da recepção de boas-vindas às 18h30.","Le temps de souffler avant la réception de bienvenue à 18h30."],"Time zone":["Zona horaria","Fuso horário","Fuseau horaire"],"UTC−5 · no daylight saving":["UTC−5 · sin horario de verano","UTC−5 · sem horário de verão","UTC−5 · pas d’heure d’été"],"Late-January weather":["Clima a finales de enero","Clima no fim de janeiro","Météo fin janvier"],"Around 82°F by day, 68°F at night":["Unos 28 °C de día, 20 °C de noche","Cerca de 28 °C de dia, 20 °C à noite","Environ 28 °C le jour, 20 °C la nuit"],"Currency":["Moneda","Moeda","Devise"],"Mexican peso · cards widely accepted":["Peso mexicano · se aceptan tarjetas","Peso mexicano · cartões amplamente aceitos","Peso mexicain · cartes largement acceptées"],"Entry":["Entrada","Entrada","Entrée"],"Valid passport. Check visa needs for your nationality.":["Pasaporte vigente. Revisa si tu nacionalidad requiere visa.","Passaporte válido. Verifique se sua nacionalidade exige visto.","Passeport valide. Vérifiez les exigences de visa selon votre nationalité."],"Closes":["Cierra","Encerra","Clôture"],"Fri 4 Dec 2026":["vie 4 dic 2026","sex 4 dez 2026","ven. 4 déc. 2026"],"Questions":["Preguntas","Dúvidas","Questions"],"Planning team":["Equipo organizador","Equipe organizadora","Équipe d’organisation"],"First name":["Nombre","Nome","Prénom"],"Last name":["Apellido","Sobrenome","Nom"],"Work email":["Correo corporativo","E-mail corporativo","E-mail professionnel"],"Job title":["Cargo","Cargo","Fonction"],"Travelling from":["Viajas desde","Viajando de","Au départ de"],"Select country…":["Selecciona un país…","Selecione o país…","Choisissez un pays…"],"Arriving":["Llegada","Chegada","Arrivée"],"Departing":["Salida","Partida","Départ"],"Dietary requirements":["Requisitos alimentarios","Restrições alimentares","Régime alimentaire"],"Accessibility, allergies or other needs ":["Accesibilidad, alergias u otras necesidades ","Acessibilidade, alergias ou outras necessidades ","Accessibilité, allergies ou autres besoins "],"— optional":["— opcional","— opcional","— facultatif"],"I agree that my details may be used by the planning team to arrange travel, accommodation and event access, in line with the ":["Acepto que el equipo organizador use mis datos para gestionar viaje, alojamiento y acceso al evento, conforme al ","Concordo que meus dados sejam usados pela equipe organizadora para viagem, hospedagem e acesso ao evento, conforme o ","J’accepte que mes données soient utilisées par l’équipe d’organisation pour le voyage, l’hébergement et l’accès à l’événement, conformément à la "],"privacy notice":["aviso de privacidad","aviso de privacidade","politique de confidentialité"],"Join the waitlist":["Únete a la lista de espera","Entre na lista de espera","Rejoindre la liste d’attente"],"Places are released in order as they become available. We’ll email you the moment one opens — you’ll have 72 hours to accept.":["Los lugares se liberan por orden a medida que quedan disponibles. Te escribiremos en cuanto se abra uno; tendrás 72 horas para aceptarlo.","As vagas são liberadas por ordem conforme surgem. Avisaremos por e-mail assim que uma abrir — você terá 72 horas para aceitar.","Les places sont libérées dans l’ordre dès qu’elles se présentent. Nous vous écrirons dès qu’une place se libère — vous aurez 72 heures pour accepter."],"Full name":["Nombre completo","Nome completo","Nom complet"],"Join waitlist":["Unirme a la lista","Entrar na lista","Rejoindre la liste"],"You’re on the list":["Estás en la lista","Você está na lista","Vous êtes sur la liste"],"Your position on the waitlist. We’ll write to ":["Tu posición en la lista de espera. Escribiremos a ","Sua posição na lista de espera. Escreveremos para ","Votre position sur la liste d’attente. Nous écrirons à "]," as soon as a place opens.":[" en cuanto se libere un lugar."," assim que uma vaga abrir."," dès qu’une place se libère."],"Registration closed on":["El registro cerró el","As inscrições encerraram em","Les inscriptions ont fermé le"],"4 December 2026.":["4 de diciembre de 2026.","4 de dezembro de 2026.","4 décembre 2026."],"Already registered? The personal link in your confirmation email opens your registration, ticket and travel details at any time.":["¿Ya te registraste? El enlace personal de tu correo de confirmación abre tu registro, boleto y detalles de viaje en cualquier momento.","Já se inscreveu? O link pessoal no seu e-mail de confirmação abre sua inscrição, ingresso e detalhes de viagem a qualquer momento.","Déjà inscrit ? Le lien personnel de votre e-mail de confirmation ouvre votre inscription, votre billet et vos informations de voyage à tout moment."],"Contact the planning team":["Contactar al equipo organizador","Falar com a equipe organizadora","Contacter l’équipe d’organisation"],"Confirmation sent to ":["Confirmación enviada a ","Confirmação enviada para ","Confirmation envoyée à "],"Attendee":["Asistente","Participante","Participant"],"Location":["Lugar","Local","Lieu"],"Cancún, Mexico":["Cancún, México","Cancún, México","Cancún, Mexique"],"January 31 – February 3, 2027":["31 de enero – 3 de febrero de 2027","31 de janeiro – 3 de fevereiro de 2027","31 janvier – 3 février 2027"],"Event":["Evento","Evento","Événement"],"31 Jan – 3 Feb 2027":["31 ene – 3 feb 2027","31 jan – 3 fev 2027","31 janv. – 3 févr. 2027"],"Confirmation":["Confirmación","Confirmação","Confirmation"],"Admit one":["Pase individual","Entrada individual","Entrée individuelle"],"Calendar":["Calendario","Calendário","Calendrier"],"Edit registration":["Editar registro","Editar inscrição","Modifier l’inscription"],"31 Jan":["31 ene","31 jan","31 janv."],"Preview of your wallet pass. It updates on its own when your room and transfer are confirmed.":["Vista previa de tu pase de Wallet. Se actualiza solo cuando se confirman tu habitación y tu traslado.","Prévia do seu passe da Wallet. Ele se atualiza sozinho quando seu quarto e traslado forem confirmados.","Aperçu de votre pass Wallet. Il se met à jour automatiquement une fois votre chambre et votre transfert confirmés."],"Add to Apple Wallet":["Añadir a Apple Wallet","Adicionar à Apple Wallet","Ajouter à Apple Wallet"],"Save to Google Wallet":["Guardar en Google Wallet","Salvar na Google Wallet","Enregistrer dans Google Wallet"],"Close":["Cerrar","Fechar","Fermer"],"See you in Cancún.":["Nos vemos en Cancún.","Até Cancún.","Rendez-vous à Cancún."],"© 2026 Capgemini · Invitation only":["© 2026 Capgemini · Solo con invitación","© 2026 Capgemini · Somente para convidados","© 2026 Capgemini · Sur invitation"],"Privacy notice":["Aviso de privacidad","Aviso de privacidade","Politique de confidentialité"],"Cookie settings":["Configuración de cookies","Configurações de cookies","Paramètres des cookies"],"Planning team view":["Vista del equipo organizador","Visão da equipe organizadora","Vue de l’équipe d’organisation"],"United States":["Estados Unidos","Estados Unidos","États-Unis"],"Canada":["Canadá","Canadá","Canada"],"Mexico":["México","México","Mexique"],"Brazil":["Brasil","Brasil","Brésil"],"Argentina":["Argentina","Argentina","Argentine"],"Colombia":["Colombia","Colômbia","Colombie"],"Chile":["Chile","Chile","Chili"],"Other":["Otro","Outro","Autre"],"Arrive & settle in":["Llega e instálate","Chegue e acomode-se","Arrivée et installation"],"Arrivals through the day, followed by a welcome reception at sunset and dinner by the water.":["Llegadas a lo largo del día, seguidas de una recepción de bienvenida al atardecer y una cena junto al mar.","Chegadas ao longo do dia, seguidas de uma recepção de boas-vindas ao pôr do sol e jantar à beira-mar.","Arrivées tout au long de la journée, suivies d’une réception de bienvenue au coucher du soleil et d’un dîner au bord de l’eau."],"Arrivals & check-in":["Llegadas y check-in","Chegadas e check-in","Arrivées et enregistrement"],"Welcome reception":["Recepción de bienvenida","Recepção de boas-vindas","Réception de bienvenue"],"Opening dinner":["Cena de apertura","Jantar de abertura","Dîner d’ouverture"],"Look further":["Mirar más lejos","Olhar mais longe","Voir plus loin"],"The first full day opens with leadership keynotes and perspectives on the year ahead across our markets.":["El primer día completo abre con keynotes de liderazgo y perspectivas sobre el año que viene en nuestros mercados.","O primeiro dia completo começa com keynotes da liderança e perspectivas sobre o ano que vem em nossos mercados.","La première journée complète s’ouvre sur des keynotes de la direction et des perspectives sur l’année à venir dans nos marchés."],"Opening keynote":["Keynote de apertura","Keynote de abertura","Keynote d’ouverture"],"Market perspectives":["Perspectivas de mercado","Perspectivas de mercado","Perspectives marchés"],"Evening programme":["Programa nocturno","Programação noturna","Programme du soir"],"Build together":["Construir juntos","Construir juntos","Construire ensemble"],"Client and partner sessions, working groups, and the moments in between where the best ideas take shape.":["Sesiones con clientes y socios, grupos de trabajo y esos momentos intermedios donde toman forma las mejores ideas.","Sessões com clientes e parceiros, grupos de trabalho e os momentos entre eles, onde as melhores ideias ganham forma.","Sessions clients et partenaires, groupes de travail, et ces moments entre les deux où naissent les meilleures idées."],"Parallel tracks — choose below":["Sesiones paralelas: elige abajo","Trilhas paralelas — escolha abaixo","Sessions parallèles — à choisir ci-dessous"],"Working groups":["Grupos de trabajo","Grupos de trabalho","Groupes de travail"],"Celebration dinner":["Cena de celebración","Jantar de celebração","Dîner de gala"],"Set the course":["Marcar el rumbo","Definir o rumo","Fixer le cap"],"Closing sessions bring everything together before departures from early afternoon.":["Las sesiones de cierre lo reúnen todo antes de las salidas a primera hora de la tarde.","As sessões de encerramento amarram tudo antes das partidas no início da tarde.","Les sessions de clôture rassemblent le tout avant les départs en début d’après-midi."],"Closing plenary":["Plenaria de cierre","Plenária de encerramento","Plénière de clôture"],"Farewell brunch":["Brunch de despedida","Brunch de despedida","Brunch d’au revoir"],"Departures":["Salidas","Partidas","Départs"],"Morning tracks":["Sesiones de la mañana","Trilhas da manhã","Sessions du matin"],"Late-morning tracks":["Sesiones de media mañana","Trilhas do fim da manhã","Sessions de fin de matinée"],"Afternoon tracks":["Sesiones de la tarde","Trilhas da tarde","Sessions de l’après-midi"],"AI at enterprise scale":["IA a escala empresarial","IA em escala corporativa","L’IA à l’échelle de l’entreprise"],"Sustainable transformation":["Transformación sostenible","Transformação sustentável","Transformation durable"],"Financial services deep-dive":["A fondo: servicios financieros","Mergulho em serviços financeiros","Focus services financiers"],"Client innovation lab":["Laboratorio de innovación con clientes","Laboratório de inovação com clientes","Labo d’innovation clients"],"Partner ecosystem forum":["Foro del ecosistema de socios","Fórum do ecossistema de parceiros","Forum de l’écosystème partenaires"],"Data & cloud roundtable":["Mesa redonda de datos y nube","Mesa-redonda de dados e nuvem","Table ronde data et cloud"],"Leadership workshop":["Taller de liderazgo","Workshop de liderança","Atelier leadership"],"Market strategy sessions":["Sesiones de estrategia de mercado","Sessões de estratégia de mercado","Sessions stratégie marché"],"Customer experience studio":["Estudio de experiencia del cliente","Estúdio de experiência do cliente","Studio expérience client"],"Technology":["Tecnología","Tecnologia","Technologie"],"Strategy":["Estrategia","Estratégia","Stratégie"],"Industry":["Industria","Indústria","Industrie"],"Clients":["Clientes","Clientes","Clients"],"Partners":["Socios","Parceiros","Partenaires"],"Leadership":["Liderazgo","Liderança","Leadership"],"Not chosen yet":["Sin elegir","Ainda não escolhido","Pas encore choisi"],"Client spotlight":["Foco en clientes","Destaque de clientes","Gros plan client"],"Partner keynote":["Keynote de socios","Keynote de parceiros","Keynote partenaires"],"Evening conversation":["Conversación nocturna","Conversa da noite","Conversation du soir"],"Mon 1 Feb":["lun 1 feb","seg 1 fev","lun. 1 févr."],"Tue 2 Feb":["mar 2 feb","ter 2 fev","mar. 2 févr."],"Wed 3 Feb":["mié 3 feb","qua 3 fev","mer. 3 févr."],"None":["Ninguno","Nenhuma","Aucun"],"Vegetarian":["Vegetariano","Vegetariana","Végétarien"],"Vegan":["Vegano","Vegana","Végan"],"Gluten-free":["Sin gluten","Sem glúten","Sans gluten"],"Halal":["Halal","Halal","Halal"],"Kosher":["Kosher","Kosher","Casher"],"Done":["Listo","Concluído","Fait"],"Action needed":["Pendiente de ti","Ação necessária","Action requise"],"Pending":["En proceso","Pendente","En attente"],"Registration":["Registro","Inscrição","Inscription"],"Room":["Habitación","Quarto","Chambre"],"Inbound flight":["Vuelo de llegada","Voo de chegada","Vol aller"],"Airport transfer":["Traslado del aeropuerto","Traslado do aeroporto","Transfert aéroport"],"Tuesday sessions":["Sesiones del martes","Sessões de terça","Sessions du mardi"],"Please enter your first name.":["Escribe tu nombre.","Informe seu nome.","Indiquez votre prénom."],"Please enter your last name.":["Escribe tu apellido.","Informe seu sobrenome.","Indiquez votre nom."],"Please enter a valid work email.":["Escribe un correo corporativo válido.","Informe um e-mail corporativo válido.","Indiquez un e-mail professionnel valide."],"Please enter your job title.":["Escribe tu cargo.","Informe seu cargo.","Indiquez votre fonction."],"Please select where you’re travelling from.":["Selecciona desde dónde viajas.","Selecione de onde você vai viajar.","Indiquez votre pays de départ."],"Please confirm to continue.":["Confirma para continuar.","Confirme para continuar.","Veuillez confirmer pour continuer."],"Use the airline code and number, e.g. AA 1234.":["Usa el código de aerolínea y el número, p. ej. AA 1234.","Use o código da companhia e o número, ex.: AA 1234.","Indiquez le code de la compagnie et le numéro, ex. AA 1234."],"Finding flight":["Buscando vuelo","Buscando voo","Recherche du vol"],"Find my flight":["Buscar mi vuelo","Buscar meu voo","Trouver mon vol"],"✓  Reveal alerts on":["✓  Alertas activadas","✓  Alertas ativados","✓  Alertes activées"],"Get reveal alerts":["Recibir alertas","Receber alertas","Recevoir les alertes"],"✓  Saved to my agenda":["✓  Guardado en mi agenda","✓  Salvo na minha agenda","✓  Enregistré dans mon agenda"],"Save to my agenda":["Guardar en mi agenda","Salvar na minha agenda","Enregistrer dans mon agenda"],"Added to your registration and wallet pass.":["Añadido a tu registro y pase de Wallet.","Adicionado à sua inscrição e ao passe da Wallet.","Ajouté à votre inscription et à votre pass Wallet."],"Saved — we’ll attach it when you register.":["Guardado: lo vincularemos cuando te registres.","Salvo — vamos vinculá-lo quando você se inscrever.","Enregistré — nous l’associerons à votre inscription."],"Pick one session in each slot.":["Elige una sesión por franja.","Escolha uma sessão por horário.","Choisissez une session par créneau."],"Ready to save.":["Listo para guardar.","Pronto para salvar.","Prêt à enregistrer."],"We’re at":["Cupo","Lotação","Complet"],"capacity":["completo","esgotada","pour l’instant"],"Every place has been taken. Join the waitlist and we’ll offer you the next available one.":["Todos los lugares están ocupados. Únete a la lista de espera y te ofreceremos el siguiente disponible.","Todas as vagas foram preenchidas. Entre na lista de espera e ofereceremos a próxima disponível.","Toutes les places sont prises. Rejoignez la liste d’attente et nous vous proposerons la prochaine disponible."],"has closed":["cerrado","encerrada","close"],"Thank you for your interest in Americas Kickoff 2027.":["Gracias por tu interés en Americas Kickoff 2027.","Obrigado pelo interesse no Americas Kickoff 2027.","Merci de votre intérêt pour Americas Kickoff 2027."],"To be assigned":["Por asignar","A definir","À attribuer"],"Anything that helps us look after you":["Cualquier cosa que nos ayude a cuidarte","Algo que nos ajude a cuidar de você","Tout ce qui nous aide à prendre soin de vous"]};
+const XK = {"k0":"United States","k1":"Canada","k2":"Mexico","k3":"Brazil","k4":"Argentina","k5":"Colombia","k6":"Chile","k7":"Other","k8":"Everything for your trip in one place. This page updates itself as the planning team confirms your room and transfer — so does your wallet pass.","k9":"Add to Wallet","k10":"Add to calendar","k11":"Leadership Insights","k12":"New Perspectives","k13":"Meaningful Connections","k14":"What’s Next","k15":"You’re invited","k16":"Four days in Cancún to step back, ","k17":"look further","k18":", and set the course for the year ahead — together with leaders from across the Americas.","k19":"Registration takes about three minutes. Once confirmed, the planning team arranges your accommodation and transfers — you only need to book flights.","k20":"Four days,","k21":"one horizon","k22":"Indicative timings — the full agenda follows with your confirmation.","k23":"Voices on","k24":"the horizon","k25":"One new voice is revealed every two weeks until we land in Cancún.","k26":"Revealed","k27":"Opening keynote · Mon 1 Feb","k28":"To be revealed","k29":"Choose your","k30":"sessions","k31":"Tuesday 2 February runs as parallel tracks. Pick one per slot — your choices travel with your registration and wallet pass.","k32":"Travel & stay","k33":"Your horizon,","k34":"reserved.","k35":"Accommodation","k36":"Reserved on your behalf for the dates you register.","k37":"Flights","k38":"Book once confirmed. Fly into Cancún International (CUN).","k39":"Transfers","k40":"Arranged for every attendee, both ways.","k41":"From wheels-down","k42":"to welcome","k43":"Land at CUN","k44":"International flights arrive at Terminals 3 and 4.","k45":"Find your host","k46":"Capgemini hosts wait just past customs in the arrivals hall.","k47":"Transfer","k48":"A private shuttle to the resort — about 25 minutes.","k49":"Welcome desk","k50":"Badge, room key and welcome pack in a single stop.","k51":"Settle in","k52":"Time to unwind before the welcome reception at 18:30.","k53":"Time zone","k54":"UTC−5 · no daylight saving","k55":"Late-January weather","k56":"Around 82°F by day, 68°F at night","k57":"Currency","k58":"Mexican peso · cards widely accepted","k59":"Entry","k60":"Valid passport. Check visa needs for your nationality.","k61":"Closes","k62":"Fri 4 Dec 2026","k63":"Questions","k64":"Planning team","k65":"First name","k66":"Last name","k67":"Work email","k68":"Job title","k69":"Travelling from","k70":"Select country…","k71":"Arriving","k72":"Departing","k73":"Dietary requirements","k74":"Accessibility, allergies or other needs ","k75":"— optional","k76":"I agree that my details may be used by the planning team to arrange travel, accommodation and event access, in line with the ","k77":"privacy notice","k78":"Join the waitlist","k79":"Places are released in order as they become available. We’ll email you the moment one opens — you’ll have 72 hours to accept.","k80":"Full name","k81":"Join waitlist","k82":"You’re on the list","k83":"Your position on the waitlist. We’ll write to ","k84":" as soon as a place opens.","k85":"Registration closed on","k86":"4 December 2026.","k87":"Already registered? The personal link in your confirmation email opens your registration, ticket and travel details at any time.","k88":"Contact the planning team","k89":"Confirmation sent to ","k90":"Attendee","k91":"Location","k92":"Cancún, Mexico","k93":"January 31 – February 3, 2027","k94":"Event","k95":"31 Jan – 3 Feb 2027","k96":"Confirmation","k97":"Admit one","k98":"Calendar","k99":"Edit registration","k100":"31 Jan","k101":"Preview of your wallet pass. It updates on its own when your room and transfer are confirmed.","k102":"Add to Apple Wallet","k103":"Save to Google Wallet","k104":"Close","k105":"See you in Cancún.","k106":"© 2026 Capgemini · Invitation only","k107":"Privacy notice","k108":"Cookie settings","k109":"Planning team view"};
+const LI = { es: 0, pt: 1, fr: 2 };
+const LOC = { en: 'en-GB', es: 'es-MX', pt: 'pt-BR', fr: 'fr-CA' };
+const DATES = { 'Sat 30 Jan': '2027-01-30', 'Sun 31 Jan': '2027-01-31', 'Mon 1 Feb': '2027-02-01', 'Wed 3 Feb': '2027-02-03', 'Thu 4 Feb': '2027-02-04' };
+const DISO = ['2027-01-31', '2027-02-01', '2027-02-02', '2027-02-03'];
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const F = {
+  en: { dayOf: n => `Day ${n} of 4`, inDays: n => `Revealed in ${n} days`, yourTue: n => `Your Tuesday · ${n} of 3`, signOut: n => `Not ${n}? Sign out on this device`, inbound: d => `Inbound flight · ${d}`, ph: 'e.g. AA 1234', seats: n => n < 10 ? `${n} left` : `${n} seats`, regOk: (a, b) => `Confirmed · ${a} – ${b}`, room: 'Assigned by the planning team by 8 January', flightOk: (no, t) => `${no} · lands CUN ${t}`, flightTodo: 'Add your flight below so we can meet you', shuttle: (g, t) => `Shuttle ${g} · departs ${t}`, transferTodo: 'Assigned once we have your flight', sessOk: n => `${n} sessions saved`, sessTodo: 'Choose your parallel tracks', pass: (g, t) => `Shuttle ${g} · ${t}`, from: t => `From ${t}` },
+  es: { dayOf: n => `Día ${n} de 4`, inDays: n => `Se revela en ${n} días`, yourTue: n => `Tu martes · ${n} de 3`, signOut: n => `¿No eres ${n}? Cierra sesión en este dispositivo`, inbound: d => `Vuelo de llegada · ${d}`, ph: 'p. ej. AA 1234', seats: n => n < 10 ? `Quedan ${n}` : `${n} lugares`, regOk: (a, b) => `Confirmado · ${a} – ${b}`, room: 'El equipo organizador la asigna antes del 8 de enero', flightOk: (no, t) => `${no} · llega a CUN ${t}`, flightTodo: 'Añade tu vuelo abajo para recibirte', shuttle: (g, t) => `Shuttle ${g} · sale ${t}`, transferTodo: 'Se asigna cuando tengamos tu vuelo', sessOk: n => `${n} sesiones guardadas`, sessTodo: 'Elige tus sesiones paralelas', pass: (g, t) => `Shuttle ${g} · ${t}`, from: t => `Desde ${t}` },
+  pt: { dayOf: n => `Dia ${n} de 4`, inDays: n => `Revelado em ${n} dias`, yourTue: n => `Sua terça · ${n} de 3`, signOut: n => `Não é ${n}? Sair neste dispositivo`, inbound: d => `Voo de chegada · ${d}`, ph: 'ex.: AA 1234', seats: n => n < 10 ? `Restam ${n}` : `${n} vagas`, regOk: (a, b) => `Confirmada · ${a} – ${b}`, room: 'Definido pela equipe organizadora até 8 de janeiro', flightOk: (no, t) => `${no} · chega em CUN ${t}`, flightTodo: 'Adicione seu voo abaixo para podermos recebê-lo', shuttle: (g, t) => `Transfer ${g} · sai ${t}`, transferTodo: 'Definido quando tivermos seu voo', sessOk: n => `${n} sessões salvas`, sessTodo: 'Escolha suas trilhas paralelas', pass: (g, t) => `Transfer ${g} · ${t}`, from: t => `A partir das ${t}` },
+  fr: { dayOf: n => `Jour ${n} sur 4`, inDays: n => `Dévoilé dans ${n} jours`, yourTue: n => `Votre mardi · ${n} sur 3`, signOut: n => `Vous n’êtes pas ${n} ? Se déconnecter sur cet appareil`, inbound: d => `Vol aller · ${d}`, ph: 'ex. AA 1234', seats: n => n < 10 ? `Plus que ${n}` : `${n} places`, regOk: (a, b) => `Confirmée · ${a} – ${b}`, room: 'Attribuée par l’équipe d’organisation d’ici le 8 janvier', flightOk: (no, t) => `${no} · atterrit à CUN ${t}`, flightTodo: 'Ajoutez votre vol ci-dessous pour que nous puissions vous accueillir', shuttle: (g, t) => `Navette ${g} · départ ${t}`, transferTodo: 'Attribué dès réception de votre vol', sessOk: n => `${n} sessions enregistrées`, sessTodo: 'Choisissez vos sessions parallèles', pass: (g, t) => `Navette ${g} · ${t}`, from: t => `Dès ${t}` }
+};
+const spin = c => React.createElement('span', { style: { width: 14, height: 14, border: '1.5px solid ' + c + '40', borderTopColor: c, borderRadius: '50%', animation: 'rlp-spin .8s linear infinite' } });
+
+const V = {
+  en: { skyLive: 'Live from Cancún', wx: ['Clear', 'Partly cloudy', 'Cloudy', 'Rain', 'Storms'], sky: { dawn: 'Dawn over the Caribbean', day: 'Midday on the Caribbean', dusk: 'Dusk over the Caribbean', night: 'Night over the Caribbean' },
+    bp: 'Boarding pass', bpIn: 'Boarding in', bpPax: 'Passenger', bpDate: 'Date', bpGate: 'Gate', bpConf: 'Confirmation', bpFrom: 'From', bpTo: 'To',
+    mapEy: 'Who’s coming', mapA: 'The Americas,', mapB: 'arriving.', mapLede: 'Leaders from seven markets have confirmed. Names stay private — only the map lights up.', mapTotal: 'confirmed so far', mapJust: c => `Someone from ${c} just confirmed`, mapSample: 'Sample data · the live feed connects at launch',
+    packEy: 'What to pack', packA: 'Dress for', packB: 'the horizon', packLede: 'Four days, four dress codes — matched to the programme and the late-January sun.', packN: n => `${n} of 8 packed`, packList: 'Your packing list',
+    dress: [['Resort casual', 'Linen and light colours. Flat shoes — the welcome reception is on the sand.'], ['Business casual', 'Breathable layers; session rooms are air-conditioned.'], ['Smart casual', 'For the celebration dinner: cocktail attire in blues and whites.'], ['Travel comfortable', 'Check-out by 11:00 — luggage is held in the lobby.']],
+    items: ['Passport (valid 6+ months)', 'Reef-safe sunscreen', 'Swimwear', 'A light layer for air-con', 'Sunglasses & hat', 'Comfortable walking shoes', 'Something blue for Tuesday night', 'Chargers (US-style plugs)'],
+    pcEy: 'Spread the word', pcA: 'Tell them', pcB: 'you’re going', pcLede: 'Make your card, post it, and show the rest of the business where the Americas are heading.', pcIm: 'I’m going.', pcStyles: ['Horizon', 'Sunset', 'Night'], pcName: 'Name on card', pcPh: 'Add your photo', pcPhC: 'Change photo', pcPhR: 'Remove', pcDl: 'Download image', pcLi: 'Share on LinkedIn', pcCopy: 'Copy caption', pcCopied: '✓  Caption copied', pcHint: 'Download the card, then attach it to your LinkedIn post.', pcCaption: 'Heading to Cancún for Capgemini Americas Kickoff 2027 — a bolder horizon for the year ahead. #AmericasKickoff27', pcDates: 'Cancún · 31 Jan – 3 Feb 2027',
+    ccLaunch: 'Ask the concierge', ccTitle: 'Concierge', ccSub: 'Travel, programme and Cancún — ask in any language.', ccPh: 'Ask anything…', ccSend: 'Send', ccSug: ['What should I wear on Tuesday night?', 'How do I get from the airport?', 'Do I need a visa?'], ccErr: 'The concierge is busy — please try again in a moment.', ccHello: 'Hello! I can help with travel, the programme, what to pack and Cancún itself. What would you like to know?' },
+  es: { skyLive: 'En vivo desde Cancún', wx: ['Despejado', 'Parcialmente nublado', 'Nublado', 'Lluvia', 'Tormentas'], sky: { dawn: 'Amanecer en el Caribe', day: 'Mediodía en el Caribe', dusk: 'Atardecer en el Caribe', night: 'Noche en el Caribe' },
+    bp: 'Pase de abordar', bpIn: 'Abordaje en', bpPax: 'Pasajero', bpDate: 'Fecha', bpGate: 'Puerta', bpConf: 'Confirmación', bpFrom: 'Origen', bpTo: 'Destino',
+    mapEy: 'Quién viene', mapA: 'Las Américas,', mapB: 'en camino.', mapLede: 'Líderes de siete mercados ya confirmaron. Los nombres son privados: solo se ilumina el mapa.', mapTotal: 'confirmados hasta ahora', mapJust: c => `Alguien de ${c} acaba de confirmar`, mapSample: 'Datos de muestra · el feed en vivo se conecta en el lanzamiento',
+    packEy: 'Qué empacar', packA: 'Vístete para', packB: 'el horizonte', packLede: 'Cuatro días, cuatro códigos de vestimenta, pensados para el programa y el sol de finales de enero.', packN: n => `${n} de 8 listos`, packList: 'Tu lista de equipaje',
+    dress: [['Resort casual', 'Lino y colores claros. Calzado plano: la recepción es sobre la arena.'], ['Business casual', 'Capas ligeras; las salas tienen aire acondicionado.'], ['Smart casual', 'Para la cena de celebración: cóctel en tonos azules y blancos.'], ['Viaje cómodo', 'Check-out antes de las 11:00; el equipaje se guarda en el lobby.']],
+    items: ['Pasaporte (vigencia de 6+ meses)', 'Protector solar biodegradable', 'Traje de baño', 'Una prenda ligera para el aire acondicionado', 'Lentes de sol y sombrero', 'Zapatos cómodos', 'Algo azul para el martes por la noche', 'Cargadores (enchufe tipo EE. UU.)'],
+    pcEy: 'Compártelo', pcA: 'Cuéntales', pcB: 'que vas', pcLede: 'Crea tu tarjeta, publícala y muestra al resto del negocio hacia dónde van las Américas.', pcIm: 'Voy.', pcStyles: ['Horizonte', 'Atardecer', 'Noche'], pcName: 'Nombre en la tarjeta', pcPh: 'Añadir tu foto', pcPhC: 'Cambiar foto', pcPhR: 'Quitar', pcDl: 'Descargar imagen', pcLi: 'Compartir en LinkedIn', pcCopy: 'Copiar texto', pcCopied: '✓  Texto copiado', pcHint: 'Descarga la tarjeta y adjúntala a tu publicación de LinkedIn.', pcCaption: 'Rumbo a Cancún para el Capgemini Americas Kickoff 2027: un horizonte más audaz para el año que viene. #AmericasKickoff27', pcDates: 'Cancún · 31 ene – 3 feb 2027',
+    ccLaunch: 'Pregunta al concierge', ccTitle: 'Concierge', ccSub: 'Viaje, programa y Cancún: pregunta en cualquier idioma.', ccPh: 'Pregunta lo que quieras…', ccSend: 'Enviar', ccSug: ['¿Qué me pongo el martes por la noche?', '¿Cómo llego desde el aeropuerto?', '¿Necesito visa?'], ccErr: 'El concierge está ocupado; inténtalo de nuevo en un momento.', ccHello: '¡Hola! Te ayudo con el viaje, el programa, qué empacar y Cancún. ¿Qué te gustaría saber?' },
+  pt: { skyLive: 'Ao vivo de Cancún', wx: ['Céu limpo', 'Parcialmente nublado', 'Nublado', 'Chuva', 'Tempestades'], sky: { dawn: 'Amanhecer no Caribe', day: 'Meio-dia no Caribe', dusk: 'Entardecer no Caribe', night: 'Noite no Caribe' },
+    bp: 'Cartão de embarque', bpIn: 'Embarque em', bpPax: 'Passageiro', bpDate: 'Data', bpGate: 'Portão', bpConf: 'Confirmação', bpFrom: 'Origem', bpTo: 'Destino',
+    mapEy: 'Quem vem', mapA: 'As Américas,', mapB: 'a caminho.', mapLede: 'Líderes de sete mercados já confirmaram. Os nomes ficam privados — só o mapa se acende.', mapTotal: 'confirmados até agora', mapJust: c => `Alguém de ${c} acabou de confirmar`, mapSample: 'Dados de exemplo · o feed ao vivo é conectado no lançamento',
+    packEy: 'O que levar', packA: 'Vista-se para', packB: 'o horizonte', packLede: 'Quatro dias, quatro dress codes — pensados para a programação e o sol do fim de janeiro.', packN: n => `${n} de 8 na mala`, packList: 'Sua lista de mala',
+    dress: [['Resort casual', 'Linho e cores claras. Sapatos baixos — a recepção é na areia.'], ['Business casual', 'Camadas leves; as salas têm ar-condicionado.'], ['Smart casual', 'No jantar de celebração: traje coquetel em azul e branco.'], ['Viagem confortável', 'Check-out até 11:00 — a bagagem fica guardada no lobby.']],
+    items: ['Passaporte (validade de 6+ meses)', 'Protetor solar biodegradável', 'Roupa de banho', 'Uma peça leve para o ar-condicionado', 'Óculos de sol e chapéu', 'Sapatos confortáveis', 'Algo azul para terça à noite', 'Carregadores (tomada padrão EUA)'],
+    pcEy: 'Espalhe a notícia', pcA: 'Conte que', pcB: 'você vai', pcLede: 'Crie seu cartão, publique e mostre ao resto da empresa para onde as Américas estão indo.', pcIm: 'Eu vou.', pcStyles: ['Horizonte', 'Pôr do sol', 'Noite'], pcName: 'Nome no cartão', pcPh: 'Adicionar sua foto', pcPhC: 'Trocar foto', pcPhR: 'Remover', pcDl: 'Baixar imagem', pcLi: 'Compartilhar no LinkedIn', pcCopy: 'Copiar legenda', pcCopied: '✓  Legenda copiada', pcHint: 'Baixe o cartão e anexe à sua publicação no LinkedIn.', pcCaption: 'A caminho de Cancún para o Capgemini Americas Kickoff 2027 — um horizonte mais ousado para o ano que vem. #AmericasKickoff27', pcDates: 'Cancún · 31 jan – 3 fev 2027',
+    ccLaunch: 'Pergunte ao concierge', ccTitle: 'Concierge', ccSub: 'Viagem, programação e Cancún — pergunte em qualquer idioma.', ccPh: 'Pergunte qualquer coisa…', ccSend: 'Enviar', ccSug: ['O que vestir na terça à noite?', 'Como chego do aeroporto?', 'Preciso de visto?'], ccErr: 'O concierge está ocupado — tente de novo em instantes.', ccHello: 'Olá! Posso ajudar com a viagem, a programação, o que levar e Cancún. O que você gostaria de saber?' },
+  fr: { skyLive: 'En direct de Cancún', wx: ['Dégagé', 'Partiellement nuageux', 'Nuageux', 'Pluie', 'Orages'], sky: { dawn: 'Aube sur les Caraïbes', day: 'Midi sur les Caraïbes', dusk: 'Crépuscule sur les Caraïbes', night: 'Nuit sur les Caraïbes' },
+    bp: 'Carte d’embarquement', bpIn: 'Embarquement dans', bpPax: 'Passager', bpDate: 'Date', bpGate: 'Porte', bpConf: 'Confirmation', bpFrom: 'Départ', bpTo: 'Arrivée',
+    mapEy: 'Qui vient', mapA: 'Les Amériques,', mapB: 'en route.', mapLede: 'Des leaders de sept marchés ont confirmé. Les noms restent privés — seule la carte s’illumine.', mapTotal: 'confirmés à ce jour', mapJust: c => `Quelqu’un de ${c} vient de confirmer`, mapSample: 'Données d’exemple · le flux en direct sera connecté au lancement',
+    packEy: 'Quoi emporter', packA: 'S’habiller pour', packB: 'l’horizon', packLede: 'Quatre jours, quatre codes vestimentaires — pensés pour le programme et le soleil de fin janvier.', packN: n => `${n} sur 8 dans la valise`, packList: 'Votre liste de bagages',
+    dress: [['Resort casual', 'Lin et couleurs claires. Chaussures plates — la réception a lieu sur le sable.'], ['Business casual', 'Couches légères ; les salles sont climatisées.'], ['Smart casual', 'Pour le dîner de célébration : tenue cocktail en bleu et blanc.'], ['Voyage confortable', 'Libération des chambres avant 11 h — bagagerie dans le hall.']],
+    items: ['Passeport (valide 6 mois et plus)', 'Crème solaire respectueuse des récifs', 'Maillot de bain', 'Une couche légère pour la clim', 'Lunettes de soleil et chapeau', 'Chaussures confortables', 'Une touche de bleu pour mardi soir', 'Chargeurs (prises type É.-U.)'],
+    pcEy: 'Faites passer le mot', pcA: 'Dites-leur', pcB: 'que vous y serez', pcLede: 'Créez votre carte, publiez-la et montrez au reste de l’entreprise où vont les Amériques.', pcIm: 'J’y vais.', pcStyles: ['Horizon', 'Coucher de soleil', 'Nuit'], pcName: 'Nom sur la carte', pcPh: 'Ajouter votre photo', pcPhC: 'Changer de photo', pcPhR: 'Retirer', pcDl: 'Télécharger l’image', pcLi: 'Partager sur LinkedIn', pcCopy: 'Copier le texte', pcCopied: '✓  Texte copié', pcHint: 'Téléchargez la carte, puis joignez-la à votre publication LinkedIn.', pcCaption: 'Direction Cancún pour le Capgemini Americas Kickoff 2027 — un horizon plus audacieux pour l’année à venir. #AmericasKickoff27', pcDates: 'Cancún · 31 janv. – 3 févr. 2027',
+    ccLaunch: 'Demander au concierge', ccTitle: 'Concierge', ccSub: 'Voyage, programme et Cancún — posez vos questions dans votre langue.', ccPh: 'Posez votre question…', ccSend: 'Envoyer', ccSug: ['Que porter mardi soir ?', 'Comment venir depuis l’aéroport ?', 'Ai-je besoin d’un visa ?'], ccErr: 'Le concierge est occupé — réessayez dans un instant.', ccHello: 'Bonjour ! Je peux vous aider pour le voyage, le programme, les bagages et Cancún. Que souhaitez-vous savoir ?' }
+};
+const PC = [
+  { css: 'linear-gradient(90deg,rgba(17,26,56,0.88) 0%,rgba(17,26,56,0.35) 55%,rgba(17,26,56,0.08) 100%),linear-gradient(0deg,rgba(11,14,21,0.6) 0%,rgba(11,14,21,0) 50%)', accent: '#7FD3F2', imgOp: 1, fade: 'linear-gradient(90deg,rgba(17,26,56,1) 0%,rgba(17,26,56,0.55) 22%,rgba(17,26,56,0) 50%),linear-gradient(0deg,rgba(11,14,21,0.45) 0%,rgba(11,14,21,0) 35%)', fadeC: [17, 26, 56],
+    g: [['l', 0, 0, 1, 0, [[0, 'rgba(17,26,56,0.88)'], [0.55, 'rgba(17,26,56,0.35)'], [1, 'rgba(17,26,56,0.08)']]], ['l', 0, 1, 0, 0.5, [[0, 'rgba(11,14,21,0.6)'], [1, 'rgba(11,14,21,0)']]]] },
+  { css: 'radial-gradient(90% 90% at 80% 75%,rgba(255,140,70,0.5) 0%,rgba(190,80,110,0.3) 40%,rgba(40,30,90,0.62) 80%),linear-gradient(0deg,rgba(17,15,45,0.72) 0%,rgba(17,15,45,0) 60%)', accent: '#FFC7A8', imgOp: 1, fade: 'linear-gradient(90deg,rgba(40,30,90,1) 0%,rgba(40,30,90,0.55) 22%,rgba(40,30,90,0) 50%),linear-gradient(0deg,rgba(17,15,45,0.45) 0%,rgba(17,15,45,0) 35%)', fadeC: [40, 30, 90],
+    g: [['r', 0.8, 0.75, 0.9, [[0, 'rgba(255,140,70,0.5)'], [0.4, 'rgba(190,80,110,0.3)'], [0.8, 'rgba(40,30,90,0.62)'], [1, 'rgba(40,30,90,0.62)']]], ['l', 0, 1, 0, 0.4, [[0, 'rgba(17,15,45,0.72)'], [1, 'rgba(17,15,45,0)']]]] },
+  { css: 'linear-gradient(180deg,rgba(4,7,18,0.6) 0%,rgba(10,22,60,0.5) 50%,rgba(4,7,18,0.92) 100%)', accent: '#05A3E6', imgOp: 0.55, fade: 'linear-gradient(90deg,rgba(4,7,18,1) 0%,rgba(4,7,18,0.55) 22%,rgba(4,7,18,0) 50%),linear-gradient(0deg,rgba(4,7,18,0.45) 0%,rgba(4,7,18,0) 35%)', fadeC: [4, 7, 18],
+    g: [['l', 0, 0, 0, 1, [[0, 'rgba(4,7,18,0.6)'], [0.5, 'rgba(10,22,60,0.5)'], [1, 'rgba(4,7,18,0.92)']]]] }
+];
+const ORIGIN = { 'United States': ['JFK', 'New York'], Canada: ['YYZ', 'Toronto'], Mexico: ['MEX', 'Mexico City'], Brazil: ['GRU', 'São Paulo'], Argentina: ['EZE', 'Buenos Aires'], Colombia: ['BOG', 'Bogotá'], Chile: ['SCL', 'Santiago'] };
+const MARKETS = [['United States', 148, ['New York', 'Chicago', 'San Francisco', 'Dallas', 'Atlanta']], ['Canada', 46, ['Toronto', 'Montréal', 'Vancouver']], ['Mexico', 62, ['Mexico City', 'Monterrey', 'Guadalajara']], ['Brazil', 54, ['São Paulo', 'Rio de Janeiro']], ['Argentina', 18, ['Buenos Aires']], ['Colombia', 22, ['Bogotá', 'Medellín']], ['Chile', 14, ['Santiago']]];
+const PACK_KEY = 'ak27-packing';
+const DEMO = [
+  ['guest', 'Invited guest', [['None', 'None'], ['Alex Morgan (EN)', 'Alex · EN'], ['Sofía Ramírez (ES)', 'Sofía · ES'], ['Lucas Souza (PT)', 'Lucas · PT']], 'None'],
+  ['registrationPhase', 'Registration phase', [['Open', 'Open'], ['Waitlist', 'Waitlist'], ['Closed', 'Closed']], 'Open'],
+  ['registrationState', 'Guest status', [['Form', 'Not registered'], ['Confirmed', 'Confirmed']], 'Form'],
+  ['countdownMode', 'Hero countdown', [['Auto', 'Auto'], ['Countdown', 'Countdown'], ['Boarding pass', 'Boarding pass']], 'Auto'],
+  ['skyTime', 'Cancún sky', [['Live', 'Live'], ['Dawn', 'Dawn'], ['Day', 'Day'], ['Dusk', 'Dusk'], ['Night', 'Night']], 'Live'],
+  ['speakerReveal', 'Speaker reveals', [['Upcoming', 'Before reveal'], ['Oct 21 revealed', '21 Oct revealed']], 'Upcoming'],
+  ['colorMode', 'Appearance', [['System', 'System'], ['Light', 'Light'], ['Dark', 'Dark']], 'System'],
+  ['motion', 'Motion', [[true, 'On'], [false, 'Off']], true]
+];
+const SKY_CLOCK = { dawn: '06:40', day: '12:30', dusk: '18:20', night: '22:10' };
+
+class Component extends DCLogic {
+  blank = { firstName: '', lastName: '', email: '', title: '', country: '', arrival: 'Sun 31 Jan', departure: 'Wed 3 Feb', diet: 'None', access: '', consent: false };
+  state = {
+    now: Date.now(), scrolled: false, wide: true, day: 0, step: 0, sending: false, submitted: false, code: '',
+    form: { ...this.blank }, errors: {}, guestId: null, lang: 'en',
+    walletOpen: false, flight: null, flightNo: '', flightErr: '', flightBusy: false,
+    picks: {}, agendaSaved: false, notify: false, wl: { name: '', email: '' }, wlErr: '', wlPos: 0,
+    counts: MARKETS.map(m => m[1]), toast: null, pulse: '', flash: -1, pcStyle: 0, pcName: null, pcPhoto: null, pcCopied: false, packed: {}, ccOpen: false, demo: {}, demoOpen: false, ccMsgs: [], ccInput: '', ccBusy: false
+  };
+  heroImgRef = React.createRef(); lineRef = React.createRef(); marqueeRef = React.createRef();
+  panelRef = React.createRef(); parRef = React.createRef(); stepRef = React.createRef(); ticketRef = React.createRef(); passRef = React.createRef(); ccListRef = React.createRef();
+  fields = ['firstName', 'lastName', 'email', 'title', 'country', 'access', 'consent'];
+  on = Object.fromEntries(this.fields.map(k => [k, e => {
+    const v = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    this.setState(s => ({ form: { ...s.form, [k]: v }, errors: { ...s.errors, [k]: '' } }));
+  }]));
+  setField = (k, v) => this.setState(s => ({ form: { ...s.form, [k]: v } }));
+  opt(k) { const d = this.state.demo || {}; return d[k] !== undefined ? d[k] : this.props[k]; }
+  setDemo = (k, val) => {
+    this.setState(s => ({ demo: { ...s.demo, [k]: val } }), () => {
+      try { localStorage.setItem('ak27-demo', JSON.stringify(this.state.demo)); } catch (e) {}
+      if (k === 'guest') this.applyGuest(this.resolveGuest());
+    });
+  };
+  resetDemo = () => {
+    try { localStorage.removeItem('ak27-demo'); } catch (e) {}
+    this.setState({ demo: {}, demoOpen: false }, () => this.startOver());
+  };
+  motion() { return (this.opt('motion') ?? true) && !matchMedia('(prefers-reduced-motion: reduce)').matches; }
+
+  resolveGuest() {
+    const q = new URLSearchParams(location.search).get('guest');
+    return (q && GUESTS[q]) ? q : (GUEST_PROP[this.opt('guest')] || null);
+  }
+  applyGuest(id) {
+    const g = GUESTS[id];
+    if (!g) return this.setState({ guestId: null });
+    const { lang, ...f } = g;
+    this.setState(s => s.submitted ? { guestId: id } : ({ guestId: id, lang, form: { ...s.form, ...f } }));
+  }
+
+  componentDidMount() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (saved && saved.form) this.setState({ ...saved, submitted: true });
+    } catch (e) {}
+    this.applyGuest(this.resolveGuest());
+    this.tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    try { const dm = JSON.parse(localStorage.getItem('ak27-demo') || 'null'); if (dm) this.setState({ demo: dm }, () => this.applyGuest(this.resolveGuest())); } catch (e) {}
+    try { const pk = JSON.parse(localStorage.getItem(PACK_KEY) || 'null'); if (pk) this.setState({ packed: pk }); } catch (e) {}
+    this.fetchWx(); this.wxT = setInterval(this.fetchWx, 9e5); this.liveFirst = setTimeout(this.liveTick, 2600); this.live = setInterval(this.liveTick, 7000);
+    this.onScroll = () => {
+      const s = window.scrollY > 40;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+      const p = this.parRef.current;
+      if (p && this.motion()) {
+        const r = p.parentElement.getBoundingClientRect();
+        p.style.transform = `translate3d(0,${((r.top + r.height / 2) - innerHeight / 2) * -0.12}px,0)`;
+      }
+    };
+    this.onResize = () => { const w = innerWidth > 860; if (w !== this.state.wide) this.setState({ wide: w }); };
+    this.onKey = e => { if (e.key === 'Escape') { if (this.state.walletOpen) this.setState({ walletOpen: false }); else if (this.state.ccOpen) this.setState({ ccOpen: false }); } };
+    addEventListener('scroll', this.onScroll, { passive: true });
+    addEventListener('resize', this.onResize);
+    this.onMsg = e => { if (e.data === 'ak27-close-onsite') this.setState({ onsite: false }); };
+    addEventListener('message', this.onMsg);
+    addEventListener('keydown', this.onKey);
+    this.onResize();
+    requestAnimationFrame(() => { this.onScroll(); if (this.motion()) this.intro(); });
+  }
+  componentWillUnmount() {
+    clearInterval(this.tick); clearInterval(this.live); clearInterval(this.wxT); clearTimeout(this.liveFirst); clearTimeout(this.flashT); clearTimeout(this.copyT);
+    removeEventListener('scroll', this.onScroll); removeEventListener('resize', this.onResize); removeEventListener('keydown', this.onKey);
+    this.io && this.io.disconnect(); this.mq && this.mq.cancel();
+  }
+  componentDidUpdate(pp, ps) {
+    const st = this.state;
+    if (pp.guest !== this.props.guest) this.applyGuest(this.resolveGuest());
+    document.documentElement.lang = st.lang;
+    if (ps.packed !== st.packed) { try { localStorage.setItem(PACK_KEY, JSON.stringify(st.packed)); } catch (e) {} }
+    if ((ps.ccMsgs !== st.ccMsgs || ps.ccBusy !== st.ccBusy || (!ps.ccOpen && st.ccOpen)) && this.ccListRef.current) { const l = this.ccListRef.current; l.scrollTop = l.scrollHeight; }
+    if (st.submitted && (ps.submitted !== st.submitted || ps.flight !== st.flight || ps.agendaSaved !== st.agendaSaved || ps.picks !== st.picks)) {
+      try { localStorage.setItem(KEY, JSON.stringify({ form: st.form, code: st.code, flight: st.flight, picks: st.picks, agendaSaved: st.agendaSaved })); } catch (e) {}
+    }
+    if (!this.motion()) return;
+    const rise = el => el && el.animate([{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'none' }], { duration: 600, easing: EASE });
+    if (ps.day !== st.day) rise(this.panelRef.current);
+    if (ps.step !== st.step) rise(this.stepRef.current);
+    if (!ps.walletOpen && st.walletOpen && this.passRef.current)
+      this.passRef.current.animate([{ opacity: 0, transform: 'translateY(60px) scale(.94)' }, { opacity: 1, transform: 'none' }], { duration: 700, easing: EASE });
+    if (!ps.submitted && st.submitted && this.ticketRef.current)
+      this.ticketRef.current.animate([{ opacity: 0, transform: 'translateY(40px) rotate(-2deg) scale(.96)' }, { opacity: 1, transform: 'none' }], { duration: 1000, easing: EASE });
+  }
+  intro() {
+    const img = this.heroImgRef.current, line = this.lineRef.current, mq = this.marqueeRef.current;
+    img && img.animate([{ transform: 'scale(1.14)' }, { transform: 'scale(1)' }], { duration: 9000, easing: 'cubic-bezier(.15,.6,.2,1)', fill: 'both' });
+    document.querySelectorAll('[data-hero]').forEach(el => el.animate(
+      [{ opacity: 0, transform: 'translateY(32px)' }, { opacity: 1, transform: 'none' }],
+      { duration: 1100, delay: 250 + (+el.dataset.hero) * 140, easing: EASE, fill: 'backwards' }));
+    line && line.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 1600, delay: 700, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'backwards' });
+    if (mq) this.mq = mq.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-50%)' }], { duration: 48000, iterations: Infinity });
+    this.io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target; this.io.unobserve(el); el.style.opacity = '';
+      el.animate([{ opacity: 0, transform: 'translateY(40px)' }, { opacity: 1, transform: 'none' }], { duration: 1000, easing: EASE });
+    }), { threshold: 0.08 });
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      if (el.getBoundingClientRect().top > innerHeight) { el.style.opacity = '0'; this.io.observe(el); }
+    });
+  }
+
+  validate(step) {
+    const f = this.state.form, e = {};
+    if (step === 0) {
+      if (!f.firstName.trim()) e.firstName = 'Please enter your first name.';
+      if (!f.lastName.trim()) e.lastName = 'Please enter your last name.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = 'Please enter a valid work email.';
+      if (!f.title.trim()) e.title = 'Please enter your job title.';
+    }
+    if (step === 1 && !f.country) e.country = 'Please select where you’re travelling from.';
+    if (step === 2 && !f.consent) e.consent = 'Please confirm to continue.';
+    return e;
+  }
+  next = ev => {
+    ev.preventDefault();
+    const e = this.validate(this.state.step);
+    if (Object.keys(e).length) return this.setState({ errors: e });
+    if (this.state.step < 2) return this.setState(s => ({ step: s.step + 1, errors: {} }));
+    this.setState({ sending: true });
+    setTimeout(() => this.setState(s => ({ sending: false, submitted: true, code: s.code || 'AK27-' + Math.random().toString(36).slice(2, 6).toUpperCase() })), 1200);
+  };
+  downloadIcs = () => {
+    const f = this.state.form, code = this.state.code || 'AK27-7QX4';
+    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Capgemini//Americas Kickoff 2027//EN','BEGIN:VEVENT',
+      'UID:' + code + '@americas-kickoff-2027', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+      'DTSTART;VALUE=DATE:20270131', 'DTEND;VALUE=DATE:20270204',
+      'SUMMARY:Capgemini Americas Kickoff 2027', 'LOCATION:Cancún\\, Mexico',
+      'DESCRIPTION:Confirmation ' + code + '. Arriving ' + f.arrival + '\\, departing ' + f.departure + '.',
+      'END:VEVENT','END:VCALENDAR'].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    a.download = 'americas-kickoff-2027.ics'; document.body.appendChild(a); a.click(); a.remove();
+  };
+  back = () => this.setState(s => ({ step: Math.max(0, s.step - 1), errors: {} }));
+  edit = () => this.setState({ submitted: false, step: 0 });
+  startOver = () => {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    this.setState({ submitted: false, step: 0, code: '', flight: null, flightNo: '', picks: {}, agendaSaved: false, form: { ...this.blank } }, () => this.applyGuest(this.resolveGuest()));
+  };
+  findFlight = ev => {
+    ev.preventDefault();
+    const no = this.state.flightNo.trim().toUpperCase().replace(/\s+/g, ' ');
+    if (!/^[A-Z0-9]{2}\s?\d{1,4}$/.test(no)) return this.setState({ flightErr: 'Use the airline code and number, e.g. AA 1234.' });
+    this.setState({ flightBusy: true, flightErr: '' });
+    setTimeout(() => {
+      const x = hash(no), hh = 10 + (x % 8), mm = [5, 15, 25, 35, 40, 50][x % 6];
+      const p = n => String(n).padStart(2, '0'), dm = mm + 35;
+      this.setState({ flightBusy: false, flight: { no, arr: `${p(hh)}:${p(mm)}`, dep: `${p(hh + Math.floor(dm / 60))}:${p(dm % 60)}`, group: 1 + (x % 6) } });
+    }, 1000);
+  };
+  joinWaitlist = ev => {
+    ev.preventDefault();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.wl.email)) return this.setState({ wlErr: 'Please enter a valid work email.' });
+    this.setState({ wlErr: '', wlPos: 9 + (hash(this.state.wl.email) % 12) });
+  };
+
+  liveTick = () => {
+    const st = this.state, tot = st.counts.reduce((a, b) => a + b, 0);
+    let r = Math.random() * tot, mi = 0;
+    while (r > st.counts[mi] && mi < st.counts.length - 1) { r -= st.counts[mi]; mi++; }
+    const ci = Math.floor(Math.random() * MARKETS[mi][2].length);
+    const counts = st.counts.slice(); counts[mi]++;
+    this.setState({ counts, toast: { mi, ci }, pulse: `${mi}:${ci}:${Date.now()}`, flash: mi });
+    clearTimeout(this.flashT); this.flashT = setTimeout(() => this.setState({ flash: -1 }), 1800);
+  };
+  fetchWx = async () => {
+    try {
+      const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=21.16&longitude=-86.85&current=temperature_2m,weather_code&timezone=America%2FCancun');
+      const j = await r.json(), c = j && j.current;
+      if (c && typeof c.temperature_2m === 'number') this.setState({ wx: { t: c.temperature_2m, code: c.weather_code } });
+    } catch (e) {}
+  };
+  togglePack = i => this.setState(s => ({ packed: { ...s.packed, [i]: !s.packed[i] } }));
+  ccSystem() {
+    const st = this.state, f = st.form, langName = { en: 'English', es: 'Spanish', pt: 'Portuguese', fr: 'French' }[st.lang] || 'English';
+    const x = k => XK[k];
+    return [
+      'You are the concierge for Capgemini Americas Kickoff 2027, a leadership event in Cancún, Mexico, 31 January – 3 February 2027 (optional departure 4 February). Theme: "A Bolder Horizon".',
+      'Answer warmly and concisely (max 90 words, plain text, no markdown, no lists with symbols). Reply in ' + langName + ' unless the guest writes in another language — then match theirs.',
+      'Only use the facts below. If something is not covered, say the planning team will confirm it closer to the event. Never invent prices, names, room numbers or phone numbers.',
+      'PROGRAMME: ' + DAYS.map(d => `${d.wk} ${d.num} ${d.mon} — ${d.title}: ${d.lede} (${d.moments.map(m => m.t + ' ' + m.l).join('; ')})`).join(' | '),
+      'TUESDAY PARALLEL TRACKS (guests pick one per slot on this site): ' + SLOTS.map(s => s.time + ': ' + s.opts.map(o => o.title).join(', ')).join(' | '),
+      'ARRIVAL GUIDE: ' + ['k43', 'k44', 'k45', 'k46', 'k47', 'k48', 'k49', 'k50', 'k51', 'k52'].map(x).join(' / '),
+      'PRACTICAL: Time zone ' + x('k54') + '. Weather: around 28 °C / 82 °F by day, 20 °C / 68 °F at night. Currency: ' + x('k58') + '. Entry: ' + x('k60') + ' Plugs: US-style (Type A/B).',
+      'DRESS CODES: ' + V.en.dress.map((d, i) => DAYS[i].wk + ': ' + d[0] + ' — ' + d[1]).join(' | '),
+      'Accommodation and airport transfers are arranged by the planning team; guests only book flights. Registration, flight details, session choices and the wallet pass are all on this site.',
+      'GUEST: ' + (f.firstName ? f.firstName + ' ' + f.lastName : 'unknown') + (st.submitted ? ', registered (confirmation ' + st.code + ')' : ', not yet registered') + (st.flight ? `, flight ${st.flight.no} lands ${st.flight.arr}, shuttle ${st.flight.group} departs ${st.flight.dep}` : '') + '.'
+    ].join('\n');
+  }
+  askConcierge = async q => {
+    q = (q || '').trim();
+    if (!q || this.state.ccBusy) return;
+    const msgs = [...this.state.ccMsgs, { role: 'user', text: q }];
+    this.setState({ ccMsgs: msgs, ccInput: '', ccBusy: true });
+    try {
+      const req = { system: this.ccSystem(), max_tokens: 400, messages: msgs.map(m => ({ role: m.role, content: m.text })) };
+      let text;
+      if (window.claude && window.claude.complete) text = await window.claude.complete(req);
+      else {
+        const r = await fetch('/api/concierge', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req) });
+        if (!r.ok) throw new Error('concierge ' + r.status);
+        text = (await r.json()).text;
+      }
+      this.setState(s => ({ ccMsgs: [...s.ccMsgs, { role: 'assistant', text: String(text).replace(/\*\*/g, '').trim() }], ccBusy: false }));
+    } catch (e) {
+      this.setState(s => ({ ccMsgs: [...s.ccMsgs, { role: 'assistant', text: (V[s.lang] || V.en).ccErr }], ccBusy: false }));
+    }
+  };
+  downloadCard = async () => {
+    const st = this.state, v = V[st.lang] || V.en, sty = PC[st.pcStyle] || PC[0];
+    const nm = st.pcName ?? `${st.form.firstName || 'Alex'} ${st.form.lastName || 'Morgan'}`;
+    const W = 1200, H = 627, u = 12;
+    const cv = document.createElement('canvas'); cv.width = W * 2; cv.height = H * 2;
+    const x = cv.getContext('2d'); x.scale(2, 2);
+    const load = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+    try { await Promise.all([document.fonts.load('300 120px Ubuntu'), document.fonts.load('400 30px Ubuntu')]); } catch (e) {}
+    const A = 'capgemini-save-the-date/assets/';
+    const [hero, logo, line] = await Promise.all([load(A + 'hero-v4.jpg'), load(A + 'logo-white.png'), load(A + 'brand-line.png')]);
+    x.fillStyle = '#111A38'; x.fillRect(0, 0, W, H);
+    const s = Math.max(W / hero.width, H / hero.height), iw = hero.width * s, ih = hero.height * s;
+    x.globalAlpha = sty.imgOp; x.drawImage(hero, (W - iw) * 0.28, (H - ih) / 2, iw, ih); x.globalAlpha = 1;
+    sty.g.forEach(g => {
+      let gr;
+      if (g[0] === 'l') { gr = x.createLinearGradient(g[1] * W, g[2] * H, g[3] * W, g[4] * H); g[5].forEach(([o, c]) => gr.addColorStop(o, c)); x.fillStyle = gr; x.fillRect(0, 0, W, H); }
+      else { x.save(); x.translate(g[1] * W, g[2] * H); x.scale(1, H / W); gr = x.createRadialGradient(0, 0, 0, 0, 0, g[3] * W); g[4].forEach(([o, c]) => gr.addColorStop(o, c)); x.fillStyle = gr; x.fillRect(-W * 3, -W * 3, W * 6, W * 6); x.restore(); }
+    });
+    if (st.pcPhoto) {
+      const ph = await load(st.pcPhoto), px0 = W - 40 * u, pw = 40 * u, phh = H - 1.4 * u;
+      const k = Math.max(pw / ph.width, phh / ph.height), dw = ph.width * k, dh = ph.height * k;
+      x.save(); x.beginPath(); x.rect(px0, 0, pw, phh); x.clip();
+      x.drawImage(ph, px0 + (pw - dw) / 2, (phh - dh) * 0.3, dw, dh);
+      const [r0, g0, b0] = sty.fadeC, fc = a => `rgba(${r0},${g0},${b0},${a})`;
+      let gr = x.createLinearGradient(px0, 0, px0 + pw, 0); gr.addColorStop(0, fc(1)); gr.addColorStop(0.22, fc(0.55)); gr.addColorStop(0.5, fc(0)); x.fillStyle = gr; x.fillRect(px0, 0, pw, phh);
+      gr = x.createLinearGradient(0, phh, 0, phh * 0.65); gr.addColorStop(0, 'rgba(11,14,21,0.45)'); gr.addColorStop(1, 'rgba(11,14,21,0)'); x.fillStyle = gr; x.fillRect(px0, 0, pw, phh);
+      x.fillStyle = '#FFFFFF'; x.fillRect(px0, 0, 0.35 * u, phh);
+      x.restore();
+    }
+    const lw = 13 * u, lh = logo.height * lw / logo.width; x.drawImage(logo, 5 * u, 5.5 * u, lw, lh);
+    const txt = (t, font, ls, color, px, py) => { x.font = font; x.letterSpacing = ls; x.fillStyle = color; x.textAlign = 'left'; x.textBaseline = 'alphabetic'; x.fillText(t, px, py); };
+    txt('AMERICAS KICKOFF 2027', '400 15px Ubuntu', '3.6px', '#FFFFFF', 5 * u, 5.5 * u + lh + 1.6 * u + 12);
+    const L = 5 * u, maxW = (st.pcPhoto ? 54 : 84) * u;
+    let yb = H - 7 * u;
+    txt(v.pcDates.toUpperCase(), '400 17px Ubuntu', '3.6px', sty.accent, L, yb);
+    x.fillStyle = 'rgba(255,255,255,0.28)'; x.fillRect(L, yb - 17 - 1.6 * u, Math.min(maxW, 60 * u), 1);
+    yb -= 17 + 1.6 * u + 2.2 * u;
+    const title = st.form.title || 'Vice President, Client Partner';
+    txt(title, '400 20px Ubuntu', '0px', '#D6E2EB', L, yb);
+    yb -= 20 + 1.4 * u;
+    x.font = '400 84px Ubuntu'; x.letterSpacing = '-2.5px';
+    const words = (nm || '').split(/\s+/), lines = [];
+    let cur = '';
+    words.forEach(wd => { const t = cur ? cur + ' ' + wd : wd; if (x.measureText(t).width > maxW && cur) { lines.push(cur); cur = wd; } else cur = t; });
+    if (cur) lines.push(cur);
+    lines.reverse().forEach((ln, i) => txt(ln, '400 84px Ubuntu', '-2.5px', '#FFFFFF', L, yb - i * 82));
+    yb -= (lines.length - 1) * 82 + 66 + 1.2 * u;
+    txt(v.pcIm, '300 53px Ubuntu', '-1px', sty.accent, L, yb);
+    x.drawImage(line, 0, H - 1.4 * u, W, 1.4 * u);
+    cv.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'americas-kickoff-2027-im-going.png'; document.body.appendChild(a); a.click(); a.remove(); }, 'image/png');
+  };
+  onPcPhoto = e => {
+    const file = e.target.files && e.target.files[0]; e.target.value = '';
+    if (!file || !file.type.startsWith('image/')) return;
+    const img = new Image(), url = URL.createObjectURL(file);
+    img.onload = () => {
+      const s = Math.min(1, 900 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+      c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      this.setState({ pcPhoto: c.toDataURL('image/jpeg', 0.9) });
+    };
+    img.src = url;
+  };
+  shareLinkedIn = () => { const v = V[this.state.lang] || V.en; window.open('https://www.linkedin.com/feed/?shareActive=true&text=' + encodeURIComponent(v.pcCaption), '_blank', 'noopener'); };
+  copyCaption = async () => {
+    const v = V[this.state.lang] || V.en;
+    try { await navigator.clipboard.writeText(v.pcCaption); } catch (e) { const ta = document.createElement('textarea'); ta.value = v.pcCaption; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
+    this.setState({ pcCopied: true }); clearTimeout(this.copyT); this.copyT = setTimeout(() => this.setState({ pcCopied: false }), 2400);
+  };
+
+  renderVals() {
+    const st = this.state, { form, errors, sending, step, day, scrolled, now, lang } = st;
+    const t = T[lang] || T.en;
+    const tr = s => (lang === 'en' || !P[s]) ? s : P[s][LI[lang]];
+    const Fx = F[lang] || F.en, loc = LOC[lang] || 'en-GB';
+    const dfmt = (iso, o) => new Date(iso + 'T12:00:00').toLocaleDateString(loc, o);
+    const dshort = v => (lang === 'en' || !DATES[v]) ? v : dfmt(DATES[v], { weekday: 'short', day: 'numeric', month: 'short' });
+    const phase = this.opt('registrationPhase') || 'Open';
+    const registered = st.submitted || this.opt('registrationState') === 'Confirmed';
+    const pad = n => String(n).padStart(2, '0');
+    const diff = Math.max(0, TARGET - now);
+    const cd = { d: String(Math.floor(diff / 864e5)), h: pad(Math.floor(diff / 36e5) % 24), m: pad(Math.floor(diff / 6e4) % 60), s: pad(Math.floor(diff / 1e3) % 60) };
+    const bc = {}, err = {};
+    this.fields.forEach(k => { bc[k] = errors[k] ? '#FF8593' : '#34436E'; err[k] = errors[k] ? tr(errors[k]) : ''; });
+    const pill = (k, v, label, wk) => {
+      const on = form[k] === v;
+      return { label, wk, on, pick: () => this.setField(k, v), bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#111A38' : '#D6E2EB', bd: on ? '#FFFFFF' : '#34436E' };
+    };
+    const at = registered ? 3 : step;
+    const d = DAYS[day];
+    const first = form.firstName || 'Alex';
+    const code = st.code || 'AK27-7QX4';
+    const name = `${first} ${form.lastName || 'Morgan'}`;
+    const guest = !!st.guestId;
+    const f = st.flight;
+
+    const chip = k => k === 'done' ? { chip: tr('Done'), bg: 'light-dark(#E3F6FD,#0F2A44)', fg: 'light-dark(#0058AB,#7FD3F2)', bd: 'light-dark(#E3F6FD,#0F2A44)' } : k === 'act' ? { chip: tr('Action needed'), bg: 'light-dark(#111A38,#FFFFFF)', fg: 'light-dark(#FFFFFF,#111A38)', bd: 'light-dark(#111A38,#FFFFFF)' } : { chip: tr('Pending'), bg: 'transparent', fg: 'light-dark(#778694,#8FA0B4)', bd: 'light-dark(#C7D1DA,#2E3A57)' };
+    const picksN = Object.keys(st.picks).length;
+    const statusRows = [
+      { label: tr('Registration'), detail: Fx.regOk(dshort(form.arrival), dshort(form.departure)), ...chip('done') },
+      { label: tr('Room'), detail: Fx.room, ...chip('pending') },
+      { label: tr('Inbound flight'), detail: f ? Fx.flightOk(f.no, f.arr) : Fx.flightTodo, ...chip(f ? 'done' : 'act') },
+      { label: tr('Airport transfer'), detail: f ? Fx.shuttle(f.group, f.dep) : Fx.transferTodo, ...chip(f ? 'done' : 'pending') },
+      { label: tr('Tuesday sessions'), detail: st.agendaSaved ? Fx.sessOk(picksN) : Fx.sessTodo, ...chip(st.agendaSaved ? 'done' : 'act') }
+    ];
+
+    const qr = [];
+    const hx = hash(code);
+    for (let y = 0; y < 25; y++) for (let x = 0; x < 25; x++) {
+      const fz = (cx, cy) => x >= cx && x < cx + 7 && y >= cy && y < cy + 7;
+      let on;
+      const fp = [[0, 0], [18, 0], [0, 18]].find(([cx, cy]) => fz(cx, cy));
+      if (fp) { const lx = x - fp[0], ly = y - fp[1]; on = lx === 0 || lx === 6 || ly === 0 || ly === 6 || (lx >= 2 && lx <= 4 && ly >= 2 && ly <= 4); }
+      else if ((x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16)) on = false;
+      else on = ((hash(code + x + ',' + y) ^ hx) % 100) < 46;
+      qr.push({ c: on ? '#111A38' : 'transparent' });
+    }
+
+    const slots = SLOTS.map((sl, i) => ({
+      time: sl.time, name: tr(sl.name), aria: `${sl.time} ${tr(sl.name)}`, dot: st.picks[i] ? STOPS[i + 1] : '#34436E',
+      opts: sl.opts.map(o => {
+        const on = st.picks[i] === o.id, low = o.seats < 10;
+        return { ...o, title: tr(o.title), track: tr(o.track), on, seats: Fx.seats(o.seats), pick: () => this.setState(s => ({ picks: { ...s.picks, [i]: o.id }, agendaSaved: false })),
+          bg: on ? '#16224A' : '#111622', bd: on ? '#05A3E6' : '#232C40', fg: '#FFFFFF', sub: on ? '#7FD3F2' : '#8FA0B4',
+          lineOp: on ? 1 : 0, mark: on ? '✓' : '', ringBg: on ? '#05A3E6' : 'transparent', ringBd: on ? '#05A3E6' : '#3A4660',
+          track2: '#232C40', fill: `${Math.round(Math.max(0.08, 1 - o.seats / 60) * 100)}%`, meter: low ? '#FF7A86' : (on ? '#05A3E6' : '#5E7088'), seatFg: low ? '#FF9AA3' : '#8FA0B4' };
+      })
+    }));
+    const agenda = SLOTS.map((sl, i) => { const o = sl.opts.find(o => o.id === st.picks[i]); return { time: sl.time, title: o ? tr(o.title) : tr('Not chosen yet'), fg: o ? 'light-dark(#111A38,#EEF2F7)' : 'light-dark(#6B7884,#8394A8)', seg: o ? STOPS[i + 1] : 'light-dark(#E2E8ED,#1F2840)' }; });
+    const incomplete = picksN < 3;
+
+    let regA = t.regA, regB = t.regB, regLede = t.regLede;
+    if (phase === 'Waitlist' && !registered) { regA = 'We’re at'; regB = 'capacity'; regLede = 'Every place has been taken. Join the waitlist and we’ll offer you the next available one.'; }
+    if (phase === 'Closed' && !registered) { regA = 'Registration'; regB = 'has closed'; regLede = 'Thank you for your interest in Americas Kickoff 2027.'; }
+
+    if (phase !== 'Open' && !registered) { regA = tr(regA); regB = tr(regB); regLede = tr(regLede); }
+    const X = Object.fromEntries(Object.entries(XK).map(([key, v]) => [key, tr(v)]));
+    Object.assign(X, { signOut: Fx.signOut(form.firstName), inbound: Fx.inbound(dshort(form.arrival)), flightPh: Fx.ph, dayOf: Fx.dayOf(day + 1), yourTue: Fx.yourTue(picksN), accessPh: tr('Anything that helps us look after you') });
+    const dpill = (k, [wk, v]) => pill(k, v, lang === 'en' ? v.slice(4) : dfmt(DATES[v], { day: 'numeric', month: 'short' }), lang === 'en' ? wk : cap(dfmt(DATES[v], { weekday: 'long' })));
+    const v = V[lang] || V.en;
+    const cun = new Date(now - 5 * 36e5), chh = cun.getUTCHours();
+    let skyPh = chh >= 5 && chh < 8 ? 'dawn' : chh >= 8 && chh < 17 ? 'day' : chh >= 17 && chh < 20 ? 'dusk' : 'night';
+    let skyClock = `${pad(chh)}:${pad(cun.getUTCMinutes())}`;
+    const skyOv = this.opt('skyTime');
+    if (skyOv && skyOv !== 'Live') { skyPh = skyOv.toLowerCase(); skyClock = SKY_CLOCK[skyPh]; }
+    const cm = this.opt('countdownMode') || 'Auto';
+    const showPass = cm === 'Boarding pass' || (cm === 'Auto' && diff > 0 && diff < 7 * 864e5);
+    const og = ORIGIN[form.country] || ORIGIN['United States'];
+    const bh = hash(code + 'bar');
+    const barcode = Array.from({ length: 64 }, (_, i) => ({ w: (1 + ((((bh >>> (i % 28)) ^ (i * 7)) >>> 0) % 3)) + 'px', c: i % 2 ? 'transparent' : '#FFFFFF' }));
+    const liveDot = React.createElement('span', { style: { width: 8, height: 8, borderRadius: '50%', background: '#00BFB3', flex: '0 0 8px', animation: this.motion() ? 'rlp-pulse 1.8s ease-out infinite' : 'none' } });
+    const maxC = Math.max(...st.counts);
+    const markets = MARKETS.map((m, i) => ({ name: tr(m[0]), c: String(st.counts[i]), w: `${Math.round(st.counts[i] / maxC * 100)}%`, fg: st.flash === i ? '#7FD3F2' : '#D6E2EB', bar: st.flash === i ? 'linear-gradient(90deg,#05A3E6,#00BFB3)' : 'linear-gradient(90deg,#0058AB,#1A86D0)' }));
+    const pcs = PC[st.pcStyle] || PC[0];
+    const packN = v.items.filter((_, i) => st.packed[i]).length;
+    const ccAll = [{ role: 'assistant', text: v.ccHello }, ...st.ccMsgs];
+    const pcNm = st.pcName ?? name;
+    const wc = st.wx ? st.wx.code : 0, wxI = wc >= 95 ? 4 : (wc >= 51 && wc <= 82) ? 3 : wc === 3 || wc === 45 || wc === 48 ? 2 : wc === 2 ? 1 : 0;
+    const wxTemp = st.wx ? (lang === 'en' ? Math.round(st.wx.t * 9 / 5 + 32) + '°F' : Math.round(st.wx.t) + '°C') : '';
+    return {
+      v, liveDot, hasWx: !!st.wx, wxTemp, wxLabel: st.wx ? v.wx[wxI] : '', sky: { dawn: skyPh === 'dawn' ? 1 : 0, dusk: skyPh === 'dusk' ? 1 : 0, night: skyPh === 'night' ? 1 : 0 }, skyClock, skyPhase: v.sky[skyPh],
+      showPass, showCountdown: !showPass, bpClock: `${cd.d}d ${cd.h}:${cd.m}:${cd.s}`, barcode,
+      bp: { from: og[0], fromCity: og[1], pax: name, date: lang === 'en' ? '31 Jan' : dfmt('2027-01-31', { day: 'numeric', month: 'short' }), gate: 'Horizon', conf: code },
+      markets, mapTotal: String(st.counts.reduce((a, b) => a + b, 0)), mapCountsStr: JSON.stringify(st.counts.map((c, i) => Math.round(c / MARKETS[i][2].length))), mapPulse: st.pulse,
+      mapToast: st.toast ? v.mapJust(MARKETS[st.toast.mi][2][st.toast.ci]) : '',
+      dress: v.dress.map((dd, i) => ({ code: dd[0], desc: dd[1], bar: STOPS[i], date: lang === 'en' ? `${DAYS[i].wk.slice(0, 3)} ${+DAYS[i].num} ${DAYS[i].mon}` : cap(dfmt(DISO[i], { weekday: 'short', day: 'numeric', month: 'short' })) })),
+      packItems: v.items.map((label, i) => { const on = !!st.packed[i]; return { label, on, toggle: () => this.togglePack(i), mark: on ? '✓' : '', bg: on ? '#0058AB' : 'light-dark(#FFFFFF,#121A2C)', bd: on ? '#0058AB' : 'light-dark(#9AA8B5,#3A4660)', fg: on ? 'light-dark(#778694,#8FA0B4)' : 'light-dark(#111A38,#EEF2F7)', deco: on ? 'line-through' : 'none' }; }),
+      packCount: v.packN(packN), packPct: `${packN / v.items.length * 100}%`,
+      pcStyles: v.pcStyles.map((label, i) => ({ label, on: st.pcStyle === i, pick: () => this.setState({ pcStyle: i }), bg: st.pcStyle === i ? 'light-dark(#111A38,#FFFFFF)' : 'transparent', fg: st.pcStyle === i ? 'light-dark(#FFFFFF,#111A38)' : 'light-dark(#111A38,#EEF2F7)', bd: st.pcStyle === i ? 'light-dark(#111A38,#FFFFFF)' : 'light-dark(#C7D1DA,#2E3A57)' })),
+      pc: { overlay: pcs.css, accent: pcs.accent, imgOp: pcs.imgOp, fade: pcs.fade }, pcTextMax: st.pcPhoto ? '54cqw' : '84cqw', pcTitle: form.title || 'Vice President, Client Partner', pcName: pcNm, pcNameShow: pcNm || '\u00A0',
+      onPcName: e => this.setState({ pcName: e.target.value }), downloadCard: this.downloadCard, shareLinkedIn: this.shareLinkedIn, copyCaption: this.copyCaption,
+      pcCopyLabel: st.pcCopied ? v.pcCopied : v.pcCopy,
+      hasPcPhoto: !!st.pcPhoto, noPcPhoto: !st.pcPhoto, pcPhoto: st.pcPhoto || '', pcPhotoLabel: st.pcPhoto ? v.pcPhC : v.pcPh, onPcPhoto: this.onPcPhoto, removePcPhoto: () => this.setState({ pcPhoto: null }),
+      ccOpen: st.ccOpen, ccToggle: () => this.setState(s => ({ ccOpen: !s.ccOpen, demoOpen: false })), ccClose: () => this.setState({ ccOpen: false }), ccListRef: this.ccListRef,
+      ccMsgs: ccAll.map(m => ({ text: m.text, align: m.role === 'user' ? 'flex-end' : 'flex-start', bg: m.role === 'user' ? 'light-dark(#111A38,#0058AB)' : 'light-dark(#FFFFFF,#1A2338)', fg: m.role === 'user' ? '#FFFFFF' : 'light-dark(#111A38,#EEF2F7)', radius: m.role === 'user' ? '18px 18px 6px 18px' : '18px 18px 18px 6px', shadow: m.role === 'user' ? 'none' : '0 1px 2px rgba(17,26,56,0.06)' })),
+      ccBusy: st.ccBusy, ccTyping: spin('#0058AB'), ccShowSug: !st.ccMsgs.length && !st.ccBusy, ccSug: v.ccSug.map(q => ({ q, ask: () => this.askConcierge(q) })),
+      ccInput: st.ccInput, ccOnInput: e => this.setState({ ccInput: e.target.value }), ccSubmit: e => { e.preventDefault(); this.askConcierge(this.state.ccInput); },
+      showDemo: this.props.demoPanel ?? true,
+      onsiteOpen: !!st.onsite, openOnsite: () => this.setState({ onsite: true, demoOpen: false }), closeOnsite: () => this.setState({ onsite: false }),
+      onsiteSrc: `onsite.html?embed=1&guest=${st.guestId || 'amorgan'}&lang=${lang}&theme=${({ Light: 'light', Dark: 'dark' })[this.opt('colorMode')] || 'auto'}`, demoOpen: st.demoOpen, demoToggle: () => this.setState(s => ({ demoOpen: !s.demoOpen, ccOpen: false })), demoClose: () => this.setState({ demoOpen: false }), resetDemo: this.resetDemo,
+      demoGroups: DEMO.map(([k, label, opts, dflt]) => { const cur = this.opt(k) ?? dflt; return { label, opts: opts.map(([val, l]) => { const on = cur === val; return { l, on, pick: () => this.setDemo(k, val), bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#111A38' : '#D6E2EB', bd: on ? '#FFFFFF' : '#34436E' }; }) }; }),
+      navCtaW: st.wide === false ? '120px' : '196px', narrow: st.wide === false, lang, onLangSelect: e => this.setState({ lang: e.target.value }), sessSpan: st.wide === false ? 1 : 2,
+      ccLaunchText: st.wide === false ? v.ccTitle : v.ccLaunch,
+      ccClosed: !st.ccOpen, ccSendBg: st.ccInput.trim() ? '#0058AB' : 'light-dark(#9AA8B5,#3A4660)', scheme: ({ Light: 'light', Dark: 'dark' })[this.opt('colorMode')] || 'light dark',
+      heroImgRef: this.heroImgRef, lineRef: this.lineRef, marqueeRef: this.marqueeRef, panelRef: this.panelRef,
+      parRef: this.parRef, stepRef: this.stepRef, ticketRef: this.ticketRef, passRef: this.passRef,
+      t, x: X, wide: st.wide, arrDisp: dshort(form.arrival), depDisp: dshort(form.departure),
+      langs: LANGS.map(([id, c, n]) => ({ id, code: c, name: n, on: id === lang, pick: () => this.setState({ lang: id }), bg: id === lang ? '#FFFFFF' : 'transparent', fg: id === lang ? '#111A38' : '#D6E2EB' })),
+      navBg: scrolled ? 'rgba(11,14,21,0.82)' : 'rgba(11,14,21,0)', navBlur: scrolled ? 'blur(14px)' : 'none', navLine: scrolled ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0)',
+      navCta: registered ? t.navMy : t.navRegister, navCtaHref: registered ? '#my' : '#register',
+      heroEyebrow: registered ? `${t.welcomeBack}, ${first}  ·  ${t.confirmed}` : guest ? `${name}  ·  ${t.invited}` : t.open,
+      heroCta: registered ? t.viewMy : t.registerNow, heroHref: registered ? '#my' : '#register',
+      cd,
+      showMy: registered, myHeading: `${t.welcomeBack}, ${first}.`, code, statusRows,
+      needFlight: !f, flightNo: st.flightNo, onFlightNo: e => this.setState({ flightNo: e.target.value, flightErr: '' }),
+      flightErr: st.flightErr, flightBc: st.flightErr ? 'light-dark(#C42F3F,#FF8593)' : 'light-dark(#C7D1DA,#2E3A57)', findFlight: this.findFlight,
+      flightLabel: tr(st.flightBusy ? 'Finding flight' : 'Find my flight'), flightSpinner: st.flightBusy ? spin('#FFFFFF') : null,
+      startOver: this.startOver,
+      days: DAYS.map((dd, i) => ({ ...dd, wk: lang === 'en' ? dd.wk : cap(dfmt(DISO[i], { weekday: 'long' })), mon: lang === 'en' ? dd.mon : dfmt(DISO[i], { month: 'short' }), pick: () => this.setState({ day: i }), fg: i === day ? 'light-dark(#111A38,#EEF2F7)' : 'light-dark(#9AA8B5,#6F8095)' })),
+      dayClip: `${(3 - day) * 25}%`,
+      panel: { n: day + 1, title: tr(d.title), lede: tr(d.lede), moments: d.moments.map(m => ({ t: m.t.startsWith('From ') ? Fx.from(m.t.slice(5)) : m.t, l: tr(m.l) })) },
+      lockedSpeakers: SPEAKERS.map((s, i) => { const dt = new Date(s.date + 'T12:00:00'); return { day: String(dt.getDate()), mon: dt.toLocaleString(loc, { month: 'short' }), inLabel: Fx.inDays(Math.max(0, Math.ceil((dt - now) / 864e5))), session: s.session.split(' · ').map(tr).join(' · '), bar: STOPS[i % 4] }; }).filter((_, i) => !(i === 0 && this.opt('speakerReveal') === 'Oct 21 revealed')),
+      oct21Revealed: this.opt('speakerReveal') === 'Oct 21 revealed', oct21Session: SPEAKERS[0].session.split(' · ').map(tr).join(' · '),
+      notify: st.notify, toggleNotify: () => this.setState(s => ({ notify: !s.notify })),
+      notifyLabel: tr(st.notify ? '✓  Reveal alerts on' : 'Get reveal alerts'), notifyBg: st.notify ? 'light-dark(#111A38,#FFFFFF)' : 'transparent', notifyFg: st.notify ? 'light-dark(#FFFFFF,#111A38)' : 'light-dark(#111A38,#EEF2F7)',
+      slots, agenda, pickCount: picksN, agendaIncomplete: incomplete,
+      saveAgenda: () => this.setState({ agendaSaved: true }),
+      saveBg: incomplete ? 'light-dark(#E2E8ED,#1F2840)' : (st.agendaSaved ? '#05A3E6' : 'light-dark(#111A38,#FFFFFF)'), saveFg: incomplete ? 'light-dark(#6B7884,#8394A8)' : (st.agendaSaved ? '#FFFFFF' : 'light-dark(#FFFFFF,#111A38)'),
+      saveLabel: tr(st.agendaSaved ? '✓  Saved to my agenda' : 'Save to my agenda'),
+      agendaNote: tr(st.agendaSaved ? (registered ? 'Added to your registration and wallet pass.' : 'Saved — we’ll attach it when you register.') : (incomplete ? 'Pick one session in each slot.' : 'Ready to save.')),
+      steps: t.steps.map((label, i) => ({ label, lift: '0px', fg: i <= at ? '#FFFFFF' : '#5E7088', bar: i <= at ? STOPS[i] : '#243055' })),
+      stepTitle: [t.s0, t.s1, t.s2][step] || '',
+      isStep0: step === 0, isStep1: step === 1, isStep2: step === 2, canBack: step > 0,
+      form, on: this.on, bc, err, sending,
+      arrivalOpts: ARR.map(r => dpill('arrival', r)),
+      departureOpts: DEP.map(r => dpill('departure', r)),
+      dietOpts: DIET.map(v => pill('diet', v, tr(v))),
+      next: this.next, back: this.back, edit: this.edit,
+      nextLabel: step < 2 ? t.cont : (sending ? t.confirming : t.confirm),
+      spinner: sending ? spin('#111A38') : null,
+      regHeadA: regA, regHeadB: regB, regLede,
+      showForm: !registered && phase === 'Open', showConfirm: registered,
+      showWaitlist: !registered && phase === 'Waitlist' && !st.wlPos, showWaitlisted: !registered && phase === 'Waitlist' && !!st.wlPos,
+      showClosed: !registered && phase === 'Closed',
+      wl: st.wl, wlPos: st.wlPos, wlErr: st.wlErr, wlBc: st.wlErr ? '#FF8593' : '#34436E', joinWaitlist: this.joinWaitlist,
+      onWlName: e => this.setState({ wl: { ...st.wl, name: e.target.value } }), onWlEmail: e => this.setState({ wl: { ...st.wl, email: e.target.value }, wlErr: '' }),
+      walletOpen: st.walletOpen, openWallet: () => this.setState({ walletOpen: true, walletMsg: '' }), closeWallet: () => this.setState({ walletOpen: false, walletMsg: '' }),
+      walletMsg: st.walletMsg ? ({ en: st.walletMsg + ' Wallet passes switch on at launch — they need Capgemini’s signed pass certificate. Your calendar invite works now.', es: st.walletMsg + ' Los pases de Wallet se activan en el lanzamiento: requieren el certificado firmado de Capgemini. La invitación de calendario ya funciona.', pt: st.walletMsg + ' Os passes da Wallet são ativados no lançamento — exigem o certificado assinado da Capgemini. O convite de calendário já funciona.', fr: st.walletMsg + ' Les pass Wallet seront activés au lancement — ils nécessitent le certificat signé de Capgemini. L’invitation calendrier fonctionne déjà.' })[lang] : '',
+      walletApple: e => { e.preventDefault(); this.setState({ walletMsg: 'Apple Wallet ·' }); },
+      walletGoogle: e => { e.preventDefault(); this.setState({ walletMsg: 'Google Wallet ·' }); },
+      addCalendar: e => { e.preventDefault(); this.downloadIcs(); }, stop: e => e.stopPropagation(),
+      qr, passTransfer: f ? Fx.pass(f.group, f.dep) : tr('To be assigned'),
+      nameDisplay: name, titleDisplay: form.title || 'Vice President, Client Partner', emailDisplay: form.email || 'alex.morgan@capgemini.com'
+    };
+  }
+}
+
+</script>
+</body>
+</html>
